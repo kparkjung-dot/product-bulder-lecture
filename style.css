@@ -1,14 +1,62 @@
+:root {
+    --bg-color: #f0f0f0;
+    --container-bg: #ffffff;
+    --text-color: #222222;
+    --btn-bg: #4CAF50;
+    --btn-color: #ffffff;
+    --theme-btn-bg: #222222;
+    --theme-btn-color: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+    --bg-color: #1a1a2e;
+    --container-bg: #16213e;
+    --text-color: #e0e0e0;
+    --btn-bg: #4CAF50;
+    --btn-color: #ffffff;
+    --theme-btn-bg: #e0e0e0;
+    --theme-btn-color: #1a1a2e;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
     text-align: center;
+    background-color: var(--container-bg);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px var(--shadow);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.theme-toggle {
+    margin-bottom: 16px;
+}
+
+#theme-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--theme-btn-bg);
+    color: var(--theme-btn-color);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-btn:hover {
+    opacity: 0.85;
 }
 
 .lotto-numbers {
@@ -21,22 +69,26 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #fff;
     margin: 0 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px var(--shadow);
 }
 
 #generator-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
     cursor: pointer;
     font-size: 16px;
+    transition: opacity 0.2s;
+}
+
+#generator-btn:hover {
+    opacity: 0.85;
 }
