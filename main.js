@@ -79,6 +79,40 @@ function renderBalls(container, numbers, small = false) {
     });
 }
 
+// Contact form — AJAX submit to Formspree (no page redirect)
+const contactForm = document.querySelector('.contact-form');
+const formStatus = document.getElementById('form-status');
+const submitBtn = document.querySelector('.contact-submit-btn');
+
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    formStatus.className = 'form-status';
+
+    try {
+        const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = '✓ ¡Mensaje enviado! Te responderemos a la brevedad.';
+            contactForm.reset();
+            submitBtn.textContent = 'Enviado';
+        } else {
+            throw new Error('server error');
+        }
+    } catch {
+        formStatus.className = 'form-status error';
+        formStatus.textContent = '✗ Hubo un problema al enviar. Inténtalo de nuevo.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar Mensaje';
+    }
+});
+
 generatorBtn.addEventListener('click', () => {
     const numbers = generateKino();
     renderBalls(mainBalls, numbers);
