@@ -391,6 +391,21 @@ body.dark .form-status.error {
     border-color: #c62828;
 }
 
+/* Comments */
+.comments-section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid var(--border);
+    transition: background 0.3s;
+}
+
+.comments-section .section-title {
+    margin-bottom: 20px;
+}
+
 /* Footer */
 footer {
     text-align: center;

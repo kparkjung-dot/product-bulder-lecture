@@ -76,6 +76,11 @@
                 </form>
                 <div id="form-status" class="form-status" aria-live="polite"></div>
             </section>
+
+            <section class="comments-section">
+                <h2 class="section-title">Comentarios</h2>
+                <div id="disqus_thread"></div>
+            </section>
         </main>
 
         <footer>
@@ -83,5 +88,17 @@
         </footer>
     </div>
     <script src="main.js"></script>
+    <script>
+        var disqus_config = function () {
+            this.page.url = 'https://kparkjung-dot.github.io/product-bulder-lecture/';
+            this.page.identifier = 'kino-chile-home';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://kino-chile.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
 </body>
 </html>
