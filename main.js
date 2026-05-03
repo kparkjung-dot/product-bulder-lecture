@@ -30,63 +30,61 @@ document.querySelectorAll('.mode-tab').forEach(tab => {
     });
 });
 
-// ── Chilean food list ──────────────────────────────────
+// ── Chilean food list (based on PedidosYa & Uber Eats Chile 2024–2025 data) ──
 const FOODS = [
-    // Sánduches & completos
-    { name: 'Completo italiano',         emoji: '🌭' },
-    { name: 'Completo americano',        emoji: '🌭' },
-    { name: 'Completo dinámico',         emoji: '🌭' },
-    { name: 'Churrasco italiano',        emoji: '🥩' },
-    { name: 'Churrasco con palta',       emoji: '🥩' },
-    { name: 'Chacarero',                 emoji: '🥖' },
-    { name: 'Barros Luco',               emoji: '🧀' },
-    { name: 'Barros Jarpa',              emoji: '🧀' },
-    { name: 'Lomito clásico',            emoji: '🥪' },
-    { name: 'Lomito completo',           emoji: '🥪' },
-    { name: 'Ave palta',                 emoji: '🥑' },
-    { name: 'Choripán con pebre',        emoji: '🌭' },
+    // Completos & sánduches — top delivery category in Chile
+    { name: 'Completo italiano',           emoji: '🌭' },
+    { name: 'Completo dinámico',           emoji: '🌭' },
+    { name: 'Churrasco italiano',          emoji: '🥩' },
+    { name: 'Churrasco con palta',         emoji: '🥩' },
+    { name: 'Barros Luco',                 emoji: '🧀' },
+    { name: 'Barros Jarpa',                emoji: '🧀' },
+    { name: 'Lomito clásico',              emoji: '🥪' },
+    { name: 'Chacarero',                   emoji: '🥖' },
+    { name: 'Ave palta',                   emoji: '🥑' },
+    { name: 'Choripán con pebre',          emoji: '🌭' },
 
     // Platos de fondo
-    { name: 'Lomo a lo pobre',           emoji: '🍳' },
-    { name: 'Pastel de choclo',          emoji: '🌽' },
-    { name: 'Cazuela de vacuno',         emoji: '🍲' },
-    { name: 'Cazuela de pollo',          emoji: '🍲' },
-    { name: 'Plateada al horno',         emoji: '🍖' },
-    { name: 'Costillar de cerdo',        emoji: '🍖' },
-    { name: 'Pollo asado con papas',     emoji: '🍗' },
-    { name: 'Porotos granados',          emoji: '🫘' },
-    { name: 'Porotos con riendas',       emoji: '🫘' },
-    { name: 'Lentejas guisadas',         emoji: '🥣' },
-    { name: 'Carbonada',                 emoji: '🥘' },
-    { name: 'Arrollado huaso',           emoji: '🌯' },
-    { name: 'Prietas con papas',         emoji: '🍽️' },
+    { name: 'Lomo a lo pobre',             emoji: '🍳' },
+    { name: 'Chorrillana',                 emoji: '🍟' },
+    { name: 'Pollo broaster',              emoji: '🍗' },
+    { name: 'Pastel de choclo',            emoji: '🌽' },
+    { name: 'Cazuela de vacuno',           emoji: '🍲' },
+    { name: 'Cazuela de pollo',            emoji: '🍲' },
+    { name: 'Plateada al horno',           emoji: '🍖' },
+    { name: 'Porotos granados',            emoji: '🫘' },
+    { name: 'Carbonada',                   emoji: '🥘' },
+    { name: 'Tallarines a la bolognesa',   emoji: '🍝' },
 
-    // Empanadas
-    { name: 'Empanada de pino',          emoji: '🥟' },
-    { name: 'Empanada de queso',         emoji: '🥟' },
-    { name: 'Empanada de mariscos',      emoji: '🥟' },
-    { name: 'Empanada de pino frita',    emoji: '🥟' },
+    // Empanadas — #1 plato tradicional en PedidosYa (3M+ unidades)
+    { name: 'Empanada de pino',            emoji: '🥟' },
+    { name: 'Empanada frita de queso',     emoji: '🥟' },
+    { name: 'Empanada de mariscos',        emoji: '🥟' },
+    { name: 'Empanada frita de pino',      emoji: '🥟' },
 
     // Mariscos & pescados
-    { name: 'Caldillo de congrio',       emoji: '🐟' },
-    { name: 'Ceviche de reineta',        emoji: '🍋' },
-    { name: 'Machas a la parmesana',     emoji: '🦪' },
-    { name: 'Chupe de mariscos',         emoji: '🦐' },
-    { name: 'Jaibas rellenas',           emoji: '🦀' },
-    { name: 'Ostiones al vapor',         emoji: '🫧' },
+    { name: 'Caldillo de congrio',         emoji: '🐟' },
+    { name: 'Ceviche de reineta',          emoji: '🍋' },
+    { name: 'Machas a la parmesana',       emoji: '🦪' },
+    { name: 'Chupe de mariscos',           emoji: '🦐' },
+    { name: 'Jaibas rellenas',             emoji: '🦀' },
 
-    // Comida rápida & internacional
-    { name: 'Pizza napolitana',          emoji: '🍕' },
-    { name: 'Sushi variado',             emoji: '🍣' },
-    { name: 'Hamburguesa artesanal',     emoji: '🍔' },
-    { name: 'Tallarines a la bolognesa', emoji: '🍝' },
-    { name: 'Tallarines al pesto',       emoji: '🍝' },
+    // Sushi — Chile lidera consumo en Latinoamérica, #1 en Uber Eats 2024
+    { name: 'Roll california',             emoji: '🍣' },
+    { name: 'Roll de salmón con palta',    emoji: '🍣' },
+    { name: 'Temaki de salmón con palta',  emoji: '🍣' },
+    { name: 'Sashimi de salmón',           emoji: '🐠' },
 
-    // Antojitos & once
-    { name: 'Sopaipillas con pebre',     emoji: '🫓' },
-    { name: 'Sopaipillas pasadas',       emoji: '🍯' },
-    { name: 'Humitas',                   emoji: '🌿' },
-    { name: 'Pan con mantequilla y té',  emoji: '🫖' },
+    // Comida rápida
+    { name: 'Hamburguesa con queso',       emoji: '🍔' },
+    { name: 'Pizza de mechada',            emoji: '🍕' },
+    { name: 'Pizza napolitana',            emoji: '🍕' },
+    { name: 'Pollo frito con papas',       emoji: '🍗' },
+
+    // Once & antojitos
+    { name: 'Sopaipillas pasadas',         emoji: '🍯' },
+    { name: 'Sopaipillas con pebre',       emoji: '🫓' },
+    { name: 'Humitas',                     emoji: '🌿' },
 ];
 
 // ── Slot machine animation ─────────────────────────────
