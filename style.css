@@ -298,12 +298,67 @@ body.dark .draw-date {
 .prize-row .prize { color: var(--text-muted); font-size: 13px; }
 .prize-row.jackpot .prize { color: #c8960a; font-size: 14px; }
 
+/* Contact Form */
+.contact-section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid var(--border);
+    transition: background 0.3s;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--prize-bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0039A6;
+    box-shadow: 0 0 0 3px rgba(0, 57, 166, 0.1);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
 /* Footer */
 footer {
     text-align: center;
     font-size: 12px;
     color: var(--footer-text);
     padding-bottom: 8px;
+    margin-top: 16px;
 }
 
 footer a {
