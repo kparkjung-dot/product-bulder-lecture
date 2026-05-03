@@ -1,88 +1,160 @@
-const generatorBtn = document.getElementById('generator-btn');
+// ── Theme ──────────────────────────────────────────────
 const themeBtn = document.getElementById('theme-btn');
-const mainBalls = document.getElementById('main-balls');
-const rekinoBalls = document.getElementById('rekino-balls');
-const requetekinoBalls = document.getElementById('requetekino-balls');
-const nextDraw = document.getElementById('next-draw');
-
-// Theme
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
     themeBtn.textContent = '☀️';
 }
-
 themeBtn.addEventListener('click', () => {
     const isDark = document.body.classList.toggle('dark');
     themeBtn.textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
-// Next draw: Wed(3), Fri(5), Sun(0) at 18:00 Chile time
-function getNextDrawDate() {
-    const drawDays = [0, 3, 5];
-    const drawDayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Santiago' }));
-    const todayDay = now.getDay();
-    const todayHour = now.getHours();
+// ── Category tabs ──────────────────────────────────────
+document.querySelectorAll('.cat-tab:not([disabled])').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(`panel-${tab.dataset.cat}`).classList.add('active');
+    });
+});
 
-    let daysAhead = null;
-    for (let i = 0; i < 7; i++) {
-        const checkDay = (todayDay + i) % 7;
-        if (drawDays.includes(checkDay)) {
-            if (i === 0 && todayHour >= 18) continue;
-            daysAhead = i;
-            break;
+// ── Mode tabs ──────────────────────────────────────────
+document.querySelectorAll('.mode-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(`mode-${tab.dataset.mode}`).classList.add('active');
+    });
+});
+
+// ── Chilean food list ──────────────────────────────────
+const FOODS = [
+    { name: 'Completo',          emoji: '🌭' },
+    { name: 'Empanadas',         emoji: '🥟' },
+    { name: 'Churrasco',         emoji: '🥩' },
+    { name: 'Cazuela',           emoji: '🍲' },
+    { name: 'Pastel de choclo',  emoji: '🌽' },
+    { name: 'Sopaipillas',       emoji: '🫓' },
+    { name: 'Lomito',            emoji: '🥪' },
+    { name: 'Barros Luco',       emoji: '🍔' },
+    { name: 'Pollo asado',       emoji: '🍗' },
+    { name: 'Humitas',           emoji: '🌿' },
+    { name: 'Ceviche',           emoji: '🍋' },
+    { name: 'Tallarines',        emoji: '🍝' },
+    { name: 'Carbonada',         emoji: '🍵' },
+    { name: 'Chupe de mariscos', emoji: '🦐' },
+    { name: 'Sushi',             emoji: '🍣' },
+    { name: 'Pizza',             emoji: '🍕' },
+    { name: 'Kuchen',            emoji: '🍰' },
+    { name: 'Leche asada',       emoji: '🍮' },
+    { name: 'Arrollado huaso',   emoji: '🌯' },
+    { name: 'Plateada',          emoji: '🍖' },
+    { name: 'Caldillo de congrio', emoji: '🐟' },
+    { name: 'Sandwich',          emoji: '🥖' },
+];
+
+// ── Slot machine animation ─────────────────────────────
+function slotMachine(pool, emojiEl, nameEl, card, onDone) {
+    card.classList.remove('revealed');
+    card.classList.add('spinning');
+
+    let step = 0;
+    const steps = 28;
+    let delay = 60;
+
+    function tick() {
+        const item = pool[Math.floor(Math.random() * pool.length)];
+        emojiEl.textContent = item.emoji || '🎯';
+        nameEl.textContent = item.name;
+        step++;
+
+        if (step < steps) {
+            if (step > 18) delay += 18;
+            setTimeout(tick, delay);
+        } else {
+            card.classList.remove('spinning');
+            card.classList.add('revealed');
+            onDone(item);
         }
     }
-    if (daysAhead === null) daysAhead = 7;
-
-    const drawDate = new Date(now);
-    drawDate.setDate(drawDate.getDate() + daysAhead);
-    const dayName = drawDayNames[drawDate.getDay()];
-
-    if (daysAhead === 0) return `Hoy, ${dayName} 18:00`;
-    if (daysAhead === 1) return `Mañana, ${dayName} 18:00`;
-    return `${dayName.charAt(0).toUpperCase() + dayName.slice(1)} 18:00`;
+    tick();
 }
 
-nextDraw.textContent = getNextDrawDate();
+// ── Random mode ────────────────────────────────────────
+const randomBtn   = document.getElementById('random-btn');
+const randomCard  = document.getElementById('random-result');
+const randomEmoji = document.getElementById('random-emoji');
+const randomName  = document.getElementById('random-name');
 
-// Generate 14 unique numbers from 1–25
-function generateKino() {
-    const pool = Array.from({ length: 25 }, (_, i) => i + 1);
-    const picked = [];
-    while (picked.length < 14) {
-        const idx = Math.floor(Math.random() * pool.length);
-        picked.push(pool.splice(idx, 1)[0]);
-    }
-    return picked.sort((a, b) => a - b);
-}
-
-function ballRange(n) {
-    if (n <= 5) return '1';
-    if (n <= 10) return '2';
-    if (n <= 15) return '3';
-    if (n <= 20) return '4';
-    return '5';
-}
-
-function renderBalls(container, numbers, small = false) {
-    container.innerHTML = '';
-    numbers.forEach((n, i) => {
-        const ball = document.createElement('div');
-        ball.classList.add('ball');
-        if (small) ball.classList.add('ball-sm');
-        ball.dataset.range = ballRange(n);
-        ball.textContent = n;
-        ball.style.animationDelay = `${i * 60}ms`;
-        container.appendChild(ball);
+randomBtn.addEventListener('click', () => {
+    randomBtn.disabled = true;
+    slotMachine(FOODS, randomEmoji, randomName, randomCard, () => {
+        randomBtn.disabled = false;
     });
+});
+
+// ── Custom mode ────────────────────────────────────────
+const optionInput  = document.getElementById('option-input');
+const addBtn       = document.getElementById('add-btn');
+const chipsEl      = document.getElementById('chips');
+const customBtn    = document.getElementById('custom-btn');
+const customCard   = document.getElementById('custom-result');
+const customEmoji  = document.getElementById('custom-emoji');
+const customName   = document.getElementById('custom-name');
+
+let options = [];
+
+function renderChips() {
+    chipsEl.innerHTML = '';
+    if (options.length === 0) {
+        chipsEl.innerHTML = '<span class="chips-empty">Agrega al menos 2 opciones para decidir</span>';
+        customBtn.disabled = true;
+        return;
+    }
+    options.forEach((opt, i) => {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.innerHTML = `${opt} <button class="chip-remove" aria-label="Eliminar">×</button>`;
+        chip.querySelector('.chip-remove').addEventListener('click', () => {
+            options.splice(i, 1);
+            renderChips();
+        });
+        chipsEl.appendChild(chip);
+    });
+    customBtn.disabled = options.length < 2;
 }
 
-// Contact form — AJAX submit to Formspree (no page redirect)
+function addOption() {
+    const val = optionInput.value.trim();
+    if (!val || options.includes(val)) return;
+    options.push(val);
+    optionInput.value = '';
+    renderChips();
+    customCard.classList.add('hidden');
+    customCard.classList.remove('revealed');
+}
+
+addBtn.addEventListener('click', addOption);
+optionInput.addEventListener('keydown', e => { if (e.key === 'Enter') addOption(); });
+
+customBtn.addEventListener('click', () => {
+    customBtn.disabled = true;
+    customCard.classList.remove('hidden');
+    const pool = options.map(o => ({ name: o, emoji: '🎯' }));
+    slotMachine(pool, customEmoji, customName, customCard, () => {
+        customBtn.disabled = false;
+    });
+});
+
+renderChips();
+
+// ── Contact form ───────────────────────────────────────
 const contactForm = document.querySelector('.contact-form');
-const formStatus = document.getElementById('form-status');
-const submitBtn = document.querySelector('.contact-submit-btn');
+const formStatus  = document.getElementById('form-status');
+const submitBtn   = document.querySelector('.contact-submit-btn');
 
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -96,14 +168,13 @@ contactForm.addEventListener('submit', async (e) => {
             body: new FormData(contactForm),
             headers: { Accept: 'application/json' },
         });
-
         if (res.ok) {
             formStatus.className = 'form-status success';
             formStatus.textContent = '✓ ¡Mensaje enviado! Te responderemos a la brevedad.';
             contactForm.reset();
             submitBtn.textContent = 'Enviado';
         } else {
-            throw new Error('server error');
+            throw new Error();
         }
     } catch {
         formStatus.className = 'form-status error';
@@ -111,11 +182,4 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar Mensaje';
     }
-});
-
-generatorBtn.addEventListener('click', () => {
-    const numbers = generateKino();
-    renderBalls(mainBalls, numbers);
-    renderBalls(rekinoBalls, numbers, true);
-    renderBalls(requetekinoBalls, numbers, true);
 });

@@ -3,55 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kino Chile - Generador de Números</title>
+    <title>¿Queque? — El que decide por ti</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <button id="theme-btn" class="theme-btn" aria-label="Cambiar tema">🌙</button>
             <div class="logo">
-                <span class="logo-kino">KINO</span>
-                <span class="logo-sub">Lotería de Concepción</span>
+                <span class="logo-main">¿Queque?</span>
+                <span class="logo-sub">El que decide por ti</span>
             </div>
-            <div class="draw-info">
-                <span class="draw-label">Próximo sorteo</span>
-                <span id="next-draw" class="draw-date"></span>
-            </div>
+            <button id="theme-btn" class="theme-btn" aria-label="Cambiar tema">🌙</button>
         </header>
 
         <main>
-            <section class="game-section main-game">
-                <h2 class="section-title">Tus Números</h2>
-                <p class="section-desc">Elige 14 números del 1 al 25</p>
-                <div class="balls-grid" id="main-balls"></div>
-            </section>
+            <!-- Category tabs -->
+            <div class="category-tabs">
+                <button class="cat-tab active" data-cat="comer">🍽️ ¿Qué comer?</button>
+                <button class="cat-tab soon" data-cat="hacer" disabled>
+                    🎯 ¿Qué hacer?
+                    <span class="soon-badge">Pronto</span>
+                </button>
+            </div>
 
-            <section class="game-section rekino-section">
-                <div class="rekino-badge">ReKino</div>
-                <div class="balls-grid rekino-balls" id="rekino-balls"></div>
-            </section>
+            <!-- ¿Qué comer? panel -->
+            <div id="panel-comer" class="cat-panel active">
 
-            <section class="game-section requetekino-section">
-                <div class="requetekino-badge">RequeteKino</div>
-                <div class="balls-grid rekino-balls" id="requetekino-balls"></div>
-            </section>
+                <!-- Mode tabs -->
+                <div class="mode-tabs">
+                    <button class="mode-tab active" data-mode="random">🎲 Sorpréndeme</button>
+                    <button class="mode-tab" data-mode="custom">✏️ Mis opciones</button>
+                </div>
 
-            <button id="generator-btn" class="generate-btn">
-                <span>¡Generar Números!</span>
-            </button>
+                <!-- Random mode -->
+                <section id="mode-random" class="mode-panel active">
+                    <div class="result-card" id="random-result">
+                        <div class="result-emoji" id="random-emoji">🍽️</div>
+                        <div class="result-name" id="random-name">¿Qué vamos a comer hoy?</div>
+                        <div class="result-hint">Pulsa el botón y te lo decimos nosotros</div>
+                    </div>
+                    <button class="main-btn" id="random-btn">¡Sorpréndeme!</button>
+                </section>
 
-            <div class="prize-table">
-                <h3>Tabla de Premios</h3>
-                <div class="prize-rows">
-                    <div class="prize-row jackpot"><span class="match">14 aciertos</span><span class="prize">🏆 Jackpot</span></div>
-                    <div class="prize-row"><span class="match">13 aciertos</span><span class="prize">Categoría 2</span></div>
-                    <div class="prize-row"><span class="match">12 aciertos</span><span class="prize">Categoría 3</span></div>
-                    <div class="prize-row"><span class="match">11 aciertos</span><span class="prize">Categoría 4</span></div>
-                    <div class="prize-row"><span class="match">10 aciertos</span><span class="prize">Categoría 5</span></div>
+                <!-- Custom mode -->
+                <section id="mode-custom" class="mode-panel">
+                    <div class="input-row">
+                        <input type="text" id="option-input" placeholder="Ej: Sushi, Pizza, Completo..." maxlength="40">
+                        <button class="add-btn" id="add-btn">Agregar</button>
+                    </div>
+                    <div class="chips" id="chips">
+                        <span class="chips-empty">Agrega al menos 2 opciones para decidir</span>
+                    </div>
+                    <div class="result-card hidden" id="custom-result">
+                        <div class="result-emoji" id="custom-emoji">🎯</div>
+                        <div class="result-name" id="custom-name"></div>
+                        <div class="result-hint">¡La decisión está tomada!</div>
+                    </div>
+                    <button class="main-btn" id="custom-btn" disabled>¡Decidir!</button>
+                </section>
+            </div>
+
+            <!-- Coming soon: ¿Qué hacer? -->
+            <div id="panel-hacer" class="cat-panel">
+                <div class="coming-soon-card">
+                    <div class="coming-soon-icon">🚀</div>
+                    <h3>¿Qué hacer? — Próximamente</h3>
+                    <p>Pronto podrás dejar que <strong>¿Queque?</strong> también decida tus planes, actividades y salidas.</p>
                 </div>
             </div>
 
+            <!-- Contact -->
             <section class="contact-section">
                 <h2 class="section-title">Alianzas y Consultas</h2>
                 <p class="section-desc">¿Quieres colaborar con nosotros? Envíanos un mensaje.</p>
@@ -72,11 +93,12 @@
                         <label for="message">Mensaje</label>
                         <textarea id="message" name="message" required placeholder="Escribe tu consulta aquí..."></textarea>
                     </div>
-                    <button type="submit" class="generate-btn contact-submit-btn">Enviar Mensaje</button>
+                    <button type="submit" class="main-btn contact-submit-btn">Enviar Mensaje</button>
                 </form>
                 <div id="form-status" class="form-status" aria-live="polite"></div>
             </section>
 
+            <!-- Comments -->
             <section class="comments-section">
                 <h2 class="section-title">Comentarios</h2>
                 <div id="disqus_thread"></div>
@@ -84,14 +106,15 @@
         </main>
 
         <footer>
-            <p>Juega con responsabilidad · <a href="https://www.loteria.cl" target="_blank" rel="noopener">loteria.cl</a></p>
+            <p>Hecho con ❤️ en Chile · <strong>¿Queque?</strong> v1.0</p>
         </footer>
     </div>
+
     <script src="main.js"></script>
     <script>
         var disqus_config = function () {
             this.page.url = 'https://kparkjung-dot.github.io/product-bulder-lecture/';
-            this.page.identifier = 'kino-chile-home';
+            this.page.identifier = 'queque-home';
         };
         (function() {
             var d = document, s = d.createElement('script');
