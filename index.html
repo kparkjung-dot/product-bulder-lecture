@@ -1,19 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>Kino Chile - Generador de Números</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="theme-toggle">
-            <button id="theme-btn">🌙 Dark Mode</button>
-        </div>
-        <h1>Lotto Number Generator</h1>
-        <div class="lotto-numbers"></div>
-        <button id="generator-btn">Generate Numbers</button>
+        <header>
+            <button id="theme-btn" class="theme-btn" aria-label="Cambiar tema">🌙</button>
+            <div class="logo">
+                <span class="logo-kino">KINO</span>
+                <span class="logo-sub">Lotería de Concepción</span>
+            </div>
+            <div class="draw-info">
+                <span class="draw-label">Próximo sorteo</span>
+                <span id="next-draw" class="draw-date"></span>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-section main-game">
+                <h2 class="section-title">Tus Números</h2>
+                <p class="section-desc">Elige 14 números del 1 al 25</p>
+                <div class="balls-grid" id="main-balls"></div>
+            </section>
+
+            <section class="game-section rekino-section">
+                <div class="rekino-badge">ReKino</div>
+                <div class="balls-grid rekino-balls" id="rekino-balls"></div>
+            </section>
+
+            <section class="game-section requetekino-section">
+                <div class="requetekino-badge">RequeteKino</div>
+                <div class="balls-grid rekino-balls" id="requetekino-balls"></div>
+            </section>
+
+            <button id="generator-btn" class="generate-btn">
+                <span>¡Generar Números!</span>
+            </button>
+
+            <div class="prize-table">
+                <h3>Tabla de Premios</h3>
+                <div class="prize-rows">
+                    <div class="prize-row jackpot"><span class="match">14 aciertos</span><span class="prize">🏆 Jackpot</span></div>
+                    <div class="prize-row"><span class="match">13 aciertos</span><span class="prize">Categoría 2</span></div>
+                    <div class="prize-row"><span class="match">12 aciertos</span><span class="prize">Categoría 3</span></div>
+                    <div class="prize-row"><span class="match">11 aciertos</span><span class="prize">Categoría 4</span></div>
+                    <div class="prize-row"><span class="match">10 aciertos</span><span class="prize">Categoría 5</span></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Juega con responsabilidad · <a href="https://www.loteria.cl" target="_blank" rel="noopener">loteria.cl</a></p>
+        </footer>
     </div>
     <script src="main.js"></script>
 </body>
