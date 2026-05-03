@@ -32,28 +32,61 @@ document.querySelectorAll('.mode-tab').forEach(tab => {
 
 // ── Chilean food list ──────────────────────────────────
 const FOODS = [
-    { name: 'Completo',          emoji: '🌭' },
-    { name: 'Empanadas',         emoji: '🥟' },
-    { name: 'Churrasco',         emoji: '🥩' },
-    { name: 'Cazuela',           emoji: '🍲' },
-    { name: 'Pastel de choclo',  emoji: '🌽' },
-    { name: 'Sopaipillas',       emoji: '🫓' },
-    { name: 'Lomito',            emoji: '🥪' },
-    { name: 'Barros Luco',       emoji: '🍔' },
-    { name: 'Pollo asado',       emoji: '🍗' },
-    { name: 'Humitas',           emoji: '🌿' },
-    { name: 'Ceviche',           emoji: '🍋' },
-    { name: 'Tallarines',        emoji: '🍝' },
-    { name: 'Carbonada',         emoji: '🍵' },
-    { name: 'Chupe de mariscos', emoji: '🦐' },
-    { name: 'Sushi',             emoji: '🍣' },
-    { name: 'Pizza',             emoji: '🍕' },
-    { name: 'Kuchen',            emoji: '🍰' },
-    { name: 'Leche asada',       emoji: '🍮' },
-    { name: 'Arrollado huaso',   emoji: '🌯' },
-    { name: 'Plateada',          emoji: '🍖' },
-    { name: 'Caldillo de congrio', emoji: '🐟' },
-    { name: 'Sandwich',          emoji: '🥖' },
+    // Sánduches & completos
+    { name: 'Completo italiano',         emoji: '🌭' },
+    { name: 'Completo americano',        emoji: '🌭' },
+    { name: 'Completo dinámico',         emoji: '🌭' },
+    { name: 'Churrasco italiano',        emoji: '🥩' },
+    { name: 'Churrasco con palta',       emoji: '🥩' },
+    { name: 'Chacarero',                 emoji: '🥖' },
+    { name: 'Barros Luco',               emoji: '🧀' },
+    { name: 'Barros Jarpa',              emoji: '🧀' },
+    { name: 'Lomito clásico',            emoji: '🥪' },
+    { name: 'Lomito completo',           emoji: '🥪' },
+    { name: 'Ave palta',                 emoji: '🥑' },
+    { name: 'Choripán con pebre',        emoji: '🌭' },
+
+    // Platos de fondo
+    { name: 'Lomo a lo pobre',           emoji: '🍳' },
+    { name: 'Pastel de choclo',          emoji: '🌽' },
+    { name: 'Cazuela de vacuno',         emoji: '🍲' },
+    { name: 'Cazuela de pollo',          emoji: '🍲' },
+    { name: 'Plateada al horno',         emoji: '🍖' },
+    { name: 'Costillar de cerdo',        emoji: '🍖' },
+    { name: 'Pollo asado con papas',     emoji: '🍗' },
+    { name: 'Porotos granados',          emoji: '🫘' },
+    { name: 'Porotos con riendas',       emoji: '🫘' },
+    { name: 'Lentejas guisadas',         emoji: '🥣' },
+    { name: 'Carbonada',                 emoji: '🥘' },
+    { name: 'Arrollado huaso',           emoji: '🌯' },
+    { name: 'Prietas con papas',         emoji: '🍽️' },
+
+    // Empanadas
+    { name: 'Empanada de pino',          emoji: '🥟' },
+    { name: 'Empanada de queso',         emoji: '🥟' },
+    { name: 'Empanada de mariscos',      emoji: '🥟' },
+    { name: 'Empanada de pino frita',    emoji: '🥟' },
+
+    // Mariscos & pescados
+    { name: 'Caldillo de congrio',       emoji: '🐟' },
+    { name: 'Ceviche de reineta',        emoji: '🍋' },
+    { name: 'Machas a la parmesana',     emoji: '🦪' },
+    { name: 'Chupe de mariscos',         emoji: '🦐' },
+    { name: 'Jaibas rellenas',           emoji: '🦀' },
+    { name: 'Ostiones al vapor',         emoji: '🫧' },
+
+    // Comida rápida & internacional
+    { name: 'Pizza napolitana',          emoji: '🍕' },
+    { name: 'Sushi variado',             emoji: '🍣' },
+    { name: 'Hamburguesa artesanal',     emoji: '🍔' },
+    { name: 'Tallarines a la bolognesa', emoji: '🍝' },
+    { name: 'Tallarines al pesto',       emoji: '🍝' },
+
+    // Antojitos & once
+    { name: 'Sopaipillas con pebre',     emoji: '🫓' },
+    { name: 'Sopaipillas pasadas',       emoji: '🍯' },
+    { name: 'Humitas',                   emoji: '🌿' },
+    { name: 'Pan con mantequilla y té',  emoji: '🫖' },
 ];
 
 // ── Slot machine animation ─────────────────────────────
