@@ -86,9 +86,6 @@ const FOODS_ALMUERZO = [
     { name: 'Porotos granados',            emoji: '🫘' },
     { name: 'Carbonada',                   emoji: '🥘' },
     { name: 'Tallarines a la bolognesa',   emoji: '🍝' },
-    { name: 'Empanada de pino',            emoji: '🥟' },
-    { name: 'Empanada frita de queso',     emoji: '🥟' },
-    { name: 'Empanada de mariscos',        emoji: '🥟' },
     { name: 'Caldillo de congrio',         emoji: '🐟' },
     { name: 'Ceviche de reineta',          emoji: '🍋' },
     { name: 'Machas a la parmesana',       emoji: '🦪' },
@@ -106,6 +103,9 @@ const FOODS_ONCE = [
     { name: 'Barros Luco',                      emoji: '🧀' },
     { name: 'Humitas',                          emoji: '🌿' },
     { name: 'Empanada frita de queso',          emoji: '🥟' },
+    { name: 'Empanada de pino',                 emoji: '🥟' },
+    { name: 'Empanada de mariscos',             emoji: '🥟' },
+    { name: 'Empanada frita de pino',           emoji: '🥟' },
     { name: 'Kuchen de manzana',                emoji: '🍰' },
     { name: 'Hallulla con mantequilla',         emoji: '🧈' },
     { name: 'Café con leche y pan tostado',     emoji: '☕' },
@@ -128,7 +128,6 @@ const FOODS_CENA = [
     { name: 'Pizza napolitana',            emoji: '🍕' },
     { name: 'Pollo frito con papas',       emoji: '🍗' },
     { name: 'Completo dinámico',           emoji: '🌭' },
-    { name: 'Empanada frita de pino',      emoji: '🥟' },
 ];
 
 const MEAL_POOLS = {
