@@ -26,33 +26,43 @@ jobs:
           today = datetime.now(chile_tz).strftime('%Y-%m-%d')
 
           prompt = (
-              f"Eres un astrólogo experto con 20 años de experiencia escribiendo para revistas chilenas como Caras y Paula. "
+              f"Eres un astrólogo experto con 30 años de experiencia, especializado en astrología occidental moderna. "
               f"Genera el horóscopo del día {today} en español para los 12 signos del zodiaco. "
-              "Para CADA signo incluye 4 campos: "
-              "1) 'general': 3 oraciones que describan la energía del día, mencionando el planeta regente. "
-              "2) 'amor': 2 oraciones específicas sobre vida amorosa y relaciones personales. "
-              "3) 'trabajo': 2 oraciones sobre trabajo, carrera y situación económica. "
-              "4) 'consejo': 1 frase de consejo práctico y motivador para el día. "
-              "Tono: cálido, positivo, creíble y profundo. Varía el estilo entre signos. "
-              "Responde ÚNICAMENTE con JSON válido sin texto extra:\n"
+              "IMPORTANTE: Cada signo debe tener contenido ÚNICO, ESPECÍFICO y DIFERENTE al resto. "
+              "Personaliza según el elemento de cada signo: "
+              "Fuego (Aries/Leo/Sagitario): energético, apasionado, directo. "
+              "Tierra (Tauro/Virgo/Capricornio): práctico, concreto, material. "
+              "Aire (Géminis/Libra/Acuario): intelectual, social, comunicativo. "
+              "Agua (Cáncer/Escorpio/Piscis): emocional, intuitivo, profundo. "
+              "Para CADA signo incluye estos 8 campos: "
+              "1) 'general': 4 oraciones. Menciona el planeta regente del signo, describe la energía del día con un aspecto astrológico concreto y cómo afecta a ese signo específicamente. Sé profundo y creíble. "
+              "2) 'amor': 3 oraciones. Diferencia entre solteros y en pareja. Consejo romántico específico para la personalidad del signo. "
+              "3) 'trabajo': 3 oraciones. Oportunidades laborales, consejo financiero y advertencia si aplica. Concreto y accionable. "
+              "4) 'salud': 2 oraciones. Bienestar físico y mental. Un consejo preventivo o de autocuidado específico para el signo. "
+              "5) 'consejo': 1 frase poderosa, práctica y personalizada. Que resuene con la esencia del signo. "
+              "6) 'numero_suerte': un número entero entre 1 y 99, diferente para cada signo hoy. "
+              "7) 'color_suerte': un color en español que potencie la energía del signo hoy (ej: 'Azul cobalto', 'Verde esmeralda'). "
+              "8) 'energia': entero del 1 al 10 indicando nivel de energía general del signo hoy. Varía entre signos. "
+              "Tono: cálido, profundo, creíble. No uses frases genéricas ni clichés. "
+              "Responde ÚNICAMENTE con JSON válido sin texto extra ni markdown:\n"
               '{"fecha": "' + today + '", "signos": {'
-              '"Aries": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Tauro": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Géminis": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Cáncer": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Leo": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Virgo": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Libra": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Escorpio": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Sagitario": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Capricornio": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Acuario": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
-              '"Piscis": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}}}'
+              '"Aries": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":7,"color_suerte":"Rojo fuego","energia":8}, '
+              '"Tauro": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":14,"color_suerte":"Verde esmeralda","energia":6}, '
+              '"Géminis": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":21,"color_suerte":"Amarillo dorado","energia":9}, '
+              '"Cáncer": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":3,"color_suerte":"Plateado","energia":7}, '
+              '"Leo": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":32,"color_suerte":"Naranja intenso","energia":9}, '
+              '"Virgo": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":18,"color_suerte":"Beige dorado","energia":6}, '
+              '"Libra": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":9,"color_suerte":"Rosa pálido","energia":7}, '
+              '"Escorpio": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":44,"color_suerte":"Granate","energia":8}, '
+              '"Sagitario": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":55,"color_suerte":"Púrpura real","energia":9}, '
+              '"Capricornio": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":27,"color_suerte":"Marrón tierra","energia":5}, '
+              '"Acuario": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":61,"color_suerte":"Azul eléctrico","energia":8}, '
+              '"Piscis": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":12,"color_suerte":"Turquesa","energia":7}}}'
           )
 
           payload = json.dumps({
               "model": "claude-haiku-4-5-20251001",
-              "max_tokens": 2048,
+              "max_tokens": 4096,
               "messages": [{"role": "user", "content": prompt}]
           }).encode()
 

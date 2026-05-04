@@ -730,7 +730,15 @@ document.querySelectorAll('.sign-btn').forEach(btn => {
             document.getElementById('horo-general').textContent  = data.general  || '';
             document.getElementById('horo-amor').textContent     = data.amor     || '';
             document.getElementById('horo-trabajo').textContent  = data.trabajo  || '';
+            document.getElementById('horo-salud').textContent    = data.salud    || '';
             document.getElementById('horo-consejo').textContent  = data.consejo  || '';
+
+            const energia = data.energia || 5;
+            document.getElementById('horo-energia-fill').style.width = (energia * 10) + '%';
+            document.getElementById('horo-energia-fill').dataset.level = energia >= 7 ? 'high' : energia >= 4 ? 'mid' : 'low';
+            document.getElementById('horo-energia-val').textContent = energia + '/10';
+            document.getElementById('horo-numero').textContent  = data.numero_suerte || '–';
+            document.getElementById('horo-color').textContent   = data.color_suerte  || '–';
         }
 
         card.classList.add('hidden');
