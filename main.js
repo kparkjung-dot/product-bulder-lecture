@@ -27,7 +27,7 @@ function reloadDisqus(catId) {
             reload: true,
             config: function () {
                 this.page.identifier = 'queque-' + catId;
-                this.page.url = 'https://kparkjung-dot.github.io/product-bulder-lecture/';
+                this.page.url = window.location.origin + window.location.pathname;
                 this.language = 'es';
             }
         });
