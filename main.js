@@ -97,14 +97,26 @@ const FOODS_ALMUERZO = [
     { name: 'Barros Luco',                 emoji: '🧀' },
 ];
 
+const FOODS_ONCE = [
+    { name: 'Sopaipillas pasadas',              emoji: '🍯' },
+    { name: 'Sopaipillas con pebre',            emoji: '🫓' },
+    { name: 'Completo italiano',                emoji: '🌭' },
+    { name: 'Ave palta',                        emoji: '🥑' },
+    { name: 'Barros Luco',                      emoji: '🧀' },
+    { name: 'Humitas',                          emoji: '🌿' },
+    { name: 'Empanada frita de queso',          emoji: '🥟' },
+    { name: 'Kuchen de manzana',                emoji: '🍰' },
+    { name: 'Hallulla con mantequilla',         emoji: '🧈' },
+    { name: 'Café con leche y pan tostado',     emoji: '☕' },
+    { name: 'Torta de mil hojas',               emoji: '🎂' },
+    { name: 'Queque de vainilla',               emoji: '🧁' },
+];
+
 const FOODS_CENA = [
-    { name: 'Completo italiano',           emoji: '🌭' },
-    { name: 'Completo dinámico',           emoji: '🌭' },
     { name: 'Churrasco con palta',         emoji: '🥩' },
     { name: 'Barros Jarpa',                emoji: '🧀' },
     { name: 'Lomito clásico',              emoji: '🥪' },
     { name: 'Chacarero',                   emoji: '🥖' },
-    { name: 'Ave palta',                   emoji: '🥑' },
     { name: 'Choripán con pebre',          emoji: '🌭' },
     { name: 'Roll california',             emoji: '🍣' },
     { name: 'Roll de salmón con palta',    emoji: '🍣' },
@@ -114,16 +126,16 @@ const FOODS_CENA = [
     { name: 'Pizza de mechada',            emoji: '🍕' },
     { name: 'Pizza napolitana',            emoji: '🍕' },
     { name: 'Pollo frito con papas',       emoji: '🍗' },
-    { name: 'Sopaipillas pasadas',         emoji: '🍯' },
-    { name: 'Humitas',                     emoji: '🌿' },
+    { name: 'Completo dinámico',           emoji: '🌭' },
     { name: 'Empanada frita de pino',      emoji: '🥟' },
 ];
 
 function getMealPool() {
     const hour = new Date().getHours();
-    if (hour >= 6 && hour < 12)  return { label: '🌅 Desayuno',  hint: 'Perfecto para empezar el día',  pool: FOODS_DESAYUNO };
-    if (hour >= 12 && hour < 18) return { label: '☀️ Almuerzo',  hint: 'La mejor hora para el almuerzo', pool: FOODS_ALMUERZO };
-    return                               { label: '🌙 Cena',       hint: 'Para terminar el día con todo',  pool: FOODS_CENA     };
+    if (hour >= 6  && hour < 12) return { label: '🌅 Desayuno', hint: 'Perfecto para empezar el día',       pool: FOODS_DESAYUNO };
+    if (hour >= 12 && hour < 16) return { label: '☀️ Almuerzo', hint: 'La mejor hora para el almuerzo',     pool: FOODS_ALMUERZO };
+    if (hour >= 16 && hour < 20) return { label: '🍪 Once',     hint: '¡Hora de la once!',                  pool: FOODS_ONCE     };
+    return                              { label: '🌙 Cena',      hint: 'Para terminar el día con todo',      pool: FOODS_CENA     };
 }
 
 // ── Slot machine animation ─────────────────────────────
