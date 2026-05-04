@@ -115,9 +115,10 @@ header {
 }
 .theme-btn:hover { background: var(--border); }
 
-/* Category tabs (¿Qué comer? / ¿Qué hacer?) */
+/* Category tabs (¿Qué comer? / ¿Qué hacer? / etc.) */
 .category-tabs {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 16px;
 }
@@ -201,6 +202,7 @@ header {
     padding: 36px 24px;
     text-align: center;
     transition: all 0.3s;
+    box-shadow: 0 2px 16px var(--shadow), 0 1px 4px rgba(0,0,0,0.04);
 }
 
 .result-card.hidden { display: none; }
@@ -228,7 +230,7 @@ header {
 }
 
 .result-card.spinning .result-emoji { animation: spin 0.4s linear infinite; }
-.result-card.revealed { border-color: var(--primary); }
+.result-card.revealed { border-color: var(--primary); box-shadow: 0 4px 28px var(--shadow), 0 2px 8px rgba(0,0,0,0.06); }
 
 @keyframes spin {
     from { transform: rotate(0deg) scale(1.1); }
@@ -242,6 +244,107 @@ header {
 }
 
 .result-card.revealed .result-emoji { animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Mood selector (¿Qué ver?) */
+.mood-selector {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mood-btn {
+    padding: 9px 16px;
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    background: var(--tab-inactive-bg);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.mood-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-soft);
+}
+
+.mood-btn.active {
+    background: linear-gradient(135deg, #f07020, #e8600a);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgba(232, 96, 10, 0.35);
+}
+
+/* Platform badge (¿Qué ver?) */
+.platform-badge {
+    display: inline-block;
+    background: var(--platform-bg, #555);
+    color: var(--platform-text, #fff);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin: 8px 0 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.platform-badge.hidden { display: none; }
+
+/* WhatsApp share button */
+.share-btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.share-btn-wrapper.hidden { display: none; }
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.share-btn--whatsapp {
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(37, 211, 102, 0.4);
+}
+
+.share-btn--whatsapp:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 5px 18px rgba(37, 211, 102, 0.55);
+    transform: translateY(-1px);
+}
+.share-btn--whatsapp:active { transform: scale(0.97); }
+
+/* Ad zones */
+.ad-zone {
+    width: 100%;
+    min-height: 90px;
+    background: var(--tab-inactive-bg);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.ad-zone--tabs    { margin-bottom: 16px; }
+.ad-zone--comments { margin-bottom: 16px; }
 
 /* Meal time selector */
 .meal-selector {
@@ -276,7 +379,8 @@ header {
 .main-btn {
     width: 100%;
     padding: 18px;
-    background: var(--primary);
+    background: linear-gradient(135deg, #f07828, #e8600a, #c94f05);
+    background-size: 200% 200%;
     color: #fff;
     border: none;
     border-radius: 16px;
@@ -284,10 +388,15 @@ header {
     font-weight: 800;
     cursor: pointer;
     letter-spacing: 0.3px;
-    transition: background 0.2s, transform 0.1s, opacity 0.2s;
-    box-shadow: 0 4px 16px rgba(232, 96, 10, 0.3);
+    font-family: inherit;
+    transition: background-position 0.3s ease, transform 0.1s, opacity 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(232, 96, 10, 0.4), 0 1px 3px rgba(232, 96, 10, 0.2);
 }
-.main-btn:hover:not(:disabled) { background: var(--primary-hover); }
+.main-btn:hover:not(:disabled) {
+    background-position: right center;
+    box-shadow: 0 6px 26px rgba(232, 96, 10, 0.55), 0 2px 6px rgba(232, 96, 10, 0.25);
+    transform: translateY(-1px);
+}
 .main-btn:active:not(:disabled) { transform: scale(0.98); }
 .main-btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
 

@@ -15,6 +15,7 @@ const COMMENTS_META = {
     comer:      { badge: '🍽️ ¿Qué comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
     horoscopo:  { badge: '🔮 Horóscopo',      desc: '¿Tu horóscopo de hoy te hizo sentido? ¡Comparte tu experiencia!' },
     hacer:      { badge: '🎯 ¿Qué hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
+    ver:        { badge: '🎬 ¿Qué ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
 };
 
 function reloadDisqus(catId) {
@@ -202,10 +203,12 @@ updateMealButtons();
 
 randomBtn.addEventListener('click', () => {
     randomBtn.disabled = true;
+    document.getElementById('comer-share-wrapper').classList.add('hidden');
     const { pool, hint } = MEAL_POOLS[selectedMeal];
-    slotMachine(pool, randomEmoji, randomName, randomCard, () => {
+    slotMachine(pool, randomEmoji, randomName, randomCard, (item) => {
         randomHint.textContent = hint;
         randomBtn.disabled = false;
+        showShareBtn('comer', item.name);
     });
 });
 
@@ -320,8 +323,10 @@ const hacerRandomName   = document.getElementById('hacer-random-name');
 
 hacerRandomBtn.addEventListener('click', () => {
     hacerRandomBtn.disabled = true;
-    slotMachine(ACTIVITIES, hacerRandomEmoji, hacerRandomName, hacerRandomCard, () => {
+    document.getElementById('hacer-share-wrapper').classList.add('hidden');
+    slotMachine(ACTIVITIES, hacerRandomEmoji, hacerRandomName, hacerRandomCard, (item) => {
         hacerRandomBtn.disabled = false;
+        showShareBtn('hacer', item.name);
     });
 });
 
@@ -379,6 +384,152 @@ hacerCustomBtn.addEventListener('click', () => {
 });
 
 renderHacerChips();
+
+// ── WhatsApp share ─────────────────────────────────────
+function showShareBtn(context, resultText) {
+    const wrapper = document.getElementById(`${context}-share-wrapper`);
+    if (!wrapper) return;
+    const btn = document.getElementById(`${context}-share-btn`);
+    const siteUrl = 'https://queque.cl';
+    const messages = {
+        comer:  `¡¿Queque? me dijo que coma *${resultText}* hoy 🍽️\n¿Tú qué vas a comer? → ${siteUrl}`,
+        hacer:  `¡¿Queque? me recomienda *${resultText}* hoy 🎯\n¿Tú qué vas a hacer? → ${siteUrl}`,
+        ver:    `¡¿Queque? me recomienda ver *${resultText}* 🎬\n¿Tú qué ves esta noche? → ${siteUrl}`,
+    };
+    const text = messages[context] || `¡¿Queque? me recomienda: *${resultText}* → ${siteUrl}`;
+    btn.onclick = () => window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    wrapper.classList.remove('hidden');
+}
+
+// ── ¿Qué ver? — movies & series by mood ───────────────
+const MOVIES = {
+    comedia: [
+        { name: 'Superbad',                      emoji: '😂', platform: 'Netflix'      },
+        { name: 'The Grand Budapest Hotel',      emoji: '😂', platform: 'Disney+'      },
+        { name: 'Knives Out',                    emoji: '😂', platform: 'Netflix'      },
+        { name: 'Game Night',                    emoji: '😂', platform: 'Max'          },
+        { name: 'What We Do in the Shadows',     emoji: '😂', platform: 'Disney+'      },
+        { name: 'The Nice Guys',                 emoji: '😂', platform: 'Prime Video'  },
+        { name: 'Palm Springs',                  emoji: '😂', platform: 'Prime Video'  },
+        { name: 'Schitt\'s Creek',               emoji: '😂', platform: 'Netflix'      },
+        { name: 'Abbott Elementary',             emoji: '😂', platform: 'Disney+'      },
+        { name: 'Only Murders in the Building',  emoji: '😂', platform: 'Disney+'      },
+    ],
+    drama: [
+        { name: 'Succession',                    emoji: '🎭', platform: 'Max'          },
+        { name: 'The Shawshank Redemption',      emoji: '🎭', platform: 'Netflix'      },
+        { name: 'Breaking Bad',                  emoji: '🎭', platform: 'Netflix'      },
+        { name: 'Parasite',                      emoji: '🎭', platform: 'Prime Video'  },
+        { name: 'The Crown',                     emoji: '🎭', platform: 'Netflix'      },
+        { name: 'Ozark',                         emoji: '🎭', platform: 'Netflix'      },
+        { name: 'Mare of Easttown',              emoji: '🎭', platform: 'Max'          },
+        { name: 'Peaky Blinders',                emoji: '🎭', platform: 'Netflix'      },
+        { name: 'The Bear',                      emoji: '🎭', platform: 'Disney+'      },
+        { name: 'Manchester by the Sea',         emoji: '🎭', platform: 'Prime Video'  },
+    ],
+    accion: [
+        { name: 'Mad Max: Fury Road',            emoji: '💥', platform: 'Max'          },
+        { name: 'John Wick',                     emoji: '💥', platform: 'Netflix'      },
+        { name: 'The Gray Man',                  emoji: '💥', platform: 'Netflix'      },
+        { name: 'Extraction',                    emoji: '💥', platform: 'Netflix'      },
+        { name: 'Top Gun: Maverick',             emoji: '💥', platform: 'Prime Video'  },
+        { name: 'The Boys',                      emoji: '💥', platform: 'Prime Video'  },
+        { name: 'Squid Game',                    emoji: '💥', platform: 'Netflix'      },
+        { name: 'Nobody',                        emoji: '💥', platform: 'Netflix'      },
+        { name: 'Reacher',                       emoji: '💥', platform: 'Prime Video'  },
+        { name: 'Money Heist',                   emoji: '💥', platform: 'Netflix'      },
+    ],
+    terror: [
+        { name: 'Hereditary',                    emoji: '👻', platform: 'Max'          },
+        { name: 'A Quiet Place',                 emoji: '👻', platform: 'Prime Video'  },
+        { name: 'The Haunting of Hill House',    emoji: '👻', platform: 'Netflix'      },
+        { name: 'Midsommar',                     emoji: '👻', platform: 'Prime Video'  },
+        { name: 'Get Out',                       emoji: '👻', platform: 'Prime Video'  },
+        { name: 'The Black Phone',               emoji: '👻', platform: 'Netflix'      },
+        { name: 'Barbarian',                     emoji: '👻', platform: 'Disney+'      },
+        { name: 'Midnight Mass',                 emoji: '👻', platform: 'Netflix'      },
+        { name: 'The Menu',                      emoji: '👻', platform: 'Disney+'      },
+        { name: 'Smile',                         emoji: '👻', platform: 'Prime Video'  },
+    ],
+    romance: [
+        { name: 'To All the Boys I\'ve Loved',  emoji: '❤️', platform: 'Netflix'      },
+        { name: 'Bridgerton',                    emoji: '❤️', platform: 'Netflix'      },
+        { name: 'The Notebook',                  emoji: '❤️', platform: 'Netflix'      },
+        { name: 'Normal People',                 emoji: '❤️', platform: 'Disney+'      },
+        { name: 'About Time',                    emoji: '❤️', platform: 'Prime Video'  },
+        { name: 'Outlander',                     emoji: '❤️', platform: 'Netflix'      },
+        { name: 'La La Land',                    emoji: '❤️', platform: 'Prime Video'  },
+        { name: 'One Day',                       emoji: '❤️', platform: 'Netflix'      },
+        { name: 'Virgin River',                  emoji: '❤️', platform: 'Netflix'      },
+        { name: 'When Harry Met Sally',          emoji: '❤️', platform: 'Max'          },
+    ],
+    documental: [
+        { name: 'Making a Murderer',             emoji: '🔬', platform: 'Netflix'      },
+        { name: 'Our Planet',                    emoji: '🔬', platform: 'Netflix'      },
+        { name: 'The Last Dance',                emoji: '🔬', platform: 'Netflix'      },
+        { name: 'Wild Wild Country',             emoji: '🔬', platform: 'Netflix'      },
+        { name: 'My Octopus Teacher',            emoji: '🔬', platform: 'Netflix'      },
+        { name: 'The Tinder Swindler',           emoji: '🔬', platform: 'Netflix'      },
+        { name: 'Abstract: The Art of Design',   emoji: '🔬', platform: 'Netflix'      },
+        { name: 'Chef\'s Table',                 emoji: '🔬', platform: 'Netflix'      },
+        { name: 'Formula 1: Drive to Survive',   emoji: '🔬', platform: 'Netflix'      },
+        { name: 'Don\'t F**k with Cats',         emoji: '🔬', platform: 'Netflix'      },
+    ],
+};
+
+const PLATFORM_COLORS = {
+    'Netflix':      { bg: '#e50914', text: '#fff' },
+    'Prime Video':  { bg: '#00a8e0', text: '#fff' },
+    'Disney+':      { bg: '#0063e5', text: '#fff' },
+    'Max':          { bg: '#6b2df5', text: '#fff' },
+};
+
+let selectedMood = 'comedia';
+
+function updateMoodButtons() {
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mood === selectedMood);
+    });
+}
+
+document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        selectedMood = btn.dataset.mood;
+        updateMoodButtons();
+        const verCard = document.getElementById('ver-result');
+        verCard.classList.remove('revealed');
+        document.getElementById('ver-emoji').textContent = '🎬';
+        document.getElementById('ver-name').textContent = '¿Qué ponemos esta noche?';
+        document.getElementById('ver-hint').textContent = 'Elige un género y decidimos por ti';
+        document.getElementById('ver-platform').classList.add('hidden');
+        document.getElementById('ver-share-wrapper').classList.add('hidden');
+    });
+});
+
+updateMoodButtons();
+
+const verBtn      = document.getElementById('ver-btn');
+const verCard     = document.getElementById('ver-result');
+const verEmoji    = document.getElementById('ver-emoji');
+const verName     = document.getElementById('ver-name');
+const verHint     = document.getElementById('ver-hint');
+const verPlatform = document.getElementById('ver-platform');
+
+verBtn.addEventListener('click', () => {
+    verBtn.disabled = true;
+    document.getElementById('ver-share-wrapper').classList.add('hidden');
+    verPlatform.classList.add('hidden');
+    const pool = MOVIES[selectedMood];
+    slotMachine(pool, verEmoji, verName, verCard, (item) => {
+        verBtn.disabled = false;
+        const colors = PLATFORM_COLORS[item.platform] || { bg: '#555', text: '#fff' };
+        verPlatform.textContent = item.platform;
+        verPlatform.style.setProperty('--platform-bg', colors.bg);
+        verPlatform.style.setProperty('--platform-text', colors.text);
+        verPlatform.classList.remove('hidden');
+        showShareBtn('ver', `${item.name} (${item.platform})`);
+    });
+});
 
 // ── Horoscope ──────────────────────────────────────────
 let horoscopeData = null;
