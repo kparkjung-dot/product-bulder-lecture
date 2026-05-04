@@ -209,8 +209,23 @@ function getAutoMealKey() {
     return 'cena';
 }
 
+// ── Anti-repeat shuffle queue ──────────────────────────
+const _queues = new Map();
+
+function getNextItem(key, pool) {
+    if (!_queues.has(key) || _queues.get(key).length === 0) {
+        const shuffled = [...pool];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        _queues.set(key, shuffled);
+    }
+    return _queues.get(key).pop();
+}
+
 // ── Slot machine animation ─────────────────────────────
-function slotMachine(pool, emojiEl, nameEl, card, onDone) {
+function slotMachine(pool, emojiEl, nameEl, card, onDone, finalItem) {
     card.classList.remove('revealed');
     card.classList.add('spinning');
 
@@ -219,7 +234,8 @@ function slotMachine(pool, emojiEl, nameEl, card, onDone) {
     let delay = 60;
 
     function tick() {
-        const item = pool[Math.floor(Math.random() * pool.length)];
+        const isLast = step === steps - 1;
+        const item = (isLast && finalItem) ? finalItem : pool[Math.floor(Math.random() * pool.length)];
         emojiEl.textContent = item.emoji || '🎯';
         nameEl.textContent = item.name;
         step++;
@@ -268,11 +284,12 @@ randomBtn.addEventListener('click', () => {
     randomBtn.disabled = true;
     document.getElementById('comer-share-wrapper').classList.add('hidden');
     const { pool, hint } = MEAL_POOLS[selectedMeal];
+    const finalItem = getNextItem(selectedMeal, pool);
     slotMachine(pool, randomEmoji, randomName, randomCard, (item) => {
         randomHint.textContent = hint;
         randomBtn.disabled = false;
         showShareBtn('comer', item.name);
-    });
+    }, finalItem);
 });
 
 // ── Custom mode ────────────────────────────────────────
@@ -387,10 +404,11 @@ const hacerRandomName   = document.getElementById('hacer-random-name');
 hacerRandomBtn.addEventListener('click', () => {
     hacerRandomBtn.disabled = true;
     document.getElementById('hacer-share-wrapper').classList.add('hidden');
+    const finalItem = getNextItem('hacer', ACTIVITIES);
     slotMachine(ACTIVITIES, hacerRandomEmoji, hacerRandomName, hacerRandomCard, (item) => {
         hacerRandomBtn.disabled = false;
         showShareBtn('hacer', item.name);
-    });
+    }, finalItem);
 });
 
 // ── ¿Qué hacer? — custom mode ──────────────────────────
@@ -583,6 +601,7 @@ verBtn.addEventListener('click', () => {
     document.getElementById('ver-share-wrapper').classList.add('hidden');
     verPlatform.classList.add('hidden');
     const pool = MOVIES[selectedMood];
+    const finalItem = getNextItem('ver-' + selectedMood, pool);
     slotMachine(pool, verEmoji, verName, verCard, (item) => {
         verBtn.disabled = false;
         const colors = PLATFORM_COLORS[item.platform] || { bg: '#555', text: '#fff' };
@@ -591,7 +610,7 @@ verBtn.addEventListener('click', () => {
         verPlatform.style.setProperty('--platform-text', colors.text);
         verPlatform.classList.remove('hidden');
         showShareBtn('ver', `${item.name} (${item.platform})`);
-    });
+    }, finalItem);
 });
 
 // ── Horoscope ──────────────────────────────────────────
