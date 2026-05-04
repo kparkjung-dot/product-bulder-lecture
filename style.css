@@ -786,3 +786,62 @@ footer {
     color: var(--text-muted);
     padding-top: 24px;
 }
+
+/* ── Mobile (≤ 480px) ──────────────────────────────────── */
+@media (max-width: 480px) {
+    body { padding: 12px 12px 40px; }
+
+    .logo-main { font-size: 30px; }
+    .logo-sub  { font-size: 11px; }
+
+    .category-tabs { gap: 8px; }
+
+    .cat-tab {
+        padding: 11px 8px;
+        font-size: 13px;
+    }
+
+    .mode-tab { font-size: 13px; padding: 9px 8px; }
+
+    .meal-selector { gap: 6px; }
+    .meal-btn {
+        padding: 7px 11px;
+        font-size: 12px;
+    }
+
+    .mood-selector { gap: 6px; }
+    .mood-btn {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+    .result-card { padding: 28px 16px; }
+    .result-emoji { font-size: 46px; }
+    .result-name  { font-size: 22px; }
+
+    .main-btn { padding: 16px; font-size: 16px; }
+
+    /* Horoscope: 3 cols instead of 4 on very small screens */
+    .sign-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .sign-btn  { padding: 10px 4px; font-size: 20px; }
+
+    .horo-card { padding: 20px 16px; }
+    .horo-symbol { font-size: 34px; }
+    .horo-sign-name { font-size: 20px; }
+
+    .contact-section,
+    .comments-section { padding: 18px 14px; }
+
+    .section-title { font-size: 16px; }
+
+    .share-btn { padding: 10px 18px; font-size: 13px; }
+
+    .ad-zone { min-height: 60px; }
+}
+
+/* ── Very small (≤ 360px, e.g. iPhone SE) ─────────────── */
+@media (max-width: 360px) {
+    .cat-tab    { font-size: 12px; padding: 10px 4px; }
+    .result-name { font-size: 19px; }
+    .sign-grid  { grid-template-columns: repeat(3, 1fr); }
+}
