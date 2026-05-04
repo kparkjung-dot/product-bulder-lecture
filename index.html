@@ -97,9 +97,35 @@
                 <div class="horo-card hidden" id="horo-card">
                     <div class="horo-card-header">
                         <span class="horo-symbol" id="horo-symbol"></span>
-                        <span class="horo-sign-name" id="horo-sign-name"></span>
+                        <div>
+                            <div class="horo-sign-name" id="horo-sign-name"></div>
+                            <div class="horo-sign-dates" id="horo-sign-dates"></div>
+                        </div>
                     </div>
-                    <p class="horo-text" id="horo-text"></p>
+                    <p class="horo-general" id="horo-general"></p>
+                    <div class="horo-sections">
+                        <div class="horo-section">
+                            <span class="horo-section-icon">💕</span>
+                            <div class="horo-section-body">
+                                <span class="horo-section-label">Amor</span>
+                                <p id="horo-amor"></p>
+                            </div>
+                        </div>
+                        <div class="horo-section">
+                            <span class="horo-section-icon">💼</span>
+                            <div class="horo-section-body">
+                                <span class="horo-section-label">Trabajo & Dinero</span>
+                                <p id="horo-trabajo"></p>
+                            </div>
+                        </div>
+                        <div class="horo-section horo-consejo">
+                            <span class="horo-section-icon">🌟</span>
+                            <div class="horo-section-body">
+                                <span class="horo-section-label">Consejo del día</span>
+                                <p id="horo-consejo"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -131,7 +157,11 @@
 
             <!-- Comments -->
             <section class="comments-section">
-                <h2 class="section-title">Comentarios</h2>
+                <div class="comments-header">
+                    <h2 class="section-title">Comentarios</h2>
+                    <span class="comments-cat-badge" id="comments-cat-badge">🍽️ ¿Qué comer?</span>
+                </div>
+                <p class="section-desc" id="comments-desc">¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!</p>
                 <div id="disqus_thread"></div>
             </section>
         </main>
@@ -145,7 +175,7 @@
     <script>
         var disqus_config = function () {
             this.page.url = 'https://kparkjung-dot.github.io/product-bulder-lecture/';
-            this.page.identifier = 'queque-home';
+            this.page.identifier = 'queque-comer';
             this.language = 'es';
         };
         (function() {

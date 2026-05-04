@@ -1,17 +1,77 @@
 {
   "fecha": "2026-05-04",
   "signos": {
-    "Aries": "El amor llega de formas inesperadas hoy; ábrete a las sorpresas y no temas dar el primer paso. En el trabajo, tu energía y determinación te abren puertas que parecían cerradas.",
-    "Tauro": "La estabilidad que tanto valoras se fortalece hoy en tus relaciones más cercanas. Una oportunidad económica aparece en el horizonte; analízala con calma antes de decidir.",
-    "Géminis": "Tu capacidad comunicativa está en su punto más alto, aprovéchala para aclarar malentendidos y fortalecer vínculos. En lo laboral, una idea brillante que tienes merece ser compartida.",
-    "Cáncer": "Los lazos familiares y afectivos te llenan de energía positiva hoy. En el trabajo, confía en tu intuición; te guiará hacia la decisión correcta con más precisión que cualquier análisis.",
-    "Leo": "Tu carisma brilla con fuerza hoy y atrae a personas importantes a tu vida. Las oportunidades laborales que se presentan son sólidas; no las dejes pasar por exceso de cautela.",
-    "Virgo": "La atención al detalle que te caracteriza te ayuda a resolver un problema que llevaba tiempo pendiente. En el amor, un gesto pequeño pero sincero vale más que grandes palabras.",
-    "Libra": "El equilibrio que buscas en tus relaciones comienza a materializarse; sé paciente y confía en el proceso. Una colaboración profesional que se presenta tiene mucho potencial.",
-    "Escorpio": "Tu intuición está especialmente aguda hoy; úsala para profundizar en relaciones que realmente importan. En lo económico, un esfuerzo reciente comenzará a dar frutos pronto.",
-    "Sagitario": "El entusiasmo que irradias contagia a quienes te rodean y abre puertas en todos los ámbitos. Una propuesta de trabajo o proyecto nuevo se alinea perfectamente con tus metas.",
-    "Capricornio": "Tu disciplina y constancia te acercan hoy a una meta importante que llevas tiempo persiguiendo. En lo afectivo, mostrar tu lado más vulnerable fortalecerá los lazos que más te importan.",
-    "Acuario": "Tu visión innovadora encuentra hoy terreno fértil; no temas proponer ideas que parezcan audaces. En el amor, una conversación honesta puede transformar una relación para mejor.",
-    "Piscis": "Tu sensibilidad y empatía son hoy tus mayores fortalezas; úsalas para conectar con quienes te necesitan. En el trabajo, un proyecto creativo en el que participas avanza con viento a favor."
+    "Aries": {
+      "general": "La energía de Marte, tu planeta regente, está especialmente activa hoy, llenándote de vitalidad y determinación. Es un momento ideal para retomar proyectos que habías dejado pendientes y para enfrentar situaciones que requerían valor. El universo te respalda en tus decisiones, así que confía en tu instinto y actúa con convicción.",
+      "amor": "Si tienes pareja, hoy es un día perfecto para una conversación profunda que fortalezca el vínculo entre ambos. Los solteros de Aries podrían cruzarse con alguien interesante en un ambiente inesperado; mantén los ojos abiertos.",
+      "trabajo": "Tu capacidad de liderazgo brilla hoy y los demás lo notan. Una propuesta o idea que llevas tiempo madurando merece ser presentada; el ambiente es receptivo y hay posibilidades reales de avance económico si das el paso.",
+      "consejo": "No dejes que el miedo al fracaso frene una decisión importante. La valentía que te caracteriza es tu mayor fortaleza hoy."
+    },
+    "Tauro": {
+      "general": "Venus, tu planeta regente, te envuelve hoy en una energía de serenidad y belleza que atrae armonía a todos los aspectos de tu vida. Es un día propicio para reconectar contigo mismo, disfrutar de los placeres simples y afianzar lo que ya has construido con esfuerzo. La estabilidad que tanto valoras se siente sólida bajo tus pies.",
+      "amor": "La ternura y la lealtad que caracteriza a Tauro generan hoy un ambiente romántico y cálido en tu vida afectiva. Si hay algún malentendido reciente con tu pareja o un ser querido, hoy es el día ideal para resolverlo con calma y amor.",
+      "trabajo": "Tu perseverancia da frutos hoy. Una gestión financiera que venías trabajando da señales positivas, y en el ámbito laboral se reconoce tu esfuerzo constante. Evita los gastos impulsivos; el ahorro inteligente te favorece.",
+      "consejo": "Permítete disfrutar el presente sin anticipar problemas que aún no existen. La gratitud por lo que tienes hoy abre puertas mañana."
+    },
+    "Géminis": {
+      "general": "Mercurio activa hoy tu mente de forma extraordinaria, potenciando tu creatividad, tu capacidad de comunicación y tu agilidad mental. Es un día en que las palabras fluyen con naturalidad y puedes convencer, inspirar o resolver conflictos con gran facilidad. Aprovecha esta energía para conectar con personas que pueden ser clave en tu futuro.",
+      "amor": "Tu encanto natural está en su punto más alto hoy, y quienes te rodean lo perciben con claridad. En pareja, una salida espontánea o una sorpresa pequeña puede reavivar la chispa. Los Géminis solteros tienen muchas probabilidades de generar una conexión especial hoy.",
+      "trabajo": "Una idea brillante que tienes desde hace días merece ser expresada hoy; el contexto es favorable para presentarla. Podrías recibir una propuesta de colaboración o un encargo que se alinea perfectamente con tus habilidades.",
+      "consejo": "Escucha tanto como hablas. Hoy, la información que recibes puede ser tan valiosa como la que compartes."
+    },
+    "Cáncer": {
+      "general": "La Luna, tu regente, transita hoy por una posición que amplifica tu sensibilidad e intuición de manera notable. Esta profundidad emocional es un regalo si la canalizas bien: te permite conectar con los demás desde un lugar auténtico y tomar decisiones desde el corazón. No temas mostrar tu vulnerabilidad; es tu mayor fortaleza.",
+      "amor": "El ambiente emocional en tu vida afectiva es cálido y protector hoy. Si tienes pareja, compartir un momento íntimo y tranquilo fortalecerá enormemente el lazo que los une. Los Cáncer solteros podrían recibir señales de interés de alguien que los conoce desde hace tiempo.",
+      "trabajo": "Tu intuición profesional es muy precisa hoy; confía en esa sensación que te dice qué camino tomar. Un asunto laboral que generaba incertidumbre comienza a aclararse, y podrías recibir noticias positivas relacionadas con ingresos o reconocimiento.",
+      "consejo": "Cuida tu energía emocional hoy. Pon límites amables donde sea necesario; no puedes dar de un recipiente vacío."
+    },
+    "Leo": {
+      "general": "El Sol, tu planeta regente, ilumina con fuerza tu camino hoy, dándote una presencia magnética que hace que todos los ojos se posen en ti de forma natural. Es un día en que tu confianza y generosidad tocan a quienes te rodean, generando vínculos sólidos y oportunidades inesperadas. Abraza tu luz sin miedo.",
+      "amor": "Tu carisma y pasión están en su máximo esplendor hoy, lo que hace que las relaciones afectivas fluyan con intensidad y alegría. En pareja, un gesto generoso o una declaración sincera puede llevar la relación a un nivel más profundo. Los Leo solteros atraen miradas con facilidad.",
+      "trabajo": "Las oportunidades laborales que se presentan hoy son sólidas y tienen potencial de largo plazo. Tu capacidad de liderar y motivar a otros es un activo invaluable; no la subestimes. Podrían llegarte reconocimientos o propuestas que superan tus expectativas.",
+      "consejo": "Sé tan generoso contigo mismo como lo eres con los demás. Celebrar tus propios logros no es arrogancia; es merecido."
+    },
+    "Virgo": {
+      "general": "Mercurio en posición favorable activa hoy tu extraordinaria capacidad analítica y tu atención al detalle, permitiéndote ver con claridad lo que otros pasan por alto. Es un día excelente para poner orden en proyectos complejos, tomar decisiones informadas y resolver situaciones que requerían precisión y paciencia.",
+      "amor": "Los gestos pequeños pero cargados de significado son el lenguaje del amor de Virgo, y hoy tienen un impacto especial en tus relaciones. Mostrar tu lado más espontáneo y menos perfeccionista le dará a tu pareja o a alguien especial una perspectiva más cercana y cálida de ti.",
+      "trabajo": "Tu capacidad de organización y tu ética de trabajo te distinguen hoy en el ámbito profesional. Un problema que parecía complejo encuentra solución gracias a tu metodología. En lo económico, una decisión cuidadosa tomada hoy tendrá retornos positivos en las próximas semanas.",
+      "consejo": "No busques la perfección en todo; el progreso constante es más valioso que la perfección paralizante. Date permiso de avanzar aunque no todo sea perfecto."
+    },
+    "Libra": {
+      "general": "Venus, tu planeta regente, propicia hoy un ambiente de equilibrio, belleza y armonía en tu entorno. Tu capacidad natural para ver todos los ángulos de una situación y encontrar puntos medios es especialmente poderosa hoy, lo que te convierte en una figura clave para resolver tensiones y tomar decisiones justas que beneficien a todos.",
+      "amor": "El equilibrio y la reciprocidad que buscas en tus relaciones dan señales positivas hoy. Una conversación honesta con tu pareja puede llevarlos a un entendimiento más profundo. Los Libra solteros tienen alta probabilidad de encontrar una conexión genuina en un ambiente social o cultural.",
+      "trabajo": "Una colaboración profesional que está en conversación avanza hoy de forma concreta. Tu diplomacia y sentido de la justicia te abren puertas que el esfuerzo individual no puede. Mantén el foco en los acuerdos que benefician a todas las partes.",
+      "consejo": "Deja de postergar esa decisión que has estado sopesando demasiado tiempo. Hoy tienes la claridad y el equilibrio necesarios para elegir bien."
+    },
+    "Escorpio": {
+      "general": "Plutón intensifica hoy tu profundidad emocional y tu capacidad de percepción, dándote acceso a una intuición casi sobrenatural. Ves lo que está debajo de la superficie en las personas y situaciones, y esa visión te da una ventaja significativa. Es un día de transformación interior y de toma de conciencia sobre lo que realmente importa.",
+      "amor": "La intensidad emocional que caracteriza a Escorpio alcanza hoy un nivel especial. Si estás en pareja, una conversación profunda y vulnerable puede transformar la relación para mejor. Los Escorpio solteros podrían experimentar una atracción intensa e inesperada con alguien misterioso y afín.",
+      "trabajo": "Tu capacidad estratégica y tu visión de largo plazo te permiten hoy anticipar movimientos que otros no ven. Un esfuerzo o inversión que hiciste hace tiempo comienza a mostrar sus primeros frutos. Mantén la confidencialidad en negociaciones importantes.",
+      "consejo": "Suelta el control de lo que no puedes controlar. La transformación más poderosa comienza cuando aceptas fluir con lo que el universo tiene planeado."
+    },
+    "Sagitario": {
+      "general": "Júpiter, el planeta de la abundancia y la expansión, impulsa hoy tu optimismo natural y tu deseo de crecer en todos los sentidos. Es un día en que las posibilidades parecen ilimitadas y la energía del universo conspira para llevar tus sueños más cerca de la realidad. Mantén una mentalidad abierta y receptiva a lo nuevo.",
+      "amor": "Tu entusiasmo y genuina alegría de vivir son hoy irresistiblemente atractivos para quienes te rodean. En pareja, proponer una actividad nueva o un pequeño viaje puede renovar la energía de la relación. Los Sagitario solteros brillan con luz propia en cualquier contexto social.",
+      "trabajo": "Una oportunidad de expansión laboral o de aprendizaje se presenta hoy, y es exactamente lo que estabas buscando. Tu capacidad de ver el panorama general te permite identificar el camino correcto cuando otros se pierden en los detalles. Los ingresos tienen tendencia positiva.",
+      "consejo": "No te disperses tratando de abarcar demasiado a la vez. Elige una meta prioritaria hoy y enfoca en ella toda tu energía expansiva."
+    },
+    "Capricornio": {
+      "general": "Saturno, tu regente, te otorga hoy una claridad y disciplina extraordinarias que te permiten avanzar con paso firme hacia tus objetivos de largo plazo. El esfuerzo constante que has invertido en los últimos meses empieza a condensarse en resultados tangibles. Es un día de consolidación y de reconocimiento merecido.",
+      "amor": "Tu lealtad y solidez como pareja o como amigo son cualidades que hoy se aprecian profundamente. Mostrar tu lado más cálido y humano fortalece los lazos que más te importan. Los Capricornio solteros pueden encontrar atracción genuina con alguien que comparte sus valores y ambiciones.",
+      "trabajo": "Tu reputación profesional está en un punto alto y se abre una oportunidad de asumir mayor responsabilidad o de dar un salto en tu carrera. Confía en la experiencia que has acumulado; te respalda plenamente. Una decisión financiera tomada hoy con prudencia tendrá excelentes resultados.",
+      "consejo": "Permite que otros también contribuyan a tus proyectos. La colaboración no debilita tu liderazgo; lo amplifica."
+    },
+    "Acuario": {
+      "general": "Urano activa hoy tu pensamiento visionario y tu necesidad de innovar y romper moldes, llenándote de ideas brillantes y perspectivas únicas que pueden marcar una diferencia real. Es un día para salir de la rutina, proponer lo que otros no se atreven y conectar con personas que comparten tu visión del futuro.",
+      "amor": "Tu autenticidad y originalidad son hoy especialmente atractivas para quienes te rodean. En pareja, una conversación abierta sobre sueños y proyectos compartidos puede llevar la relación a un plano más profundo e igualitario. Los Acuario solteros atraen a personas interesantes e intelectualmente estimulantes.",
+      "trabajo": "Una idea innovadora que tienes merece ser presentada hoy; el entorno es receptivo a propuestas audaces y creativas. Tu capacidad de trabajar en red y conectar personas con intereses complementarios abre puertas que el trabajo individual no puede. Hay potencial de ingreso desde fuentes no convencionales.",
+      "consejo": "Equilibra tu visión del futuro con atención al presente. Las grandes ideas necesitan también pasos concretos hoy para materializarse mañana."
+    },
+    "Piscis": {
+      "general": "Neptuno envuelve hoy tu mundo en una energía de inspiración, empatía y conexión espiritual que eleva tu percepción de la realidad. Tu sensibilidad artística y tu capacidad de sentir lo que otros no expresan están en su punto más alto, convirtiéndote en un faro de comprensión y creatividad para quienes te rodean.",
+      "amor": "Tu capacidad de amar de forma incondicional y profunda genera hoy una atmósfera de ternura genuina en tus relaciones afectivas. Si tienes pareja, un momento de silencio compartido o de conexión artística puede ser más poderoso que mil palabras. Los Piscis solteros atraen conexiones románticas con gran carga emocional.",
+      "trabajo": "Tu creatividad e intuición son tus mayores activos profesionales hoy. Un proyecto creativo o humanitario en el que participas avanza con impulso positivo. Confía en tu visión aunque los demás no la comprendan de inmediato; los resultados les darán la razón.",
+      "consejo": "Protege tu energía emocional con límites sanos. Tu empatía es un regalo, pero recuerda que también necesitas espacio para recargarte."
+    }
   }
 }

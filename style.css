@@ -527,25 +527,98 @@ body.dark .horo-freshness.stale { background: #422006; color: #fde68a; }
 .horo-card-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 14px;
+    margin-bottom: 18px;
 }
 
 .horo-symbol {
-    font-size: 36px;
+    font-size: 42px;
     line-height: 1;
 }
 
 .horo-sign-name {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
+    color: var(--horo-primary);
+    line-height: 1.2;
+}
+
+.horo-sign-dates {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.horo-general {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--horo-border);
+}
+
+.horo-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.horo-section {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.horo-section-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.horo-section-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.horo-section-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     color: var(--horo-primary);
 }
 
-.horo-text {
-    font-size: 16px;
-    line-height: 1.7;
+.horo-section-body p {
+    font-size: 14px;
+    line-height: 1.65;
     color: var(--text);
+}
+
+.horo-consejo {
+    background: var(--horo-primary-soft);
+    border: 1px solid var(--horo-border);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+/* Comments header with category badge */
+.comments-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.comments-cat-badge {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    border: 1px solid var(--chip-border);
 }
 
 /* Footer */

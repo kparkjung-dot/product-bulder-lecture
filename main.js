@@ -10,13 +10,40 @@ themeBtn.addEventListener('click', () => {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
+// ── Disqus per-category reload ─────────────────────────
+const COMMENTS_META = {
+    comer:      { badge: '🍽️ ¿Qué comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
+    horoscopo:  { badge: '🔮 Horóscopo',      desc: '¿Tu horóscopo de hoy te hizo sentido? ¡Comparte tu experiencia!' },
+    hacer:      { badge: '🎯 ¿Qué hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
+};
+
+function reloadDisqus(catId) {
+    const meta = COMMENTS_META[catId] || COMMENTS_META.comer;
+    document.getElementById('comments-cat-badge').textContent = meta.badge;
+    document.getElementById('comments-desc').textContent = meta.desc;
+
+    if (typeof DISQUS !== 'undefined') {
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                this.page.identifier = 'queque-' + catId;
+                this.page.url = 'https://kparkjung-dot.github.io/product-bulder-lecture/';
+                this.language = 'es';
+            }
+        });
+    }
+}
+
 // ── Category tabs ──────────────────────────────────────
 document.querySelectorAll('.cat-tab:not([disabled])').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
-        document.getElementById(`panel-${tab.dataset.cat}`).classList.add('active');
+        const cat = tab.dataset.cat;
+        document.getElementById(`panel-${cat}`).classList.add('active');
+        reloadDisqus(cat);
+        if (cat === 'horoscopo' && !horoscopeData) loadHoroscope();
     });
 });
 
@@ -185,6 +212,21 @@ renderChips();
 // ── Horoscope ──────────────────────────────────────────
 let horoscopeData = null;
 
+const SIGN_META = {
+    'Aries':       { symbol: '♈', dates: '21 mar – 19 abr' },
+    'Tauro':       { symbol: '♉', dates: '20 abr – 20 may' },
+    'Géminis':     { symbol: '♊', dates: '21 may – 20 jun' },
+    'Cáncer':      { symbol: '♋', dates: '21 jun – 22 jul' },
+    'Leo':         { symbol: '♌', dates: '23 jul – 22 ago' },
+    'Virgo':       { symbol: '♍', dates: '23 ago – 22 sep' },
+    'Libra':       { symbol: '♎', dates: '23 sep – 22 oct' },
+    'Escorpio':    { symbol: '♏', dates: '23 oct – 21 nov' },
+    'Sagitario':   { symbol: '♐', dates: '22 nov – 21 dic' },
+    'Capricornio': { symbol: '♑', dates: '22 dic – 19 ene' },
+    'Acuario':     { symbol: '♒', dates: '20 ene – 18 feb' },
+    'Piscis':      { symbol: '♓', dates: '19 feb – 20 mar' },
+};
+
 async function loadHoroscope() {
     try {
         const res = await fetch('data/horoscope.json?v=' + Date.now());
@@ -197,7 +239,6 @@ async function loadHoroscope() {
         const todayISO = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Santiago' });
 
         document.getElementById('horo-date').textContent = today;
-
         const freshness = document.getElementById('horo-freshness');
         if (horoscopeData.fecha === todayISO) {
             freshness.textContent = '✓ Actualizado hoy';
@@ -211,40 +252,35 @@ async function loadHoroscope() {
     }
 }
 
-const signSymbols = {
-    'Aries': '♈', 'Tauro': '♉', 'Géminis': '♊', 'Cáncer': '♋',
-    'Leo': '♌', 'Virgo': '♍', 'Libra': '♎', 'Escorpio': '♏',
-    'Sagitario': '♐', 'Capricornio': '♑', 'Acuario': '♒', 'Piscis': '♓'
-};
-
 document.querySelectorAll('.sign-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         const sign = btn.dataset.sign;
+        const meta = SIGN_META[sign] || {};
         const card = document.getElementById('horo-card');
 
+        document.getElementById('horo-symbol').textContent = meta.symbol || '🔮';
+        document.getElementById('horo-sign-name').textContent = sign;
+        document.getElementById('horo-sign-dates').textContent = meta.dates || '';
+
         if (!horoscopeData) {
-            document.getElementById('horo-text').textContent = 'Cargando...';
+            document.getElementById('horo-general').textContent = 'Cargando...';
             card.classList.remove('hidden');
             return;
         }
 
-        document.getElementById('horo-symbol').textContent = signSymbols[sign] || '🔮';
-        document.getElementById('horo-sign-name').textContent = sign;
-        document.getElementById('horo-text').textContent = horoscopeData.signos[sign] || 'No disponible.';
+        const data = horoscopeData.signos[sign];
+        if (data) {
+            document.getElementById('horo-general').textContent  = data.general  || '';
+            document.getElementById('horo-amor').textContent     = data.amor     || '';
+            document.getElementById('horo-trabajo').textContent  = data.trabajo  || '';
+            document.getElementById('horo-consejo').textContent  = data.consejo  || '';
+        }
 
-        // Re-trigger animation
         card.classList.add('hidden');
         requestAnimationFrame(() => card.classList.remove('hidden'));
-    });
-});
-
-// Load horoscope when tab is opened
-document.querySelectorAll('.cat-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-        if (tab.dataset.cat === 'horoscopo' && !horoscopeData) loadHoroscope();
     });
 });
 

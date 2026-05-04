@@ -26,14 +26,28 @@ jobs:
           today = datetime.now(chile_tz).strftime('%Y-%m-%d')
 
           prompt = (
-              f"Eres un astrólogo experto. Genera el horóscopo del día {today} en español para los 12 signos. "
-              "Cada horóscopo: 2 oraciones, una sobre amor/relaciones y otra sobre trabajo/dinero. "
-              "Tono positivo y motivador, como el de una revista chilena popular. "
-              "Responde ÚNICAMENTE con JSON válido, sin texto extra:\n"
+              f"Eres un astrólogo experto con 20 años de experiencia escribiendo para revistas chilenas como Caras y Paula. "
+              f"Genera el horóscopo del día {today} en español para los 12 signos del zodiaco. "
+              "Para CADA signo incluye 4 campos: "
+              "1) 'general': 3 oraciones que describan la energía del día, mencionando el planeta regente. "
+              "2) 'amor': 2 oraciones específicas sobre vida amorosa y relaciones personales. "
+              "3) 'trabajo': 2 oraciones sobre trabajo, carrera y situación económica. "
+              "4) 'consejo': 1 frase de consejo práctico y motivador para el día. "
+              "Tono: cálido, positivo, creíble y profundo. Varía el estilo entre signos. "
+              "Responde ÚNICAMENTE con JSON válido sin texto extra:\n"
               '{"fecha": "' + today + '", "signos": {'
-              '"Aries": "...", "Tauro": "...", "Géminis": "...", "Cáncer": "...", '
-              '"Leo": "...", "Virgo": "...", "Libra": "...", "Escorpio": "...", '
-              '"Sagitario": "...", "Capricornio": "...", "Acuario": "...", "Piscis": "..."}}'
+              '"Aries": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Tauro": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Géminis": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Cáncer": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Leo": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Virgo": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Libra": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Escorpio": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Sagitario": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Capricornio": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Acuario": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}, '
+              '"Piscis": {"general":"...","amor":"...","trabajo":"...","consejo":"..."}}}'
           )
 
           payload = json.dumps({
