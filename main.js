@@ -229,20 +229,28 @@ function slotMachine(pool, emojiEl, nameEl, card, onDone, finalItem) {
     card.classList.remove('revealed');
     card.classList.add('spinning');
 
+    const STEPS = 28;
     let step = 0;
-    const steps = 28;
-    let delay = 60;
+
+    function easeDelay(s) {
+        const t = s / STEPS;
+        return Math.round(55 + 520 * Math.pow(t, 2.4));
+    }
 
     function tick() {
-        const isLast = step === steps - 1;
+        const isLast = step === STEPS - 1;
         const item = (isLast && finalItem) ? finalItem : pool[Math.floor(Math.random() * pool.length)];
+
         emojiEl.textContent = item.emoji || '🎯';
         nameEl.textContent = item.name;
+        nameEl.style.animation = 'none';
+        void nameEl.offsetWidth;
+        nameEl.style.animation = 'slot-in 0.11s ease-out forwards';
+
         step++;
 
-        if (step < steps) {
-            if (step > 18) delay += 18;
-            setTimeout(tick, delay);
+        if (step < STEPS) {
+            setTimeout(tick, easeDelay(step));
         } else {
             card.classList.remove('spinning');
             card.classList.add('revealed');
