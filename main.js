@@ -130,12 +130,19 @@ const FOODS_CENA = [
     { name: 'Empanada frita de pino',      emoji: '🥟' },
 ];
 
-function getMealPool() {
+const MEAL_POOLS = {
+    desayuno: { hint: 'Perfecto para empezar el día',       pool: FOODS_DESAYUNO },
+    almuerzo: { hint: 'La mejor hora para el almuerzo',     pool: FOODS_ALMUERZO },
+    once:     { hint: '¡Hora de la once!',                  pool: FOODS_ONCE     },
+    cena:     { hint: 'Para terminar el día con todo',      pool: FOODS_CENA     },
+};
+
+function getAutoMealKey() {
     const hour = new Date().getHours();
-    if (hour >= 6  && hour < 12) return { label: '🌅 Desayuno', hint: 'Perfecto para empezar el día',       pool: FOODS_DESAYUNO };
-    if (hour >= 12 && hour < 16) return { label: '☀️ Almuerzo', hint: 'La mejor hora para el almuerzo',     pool: FOODS_ALMUERZO };
-    if (hour >= 16 && hour < 20) return { label: '🍪 Once',     hint: '¡Hora de la once!',                  pool: FOODS_ONCE     };
-    return                              { label: '🌙 Cena',      hint: 'Para terminar el día con todo',      pool: FOODS_CENA     };
+    if (hour >= 6  && hour < 12) return 'desayuno';
+    if (hour >= 12 && hour < 16) return 'almuerzo';
+    if (hour >= 16 && hour < 20) return 'once';
+    return 'cena';
 }
 
 // ── Slot machine animation ─────────────────────────────
@@ -171,18 +178,31 @@ const randomCard  = document.getElementById('random-result');
 const randomEmoji = document.getElementById('random-emoji');
 const randomName  = document.getElementById('random-name');
 const randomHint  = document.getElementById('random-hint');
-const mealBadge   = document.getElementById('meal-badge');
 
-function updateMealBadge() {
-    const { label } = getMealPool();
-    mealBadge.textContent = label;
+let selectedMeal = getAutoMealKey();
+
+function updateMealButtons() {
+    document.querySelectorAll('.meal-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.meal === selectedMeal);
+    });
 }
-updateMealBadge();
+
+document.querySelectorAll('.meal-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        selectedMeal = btn.dataset.meal;
+        updateMealButtons();
+        randomCard.classList.remove('revealed');
+        randomHint.textContent = 'Pulsa el botón y te lo decimos nosotros';
+        randomEmoji.textContent = '🍽️';
+        randomName.textContent = '¿Qué vamos a comer hoy?';
+    });
+});
+
+updateMealButtons();
 
 randomBtn.addEventListener('click', () => {
     randomBtn.disabled = true;
-    const { pool, hint } = getMealPool();
-    updateMealBadge();
+    const { pool, hint } = MEAL_POOLS[selectedMeal];
     slotMachine(pool, randomEmoji, randomName, randomCard, () => {
         randomHint.textContent = hint;
         randomBtn.disabled = false;
