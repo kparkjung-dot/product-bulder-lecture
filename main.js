@@ -58,21 +58,23 @@ document.querySelectorAll('.mode-tab').forEach(tab => {
     });
 });
 
-// ── Chilean food list (based on PedidosYa & Uber Eats Chile 2024–2025 data) ──
-const FOODS = [
-    // Completos & sánduches — top delivery category in Chile
-    { name: 'Completo italiano',           emoji: '🌭' },
-    { name: 'Completo dinámico',           emoji: '🌭' },
-    { name: 'Churrasco italiano',          emoji: '🥩' },
-    { name: 'Churrasco con palta',         emoji: '🥩' },
-    { name: 'Barros Luco',                 emoji: '🧀' },
-    { name: 'Barros Jarpa',                emoji: '🧀' },
-    { name: 'Lomito clásico',              emoji: '🥪' },
-    { name: 'Chacarero',                   emoji: '🥖' },
-    { name: 'Ave palta',                   emoji: '🥑' },
-    { name: 'Choripán con pebre',          emoji: '🌭' },
+// ── Chilean food lists by meal time ───────────────────────
+const FOODS_DESAYUNO = [
+    { name: 'Marraqueta con mantequilla y mermelada', emoji: '🍞' },
+    { name: 'Tostadas con palta',                     emoji: '🥑' },
+    { name: 'Huevos revueltos con tostadas',          emoji: '🍳' },
+    { name: 'Yogur con granola y fruta',              emoji: '🥣' },
+    { name: 'Avena con leche',                        emoji: '🥣' },
+    { name: 'Pan con queso y jamón',                  emoji: '🧀' },
+    { name: 'Pancakes con miel',                      emoji: '🥞' },
+    { name: 'Sopaipillas fritas',                     emoji: '🫓' },
+    { name: 'Café con leche y galletas',              emoji: '☕' },
+    { name: 'Marraqueta con palta y huevo',           emoji: '🥚' },
+    { name: 'Tostadas con mantequilla de maní',       emoji: '🥜' },
+    { name: 'Jugo de naranja natural',                emoji: '🍊' },
+];
 
-    // Platos de fondo
+const FOODS_ALMUERZO = [
     { name: 'Lomo a lo pobre',             emoji: '🍳' },
     { name: 'Chorrillana',                 emoji: '🍟' },
     { name: 'Pollo broaster',              emoji: '🍗' },
@@ -83,37 +85,46 @@ const FOODS = [
     { name: 'Porotos granados',            emoji: '🫘' },
     { name: 'Carbonada',                   emoji: '🥘' },
     { name: 'Tallarines a la bolognesa',   emoji: '🍝' },
-
-    // Empanadas — #1 plato tradicional en PedidosYa (3M+ unidades)
     { name: 'Empanada de pino',            emoji: '🥟' },
     { name: 'Empanada frita de queso',     emoji: '🥟' },
     { name: 'Empanada de mariscos',        emoji: '🥟' },
-    { name: 'Empanada frita de pino',      emoji: '🥟' },
-
-    // Mariscos & pescados
     { name: 'Caldillo de congrio',         emoji: '🐟' },
     { name: 'Ceviche de reineta',          emoji: '🍋' },
     { name: 'Machas a la parmesana',       emoji: '🦪' },
     { name: 'Chupe de mariscos',           emoji: '🦐' },
     { name: 'Jaibas rellenas',             emoji: '🦀' },
+    { name: 'Churrasco italiano',          emoji: '🥩' },
+    { name: 'Barros Luco',                 emoji: '🧀' },
+];
 
-    // Sushi — Chile lidera consumo en Latinoamérica, #1 en Uber Eats 2024
+const FOODS_CENA = [
+    { name: 'Completo italiano',           emoji: '🌭' },
+    { name: 'Completo dinámico',           emoji: '🌭' },
+    { name: 'Churrasco con palta',         emoji: '🥩' },
+    { name: 'Barros Jarpa',                emoji: '🧀' },
+    { name: 'Lomito clásico',              emoji: '🥪' },
+    { name: 'Chacarero',                   emoji: '🥖' },
+    { name: 'Ave palta',                   emoji: '🥑' },
+    { name: 'Choripán con pebre',          emoji: '🌭' },
     { name: 'Roll california',             emoji: '🍣' },
     { name: 'Roll de salmón con palta',    emoji: '🍣' },
     { name: 'Temaki de salmón con palta',  emoji: '🍣' },
     { name: 'Sashimi de salmón',           emoji: '🐠' },
-
-    // Comida rápida
     { name: 'Hamburguesa con queso',       emoji: '🍔' },
     { name: 'Pizza de mechada',            emoji: '🍕' },
     { name: 'Pizza napolitana',            emoji: '🍕' },
     { name: 'Pollo frito con papas',       emoji: '🍗' },
-
-    // Once & antojitos
     { name: 'Sopaipillas pasadas',         emoji: '🍯' },
-    { name: 'Sopaipillas con pebre',       emoji: '🫓' },
     { name: 'Humitas',                     emoji: '🌿' },
+    { name: 'Empanada frita de pino',      emoji: '🥟' },
 ];
+
+function getMealPool() {
+    const hour = new Date().getHours();
+    if (hour >= 6 && hour < 12)  return { label: '🌅 Desayuno',  hint: 'Perfecto para empezar el día',  pool: FOODS_DESAYUNO };
+    if (hour >= 12 && hour < 18) return { label: '☀️ Almuerzo',  hint: 'La mejor hora para el almuerzo', pool: FOODS_ALMUERZO };
+    return                               { label: '🌙 Cena',       hint: 'Para terminar el día con todo',  pool: FOODS_CENA     };
+}
 
 // ── Slot machine animation ─────────────────────────────
 function slotMachine(pool, emojiEl, nameEl, card, onDone) {
@@ -147,10 +158,21 @@ const randomBtn   = document.getElementById('random-btn');
 const randomCard  = document.getElementById('random-result');
 const randomEmoji = document.getElementById('random-emoji');
 const randomName  = document.getElementById('random-name');
+const randomHint  = document.getElementById('random-hint');
+const mealBadge   = document.getElementById('meal-badge');
+
+function updateMealBadge() {
+    const { label } = getMealPool();
+    mealBadge.textContent = label;
+}
+updateMealBadge();
 
 randomBtn.addEventListener('click', () => {
     randomBtn.disabled = true;
-    slotMachine(FOODS, randomEmoji, randomName, randomCard, () => {
+    const { pool, hint } = getMealPool();
+    updateMealBadge();
+    slotMachine(pool, randomEmoji, randomName, randomCard, () => {
+        randomHint.textContent = hint;
         randomBtn.disabled = false;
     });
 });
