@@ -5,73 +5,121 @@
       "general": "La energía de Marte, tu planeta regente, está especialmente activa hoy, llenándote de vitalidad y determinación. Es un momento ideal para retomar proyectos que habías dejado pendientes y para enfrentar situaciones que requerían valor. El universo te respalda en tus decisiones, así que confía en tu instinto y actúa con convicción.",
       "amor": "Si tienes pareja, hoy es un día perfecto para una conversación profunda que fortalezca el vínculo entre ambos. Los solteros de Aries podrían cruzarse con alguien interesante en un ambiente inesperado; mantén los ojos abiertos.",
       "trabajo": "Tu capacidad de liderazgo brilla hoy y los demás lo notan. Una propuesta o idea que llevas tiempo madurando merece ser presentada; el ambiente es receptivo y hay posibilidades reales de avance económico si das el paso.",
-      "consejo": "No dejes que el miedo al fracaso frene una decisión importante. La valentía que te caracteriza es tu mayor fortaleza hoy."
+      "salud": "Tu vitalidad física está en un punto alto gracias a la influencia de Marte; es el momento ideal para ejercicio intenso o actividad al aire libre. Cuida no sobreexigirte: la energía de fuego puede llevar al agotamiento si no estableces pausas conscientes.",
+      "consejo": "No dejes que el miedo al fracaso frene una decisión importante. La valentía que te caracteriza es tu mayor fortaleza hoy.",
+      "numero_suerte": 7,
+      "color_suerte": "Rojo carmesí",
+      "energia": 8
     },
     "Tauro": {
       "general": "Venus, tu planeta regente, te envuelve hoy en una energía de serenidad y belleza que atrae armonía a todos los aspectos de tu vida. Es un día propicio para reconectar contigo mismo, disfrutar de los placeres simples y afianzar lo que ya has construido con esfuerzo. La estabilidad que tanto valoras se siente sólida bajo tus pies.",
       "amor": "La ternura y la lealtad que caracteriza a Tauro generan hoy un ambiente romántico y cálido en tu vida afectiva. Si hay algún malentendido reciente con tu pareja o un ser querido, hoy es el día ideal para resolverlo con calma y amor.",
       "trabajo": "Tu perseverancia da frutos hoy. Una gestión financiera que venías trabajando da señales positivas, y en el ámbito laboral se reconoce tu esfuerzo constante. Evita los gastos impulsivos; el ahorro inteligente te favorece.",
-      "consejo": "Permítete disfrutar el presente sin anticipar problemas que aún no existen. La gratitud por lo que tienes hoy abre puertas mañana."
+      "salud": "Tu cuerpo pide movimiento hoy, aunque sea una caminata pausada en la naturaleza que reconecte tus sentidos con el entorno. Presta atención a la zona del cuello y garganta, áreas sensibles de Tauro; evita el frío y cuida tu voz.",
+      "consejo": "Permítete disfrutar el presente sin anticipar problemas que aún no existen. La gratitud por lo que tienes hoy abre puertas mañana.",
+      "numero_suerte": 14,
+      "color_suerte": "Verde esmeralda",
+      "energia": 6
     },
     "Géminis": {
       "general": "Mercurio activa hoy tu mente de forma extraordinaria, potenciando tu creatividad, tu capacidad de comunicación y tu agilidad mental. Es un día en que las palabras fluyen con naturalidad y puedes convencer, inspirar o resolver conflictos con gran facilidad. Aprovecha esta energía para conectar con personas que pueden ser clave en tu futuro.",
       "amor": "Tu encanto natural está en su punto más alto hoy, y quienes te rodean lo perciben con claridad. En pareja, una salida espontánea o una sorpresa pequeña puede reavivar la chispa. Los Géminis solteros tienen muchas probabilidades de generar una conexión especial hoy.",
       "trabajo": "Una idea brillante que tienes desde hace días merece ser expresada hoy; el contexto es favorable para presentarla. Podrías recibir una propuesta de colaboración o un encargo que se alinea perfectamente con tus habilidades.",
-      "consejo": "Escucha tanto como hablas. Hoy, la información que recibes puede ser tan valiosa como la que compartes."
+      "salud": "La energía mental está muy activa hoy, lo que puede generar tensión en los hombros y cuello; practica estiramientos o respiración consciente. Tu sistema nervioso necesita pausas breves durante el día para procesar toda la información que absorbe.",
+      "consejo": "Escucha tanto como hablas. Hoy, la información que recibes puede ser tan valiosa como la que compartes.",
+      "numero_suerte": 21,
+      "color_suerte": "Amarillo dorado",
+      "energia": 9
     },
     "Cáncer": {
       "general": "La Luna, tu regente, transita hoy por una posición que amplifica tu sensibilidad e intuición de manera notable. Esta profundidad emocional es un regalo si la canalizas bien: te permite conectar con los demás desde un lugar auténtico y tomar decisiones desde el corazón. No temas mostrar tu vulnerabilidad; es tu mayor fortaleza.",
       "amor": "El ambiente emocional en tu vida afectiva es cálido y protector hoy. Si tienes pareja, compartir un momento íntimo y tranquilo fortalecerá enormemente el lazo que los une. Los Cáncer solteros podrían recibir señales de interés de alguien que los conoce desde hace tiempo.",
       "trabajo": "Tu intuición profesional es muy precisa hoy; confía en esa sensación que te dice qué camino tomar. Un asunto laboral que generaba incertidumbre comienza a aclararse, y podrías recibir noticias positivas relacionadas con ingresos o reconocimiento.",
-      "consejo": "Cuida tu energía emocional hoy. Pon límites amables donde sea necesario; no puedes dar de un recipiente vacío."
+      "salud": "Tu bienestar emocional influye directamente en tu salud física hoy; mantener un estado interior tranquilo favorecerá tu digestión y tu energía general. Dedica unos minutos a la meditación o a estar en silencio cerca del agua para recargar tu energía.",
+      "consejo": "Cuida tu energía emocional hoy. Pon límites amables donde sea necesario; no puedes dar de un recipiente vacío.",
+      "numero_suerte": 3,
+      "color_suerte": "Plateado lunar",
+      "energia": 7
     },
     "Leo": {
       "general": "El Sol, tu planeta regente, ilumina con fuerza tu camino hoy, dándote una presencia magnética que hace que todos los ojos se posen en ti de forma natural. Es un día en que tu confianza y generosidad tocan a quienes te rodean, generando vínculos sólidos y oportunidades inesperadas. Abraza tu luz sin miedo.",
       "amor": "Tu carisma y pasión están en su máximo esplendor hoy, lo que hace que las relaciones afectivas fluyan con intensidad y alegría. En pareja, un gesto generoso o una declaración sincera puede llevar la relación a un nivel más profundo. Los Leo solteros atraen miradas con facilidad.",
       "trabajo": "Las oportunidades laborales que se presentan hoy son sólidas y tienen potencial de largo plazo. Tu capacidad de liderar y motivar a otros es un activo invaluable; no la subestimes. Podrían llegarte reconocimientos o propuestas que superan tus expectativas.",
-      "consejo": "Sé tan generoso contigo mismo como lo eres con los demás. Celebrar tus propios logros no es arrogancia; es merecido."
+      "salud": "Tu vitalidad física es notable hoy y puedes aprovecharla para actividades que requieran energía y presencia. Cuida tu corazón y columna, partes del cuerpo asociadas a Leo; mantén una postura erguida y evita el exceso de cafeína.",
+      "consejo": "Sé tan generoso contigo mismo como lo eres con los demás. Celebrar tus propios logros no es arrogancia; es merecido.",
+      "numero_suerte": 32,
+      "color_suerte": "Naranja intenso",
+      "energia": 9
     },
     "Virgo": {
       "general": "Mercurio en posición favorable activa hoy tu extraordinaria capacidad analítica y tu atención al detalle, permitiéndote ver con claridad lo que otros pasan por alto. Es un día excelente para poner orden en proyectos complejos, tomar decisiones informadas y resolver situaciones que requerían precisión y paciencia.",
       "amor": "Los gestos pequeños pero cargados de significado son el lenguaje del amor de Virgo, y hoy tienen un impacto especial en tus relaciones. Mostrar tu lado más espontáneo y menos perfeccionista le dará a tu pareja o a alguien especial una perspectiva más cercana y cálida de ti.",
       "trabajo": "Tu capacidad de organización y tu ética de trabajo te distinguen hoy en el ámbito profesional. Un problema que parecía complejo encuentra solución gracias a tu metodología. En lo económico, una decisión cuidadosa tomada hoy tendrá retornos positivos en las próximas semanas.",
-      "consejo": "No busques la perfección en todo; el progreso constante es más valioso que la perfección paralizante. Date permiso de avanzar aunque no todo sea perfecto."
+      "salud": "Tu salud se beneficia hoy de una rutina ordenada: alimentación consciente, hidratación y horarios regulares marcan la diferencia para tu bienestar. La zona digestiva, sensible en Virgo, agradece alimentos ligeros y naturales hoy.",
+      "consejo": "No busques la perfección en todo; el progreso constante es más valioso que la perfección paralizante. Date permiso de avanzar aunque no todo sea perfecto.",
+      "numero_suerte": 18,
+      "color_suerte": "Beige dorado",
+      "energia": 6
     },
     "Libra": {
       "general": "Venus, tu planeta regente, propicia hoy un ambiente de equilibrio, belleza y armonía en tu entorno. Tu capacidad natural para ver todos los ángulos de una situación y encontrar puntos medios es especialmente poderosa hoy, lo que te convierte en una figura clave para resolver tensiones y tomar decisiones justas que beneficien a todos.",
       "amor": "El equilibrio y la reciprocidad que buscas en tus relaciones dan señales positivas hoy. Una conversación honesta con tu pareja puede llevarlos a un entendimiento más profundo. Los Libra solteros tienen alta probabilidad de encontrar una conexión genuina en un ambiente social o cultural.",
       "trabajo": "Una colaboración profesional que está en conversación avanza hoy de forma concreta. Tu diplomacia y sentido de la justicia te abren puertas que el esfuerzo individual no puede. Mantén el foco en los acuerdos que benefician a todas las partes.",
-      "consejo": "Deja de postergar esa decisión que has estado sopesando demasiado tiempo. Hoy tienes la claridad y el equilibrio necesarios para elegir bien."
+      "salud": "El equilibrio entre actividad y descanso es clave para tu bienestar hoy; evita los extremos y escucha lo que tu cuerpo necesita en cada momento. Tus riñones y zona lumbar son áreas que requieren atención; mantente bien hidratado y evita permanecer sentado por períodos muy largos.",
+      "consejo": "Deja de postergar esa decisión que has estado sopesando demasiado tiempo. Hoy tienes la claridad y el equilibrio necesarios para elegir bien.",
+      "numero_suerte": 9,
+      "color_suerte": "Rosa pálido",
+      "energia": 7
     },
     "Escorpio": {
       "general": "Plutón intensifica hoy tu profundidad emocional y tu capacidad de percepción, dándote acceso a una intuición casi sobrenatural. Ves lo que está debajo de la superficie en las personas y situaciones, y esa visión te da una ventaja significativa. Es un día de transformación interior y de toma de conciencia sobre lo que realmente importa.",
       "amor": "La intensidad emocional que caracteriza a Escorpio alcanza hoy un nivel especial. Si estás en pareja, una conversación profunda y vulnerable puede transformar la relación para mejor. Los Escorpio solteros podrían experimentar una atracción intensa e inesperada con alguien misterioso y afín.",
       "trabajo": "Tu capacidad estratégica y tu visión de largo plazo te permiten hoy anticipar movimientos que otros no ven. Un esfuerzo o inversión que hiciste hace tiempo comienza a mostrar sus primeros frutos. Mantén la confidencialidad en negociaciones importantes.",
-      "consejo": "Suelta el control de lo que no puedes controlar. La transformación más poderosa comienza cuando aceptas fluir con lo que el universo tiene planeado."
+      "salud": "Tu resistencia física es notable hoy, pero tu sistema emocional podría estar procesando mucho internamente; dale espacio a través del movimiento consciente o ejercicio. Los órganos del sistema linfático, asociados a Escorpio, se benefician de hidratación abundante y alimentos detoxificantes.",
+      "consejo": "Suelta el control de lo que no puedes controlar. La transformación más poderosa comienza cuando aceptas fluir con lo que el universo tiene planeado.",
+      "numero_suerte": 44,
+      "color_suerte": "Granate profundo",
+      "energia": 8
     },
     "Sagitario": {
       "general": "Júpiter, el planeta de la abundancia y la expansión, impulsa hoy tu optimismo natural y tu deseo de crecer en todos los sentidos. Es un día en que las posibilidades parecen ilimitadas y la energía del universo conspira para llevar tus sueños más cerca de la realidad. Mantén una mentalidad abierta y receptiva a lo nuevo.",
       "amor": "Tu entusiasmo y genuina alegría de vivir son hoy irresistiblemente atractivos para quienes te rodean. En pareja, proponer una actividad nueva o un pequeño viaje puede renovar la energía de la relación. Los Sagitario solteros brillan con luz propia en cualquier contexto social.",
       "trabajo": "Una oportunidad de expansión laboral o de aprendizaje se presenta hoy, y es exactamente lo que estabas buscando. Tu capacidad de ver el panorama general te permite identificar el camino correcto cuando otros se pierden en los detalles. Los ingresos tienen tendencia positiva.",
-      "consejo": "No te disperses tratando de abarcar demasiado a la vez. Elige una meta prioritaria hoy y enfoca en ella toda tu energía expansiva."
+      "salud": "Tu energía física es expansiva hoy y el ejercicio al aire libre será especialmente regenerador para tu cuerpo y mente. Cuida tus caderas y muslos, zonas sensibles de Sagitario; un buen estiramiento después de actividad física evitará tensiones acumuladas.",
+      "consejo": "No te disperses tratando de abarcar demasiado a la vez. Elige una meta prioritaria hoy y enfoca en ella toda tu energía expansiva.",
+      "numero_suerte": 55,
+      "color_suerte": "Púrpura real",
+      "energia": 9
     },
     "Capricornio": {
       "general": "Saturno, tu regente, te otorga hoy una claridad y disciplina extraordinarias que te permiten avanzar con paso firme hacia tus objetivos de largo plazo. El esfuerzo constante que has invertido en los últimos meses empieza a condensarse en resultados tangibles. Es un día de consolidación y de reconocimiento merecido.",
       "amor": "Tu lealtad y solidez como pareja o como amigo son cualidades que hoy se aprecian profundamente. Mostrar tu lado más cálido y humano fortalece los lazos que más te importan. Los Capricornio solteros pueden encontrar atracción genuina con alguien que comparte sus valores y ambiciones.",
       "trabajo": "Tu reputación profesional está en un punto alto y se abre una oportunidad de asumir mayor responsabilidad o de dar un salto en tu carrera. Confía en la experiencia que has acumulado; te respalda plenamente. Una decisión financiera tomada hoy con prudencia tendrá excelentes resultados.",
-      "consejo": "Permite que otros también contribuyan a tus proyectos. La colaboración no debilita tu liderazgo; lo amplifica."
+      "salud": "Tu resistencia física es sólida hoy, pero es importante no ignorar las señales de cansancio que tu cuerpo envía. Las rodillas y articulaciones, puntos sensibles de Capricornio, agradecen movimiento suave y una buena hidratación hoy.",
+      "consejo": "Permite que otros también contribuyan a tus proyectos. La colaboración no debilita tu liderazgo; lo amplifica.",
+      "numero_suerte": 27,
+      "color_suerte": "Marrón tierra",
+      "energia": 5
     },
     "Acuario": {
       "general": "Urano activa hoy tu pensamiento visionario y tu necesidad de innovar y romper moldes, llenándote de ideas brillantes y perspectivas únicas que pueden marcar una diferencia real. Es un día para salir de la rutina, proponer lo que otros no se atreven y conectar con personas que comparten tu visión del futuro.",
       "amor": "Tu autenticidad y originalidad son hoy especialmente atractivas para quienes te rodean. En pareja, una conversación abierta sobre sueños y proyectos compartidos puede llevar la relación a un plano más profundo e igualitario. Los Acuario solteros atraen a personas interesantes e intelectualmente estimulantes.",
       "trabajo": "Una idea innovadora que tienes merece ser presentada hoy; el entorno es receptivo a propuestas audaces y creativas. Tu capacidad de trabajar en red y conectar personas con intereses complementarios abre puertas que el trabajo individual no puede. Hay potencial de ingreso desde fuentes no convencionales.",
-      "consejo": "Equilibra tu visión del futuro con atención al presente. Las grandes ideas necesitan también pasos concretos hoy para materializarse mañana."
+      "salud": "Tu mente activa hoy necesita descansos regulares para mantener el equilibrio; la meditación breve o la respiración profunda son grandes aliados. Las pantorrillas y el sistema circulatorio, asociados a Acuario, se benefician de caminar o hacer pequeños ejercicios de activación.",
+      "consejo": "Equilibra tu visión del futuro con atención al presente. Las grandes ideas necesitan también pasos concretos hoy para materializarse mañana.",
+      "numero_suerte": 61,
+      "color_suerte": "Azul eléctrico",
+      "energia": 8
     },
     "Piscis": {
       "general": "Neptuno envuelve hoy tu mundo en una energía de inspiración, empatía y conexión espiritual que eleva tu percepción de la realidad. Tu sensibilidad artística y tu capacidad de sentir lo que otros no expresan están en su punto más alto, convirtiéndote en un faro de comprensión y creatividad para quienes te rodean.",
       "amor": "Tu capacidad de amar de forma incondicional y profunda genera hoy una atmósfera de ternura genuina en tus relaciones afectivas. Si tienes pareja, un momento de silencio compartido o de conexión artística puede ser más poderoso que mil palabras. Los Piscis solteros atraen conexiones románticas con gran carga emocional.",
       "trabajo": "Tu creatividad e intuición son tus mayores activos profesionales hoy. Un proyecto creativo o humanitario en el que participas avanza con impulso positivo. Confía en tu visión aunque los demás no la comprendan de inmediato; los resultados les darán la razón.",
-      "consejo": "Protege tu energía emocional con límites sanos. Tu empatía es un regalo, pero recuerda que también necesitas espacio para recargarte."
+      "salud": "Tu sensibilidad está elevada hoy y necesitas crear un ambiente que proteja tu sistema nervioso del ruido y las demandas externas. Los pies, zona especial de Piscis, agradecen hoy un baño cálido o un masaje relajante que ancle tu energía al presente.",
+      "consejo": "Protege tu energía emocional con límites sanos. Tu empatía es un regalo, pero recuerda que también necesitas espacio para recargarte.",
+      "numero_suerte": 12,
+      "color_suerte": "Turquesa",
+      "energia": 7
     }
   }
 }
