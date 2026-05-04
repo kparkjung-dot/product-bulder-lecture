@@ -47,11 +47,12 @@ document.querySelectorAll('.cat-tab:not([disabled])').forEach(tab => {
     });
 });
 
-// ── Mode tabs ──────────────────────────────────────────
+// ── Mode tabs (scoped to active cat-panel) ─────────────
 document.querySelectorAll('.mode-tab').forEach(tab => {
     tab.addEventListener('click', () => {
-        document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+        const panel = tab.closest('.cat-panel');
+        panel.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+        panel.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
         document.getElementById(`mode-${tab.dataset.mode}`).classList.add('active');
     });
@@ -208,6 +209,122 @@ customBtn.addEventListener('click', () => {
 });
 
 renderChips();
+
+// ── ¿Qué hacer? activity list ─────────────────────────
+const ACTIVITIES = [
+    // Social / Con amigos
+    { name: 'Hacer un asado con amigos',        emoji: '🔥' },
+    { name: 'Ir a carretear',                   emoji: '🍻' },
+    { name: 'Tomar once en casa',               emoji: '🫖' },
+    { name: 'Karaoke',                          emoji: '🎤' },
+    { name: 'Juegos de mesa con amigos',        emoji: '🎲' },
+    { name: 'Ir a ver el partido al estadio',   emoji: '⚽' },
+    { name: 'Organizar una picada',             emoji: '🍽️' },
+
+    // Aire libre / Naturaleza
+    { name: 'Subir al cerro San Cristóbal',     emoji: '⛰️' },
+    { name: 'Cajón del Maipo',                  emoji: '🏔️' },
+    { name: 'Trekking en la cordillera',        emoji: '🥾' },
+    { name: 'Pasear por el Parque Forestal',    emoji: '🌳' },
+    { name: 'Andar en bici por la ciclovía',    emoji: '🚴' },
+    { name: 'Salir a correr al parque',         emoji: '🏃' },
+    { name: 'Picnic en el parque',              emoji: '🧺' },
+    { name: 'Ir a la playa a Viña del Mar',     emoji: '🏖️' },
+    { name: 'Escaparse a Valparaíso',           emoji: '🎨' },
+
+    // Cultural / Entretenimiento
+    { name: 'Ir al cine',                       emoji: '🎬' },
+    { name: 'Recorrer el Barrio Bellavista',    emoji: '🗺️' },
+    { name: 'Visitar el Mercado Central',       emoji: '🦞' },
+    { name: 'Ir a un concierto o festival',     emoji: '🎶' },
+    { name: 'Recorrer el Barrio Lastarria',     emoji: '☕' },
+    { name: 'Visitar un museo',                 emoji: '🖼️' },
+    { name: 'Ir a una obra de teatro',          emoji: '🎭' },
+    { name: 'Feria de artesanía',               emoji: '🛍️' },
+    { name: 'Viña en el Valle del Maipo',       emoji: '🍷' },
+
+    // Deporte
+    { name: 'Jugar pádel',                      emoji: '🏸' },
+    { name: 'Jugar fútbol con el barrio',       emoji: '⚽' },
+    { name: 'Nadar en la piscina',              emoji: '🏊' },
+    { name: 'Clase de baile (salsa/cueca)',     emoji: '💃' },
+    { name: 'Ir al gimnasio',                   emoji: '🏋️' },
+
+    // En casa
+    { name: 'Maratón de serie en Netflix',      emoji: '📺' },
+    { name: 'Cocinar algo nuevo',               emoji: '👨‍🍳' },
+    { name: 'Leer un libro',                    emoji: '📚' },
+    { name: 'Videojuegos',                      emoji: '🎮' },
+    { name: 'Escuchar música y relajarse',      emoji: '🎧' },
+];
+
+// ── ¿Qué hacer? — random mode ──────────────────────────
+const hacerRandomBtn    = document.getElementById('hacer-random-btn');
+const hacerRandomCard   = document.getElementById('hacer-random-result');
+const hacerRandomEmoji  = document.getElementById('hacer-random-emoji');
+const hacerRandomName   = document.getElementById('hacer-random-name');
+
+hacerRandomBtn.addEventListener('click', () => {
+    hacerRandomBtn.disabled = true;
+    slotMachine(ACTIVITIES, hacerRandomEmoji, hacerRandomName, hacerRandomCard, () => {
+        hacerRandomBtn.disabled = false;
+    });
+});
+
+// ── ¿Qué hacer? — custom mode ──────────────────────────
+const hacerOptionInput  = document.getElementById('hacer-option-input');
+const hacerAddBtn       = document.getElementById('hacer-add-btn');
+const hacerChipsEl      = document.getElementById('hacer-chips');
+const hacerCustomBtn    = document.getElementById('hacer-custom-btn');
+const hacerCustomCard   = document.getElementById('hacer-custom-result');
+const hacerCustomEmoji  = document.getElementById('hacer-custom-emoji');
+const hacerCustomName   = document.getElementById('hacer-custom-name');
+
+let hacerOptions = [];
+
+function renderHacerChips() {
+    hacerChipsEl.innerHTML = '';
+    if (hacerOptions.length === 0) {
+        hacerChipsEl.innerHTML = '<span class="chips-empty">Agrega al menos 2 opciones para decidir</span>';
+        hacerCustomBtn.disabled = true;
+        return;
+    }
+    hacerOptions.forEach((opt, i) => {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.innerHTML = `${opt} <button class="chip-remove" aria-label="Eliminar">×</button>`;
+        chip.querySelector('.chip-remove').addEventListener('click', () => {
+            hacerOptions.splice(i, 1);
+            renderHacerChips();
+        });
+        hacerChipsEl.appendChild(chip);
+    });
+    hacerCustomBtn.disabled = hacerOptions.length < 2;
+}
+
+function addHacerOption() {
+    const val = hacerOptionInput.value.trim();
+    if (!val || hacerOptions.includes(val)) return;
+    hacerOptions.push(val);
+    hacerOptionInput.value = '';
+    renderHacerChips();
+    hacerCustomCard.classList.add('hidden');
+    hacerCustomCard.classList.remove('revealed');
+}
+
+hacerAddBtn.addEventListener('click', addHacerOption);
+hacerOptionInput.addEventListener('keydown', e => { if (e.key === 'Enter') addHacerOption(); });
+
+hacerCustomBtn.addEventListener('click', () => {
+    hacerCustomBtn.disabled = true;
+    hacerCustomCard.classList.remove('hidden');
+    const pool = hacerOptions.map(o => ({ name: o, emoji: '🎯' }));
+    slotMachine(pool, hacerCustomEmoji, hacerCustomName, hacerCustomCard, () => {
+        hacerCustomBtn.disabled = false;
+    });
+});
+
+renderHacerChips();
 
 // ── Horoscope ──────────────────────────────────────────
 let horoscopeData = null;
