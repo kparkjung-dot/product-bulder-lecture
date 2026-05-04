@@ -437,6 +437,21 @@ body.dark .form-status.error   { background: #2e1515; color: #ef9a9a; border-col
 .comments-section .section-title { margin-bottom: 20px; }
 
 /* ── Horoscope ─────────────────────────────────────────── */
+.ai-notice {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--horo-primary-soft);
+    border: 1px solid var(--horo-border);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.ai-notice-icon { font-size: 14px; flex-shrink: 0; }
+
 .horo-date-bar {
     display: flex;
     align-items: center;
