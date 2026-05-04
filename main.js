@@ -118,16 +118,34 @@ const FOODS_ALMUERZO = [
     { name: 'Ramen tonkotsu',             emoji: '🍜' },
     { name: 'Katsu curry',                emoji: '🍛' },
     { name: 'Udon con tempura',           emoji: '🍜' },
+    { name: 'Donburi de pollo teriyaki',  emoji: '🍚' },
+    { name: 'Yakitori',                   emoji: '🍢' },
+    { name: 'Miso ramen',                 emoji: '🍜' },
+    // China
+    { name: 'Pato laqueado',              emoji: '🦆' },
+    { name: 'Cerdo Moo Shu',              emoji: '🥢' },
+    { name: 'Fideos de arroz salteados',  emoji: '🍜' },
+    { name: 'Bok choy con ostras',        emoji: '🥬' },
     // Mexicana / Peruana
     { name: 'Tacos de carne asada',       emoji: '🌮' },
     { name: 'Burritos de pollo',          emoji: '🌯' },
     { name: 'Lomo saltado',               emoji: '🍳' },
     { name: 'Ají de gallina',             emoji: '🍲' },
-    // Italiana / Mediterránea
+    { name: 'Ceviche peruano',            emoji: '🍋' },
+    // Italiana
     { name: 'Lasaña de carne',            emoji: '🍝' },
     { name: 'Risotto de champiñones',     emoji: '🍚' },
     { name: 'Pizza margherita',           emoji: '🍕' },
     { name: 'Pasta al pesto',             emoji: '🍝' },
+    { name: 'Pasta carbonara',            emoji: '🍝' },
+    { name: 'Ossobuco al vino',           emoji: '🍷' },
+    { name: 'Gnocchi al pomodoro',        emoji: '🍝' },
+    // Carnes
+    { name: 'Asado de tira a la parrilla', emoji: '🥩' },
+    { name: 'Costillas BBQ',              emoji: '🍖' },
+    { name: 'Filete al merkén',           emoji: '🥩' },
+    { name: 'Entraña con chimichurri',    emoji: '🥩' },
+    { name: 'Pollo al horno con papas',   emoji: '🍗' },
 ];
 
 const FOODS_ONCE = [
@@ -181,17 +199,41 @@ const FOODS_CENA = [
     { name: 'Pollo tikka masala',          emoji: '🍛' },
     { name: 'Curry de garbanzos',          emoji: '🍛' },
     { name: 'Naan con hummus',             emoji: '🫓' },
+    // Japonesa
+    { name: 'Ramen shoyu',                 emoji: '🍜' },
+    { name: 'Gyoza frita',                 emoji: '🥟' },
+    { name: 'Onigiri variado',             emoji: '🍙' },
+    { name: 'Yakisoba',                    emoji: '🍜' },
+    { name: 'Tonkatsu',                    emoji: '🍱' },
+    // China
+    { name: 'Pato Pekín',                  emoji: '🦆' },
+    { name: 'Fideos chinos salteados',     emoji: '🥢' },
+    { name: 'Mapo tofu picante',           emoji: '🌶️' },
+    { name: 'Sopa de fideos de res',       emoji: '🍜' },
+    // Italiana
+    { name: 'Pizza quattro formaggi',      emoji: '🍕' },
+    { name: 'Pasta alla norma',            emoji: '🍝' },
+    { name: 'Risotto al limón',            emoji: '🍚' },
+    { name: 'Pasta arrabiata',             emoji: '🍝' },
+    { name: 'Lasaña vegetariana',          emoji: '🍝' },
+    // Carnes
+    { name: 'Asado de tira a la parrilla', emoji: '🥩' },
+    { name: 'Costillas BBQ',              emoji: '🍖' },
+    { name: 'Filete al merkén',           emoji: '🥩' },
+    { name: 'Entraña con chimichurri',    emoji: '🥩' },
+    { name: 'T-bone a la parrilla',       emoji: '🥩' },
     // Mexicana
     { name: 'Tacos al pastor',             emoji: '🌮' },
     { name: 'Quesadillas de pollo',        emoji: '🌮' },
-    { name: 'Nachos con guacamole',        emoji: '🥑' },
     // Thai
     { name: 'Pad thai de camarones',       emoji: '🍜' },
     { name: 'Curry verde tailandés',       emoji: '🍛' },
+    { name: 'Pad see ew',                  emoji: '🍜' },
     // Mediterránea / Árabe
     { name: 'Shawarma de pollo',           emoji: '🌯' },
     { name: 'Falafel con pita',            emoji: '🫓' },
     { name: 'Kebab de cordero',            emoji: '🍢' },
+    { name: 'Moussaka',                    emoji: '🥘' },
 ];
 
 const MEAL_POOLS = {
