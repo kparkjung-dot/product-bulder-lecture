@@ -1,0 +1,34 @@
+[debug] [2026-05-03T23:20:00.924Z] ----------------------------------------------------------------------
+[debug] [2026-05-03T23:20:00.928Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/gm9mcvzb17vv8cla08khrg29vxn3sq4r-firebase-tools-15.1.0/lib/node_modules/firebase-tools/lib/bin/firebase.js login:ci
+[debug] [2026-05-03T23:20:00.929Z] CLI Version:   15.1.0
+[debug] [2026-05-03T23:20:00.929Z] Platform:      linux
+[debug] [2026-05-03T23:20:00.929Z] Node Version:  v20.19.1
+[debug] [2026-05-03T23:20:00.929Z] Time:          Sun May 03 2026 23:20:00 GMT+0000 (Coordinated Universal Time)
+[debug] [2026-05-03T23:20:00.929Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-05-03T23:20:00.944Z] No OAuth tokens found
+[debug] [2026-05-03T23:20:00.945Z] No OAuth tokens found
+[error] Failed to fetch Firebase Project from current Studio Workspace: Unable to refresh auth: not yet authenticated.
+[warn] ⚠  Authenticating with a `login:ci` token is deprecated and will be removed in a future major version of `firebase-tools`. Instead, use a service account key with `GOOGLE_APPLICATION_CREDENTIALS`: https://cloud.google.com/docs/authentication/getting-started 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=136190670&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2026-05-03T23:20:04.229Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2026-05-03T23:20:04.230Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"e7169d72-7944-4e40-9949-ec5816e7f1d8"}
+[debug] [2026-05-03T23:20:04.550Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2026-05-03T23:20:04.551Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"-JicrQMlatC5HRkssCnt0byNaSTCh-V3Vn6_e8FtZe8"}
+[info] 
+[info] To sign in to the Firebase CLI:
+[info] 
+[info] 1. Take note of your session ID:
+[info] 
+[info]    E7169
+[info] 
+[info] 2. Visit the URL below on any device and follow the instructions to get your code:
+[info] 
+[info]    https://auth.firebase.tools/login?code_challenge=wZ_d40PtKkhtMTx8cL2hUXXWO_NbpP5cBqWguG84kBQ&session=e7169d72-7944-4e40-9949-ec5816e7f1d8&attest=-JicrQMlatC5HRkssCnt0byNaSTCh-V3Vn6_e8FtZe8
+[info] 
+[info] 3. Paste or enter the authorization code below once you have it:
+[info] 

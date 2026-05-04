@@ -182,6 +182,72 @@ customBtn.addEventListener('click', () => {
 
 renderChips();
 
+// ── Horoscope ──────────────────────────────────────────
+let horoscopeData = null;
+
+async function loadHoroscope() {
+    try {
+        const res = await fetch('data/horoscope.json?v=' + Date.now());
+        horoscopeData = await res.json();
+
+        const today = new Date().toLocaleDateString('es-CL', {
+            timeZone: 'America/Santiago',
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+        const todayISO = new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Santiago' });
+
+        document.getElementById('horo-date').textContent = today;
+
+        const freshness = document.getElementById('horo-freshness');
+        if (horoscopeData.fecha === todayISO) {
+            freshness.textContent = '✓ Actualizado hoy';
+            freshness.className = 'horo-freshness fresh';
+        } else {
+            freshness.textContent = '⚠ Datos de ' + horoscopeData.fecha;
+            freshness.className = 'horo-freshness stale';
+        }
+    } catch {
+        document.getElementById('horo-date').textContent = 'No disponible';
+    }
+}
+
+const signSymbols = {
+    'Aries': '♈', 'Tauro': '♉', 'Géminis': '♊', 'Cáncer': '♋',
+    'Leo': '♌', 'Virgo': '♍', 'Libra': '♎', 'Escorpio': '♏',
+    'Sagitario': '♐', 'Capricornio': '♑', 'Acuario': '♒', 'Piscis': '♓'
+};
+
+document.querySelectorAll('.sign-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const sign = btn.dataset.sign;
+        const card = document.getElementById('horo-card');
+
+        if (!horoscopeData) {
+            document.getElementById('horo-text').textContent = 'Cargando...';
+            card.classList.remove('hidden');
+            return;
+        }
+
+        document.getElementById('horo-symbol').textContent = signSymbols[sign] || '🔮';
+        document.getElementById('horo-sign-name').textContent = sign;
+        document.getElementById('horo-text').textContent = horoscopeData.signos[sign] || 'No disponible.';
+
+        // Re-trigger animation
+        card.classList.add('hidden');
+        requestAnimationFrame(() => card.classList.remove('hidden'));
+    });
+});
+
+// Load horoscope when tab is opened
+document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        if (tab.dataset.cat === 'horoscopo' && !horoscopeData) loadHoroscope();
+    });
+});
+
 // ── Contact form ───────────────────────────────────────
 const contactForm = document.querySelector('.contact-form');
 const formStatus  = document.getElementById('form-status');

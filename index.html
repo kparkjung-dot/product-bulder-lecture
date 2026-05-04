@@ -24,6 +24,7 @@
                     🎯 ¿Qué hacer?
                     <span class="soon-badge">Pronto</span>
                 </button>
+                <button class="cat-tab" data-cat="horoscopo">🔮 Horóscopo</button>
             </div>
 
             <!-- ¿Qué comer? panel -->
@@ -69,6 +70,36 @@
                     <div class="coming-soon-icon">🚀</div>
                     <h3>¿Qué hacer? — Próximamente</h3>
                     <p>Pronto podrás dejar que <strong>¿Queque?</strong> también decida tus planes, actividades y salidas.</p>
+                </div>
+            </div>
+
+            <!-- Horóscopo panel -->
+            <div id="panel-horoscopo" class="cat-panel">
+                <div class="horo-date-bar">
+                    <span class="horo-date-label">Horóscopo de hoy</span>
+                    <span class="horo-date-value" id="horo-date"></span>
+                    <span class="horo-freshness" id="horo-freshness"></span>
+                </div>
+                <div class="sign-grid">
+                    <button class="sign-btn" data-sign="Aries">♈<span>Aries</span></button>
+                    <button class="sign-btn" data-sign="Tauro">♉<span>Tauro</span></button>
+                    <button class="sign-btn" data-sign="Géminis">♊<span>Géminis</span></button>
+                    <button class="sign-btn" data-sign="Cáncer">♋<span>Cáncer</span></button>
+                    <button class="sign-btn" data-sign="Leo">♌<span>Leo</span></button>
+                    <button class="sign-btn" data-sign="Virgo">♍<span>Virgo</span></button>
+                    <button class="sign-btn" data-sign="Libra">♎<span>Libra</span></button>
+                    <button class="sign-btn" data-sign="Escorpio">♏<span>Escorpio</span></button>
+                    <button class="sign-btn" data-sign="Sagitario">♐<span>Sagitario</span></button>
+                    <button class="sign-btn" data-sign="Capricornio">♑<span>Capricornio</span></button>
+                    <button class="sign-btn" data-sign="Acuario">♒<span>Acuario</span></button>
+                    <button class="sign-btn" data-sign="Piscis">♓<span>Piscis</span></button>
+                </div>
+                <div class="horo-card hidden" id="horo-card">
+                    <div class="horo-card-header">
+                        <span class="horo-symbol" id="horo-symbol"></span>
+                        <span class="horo-sign-name" id="horo-sign-name"></span>
+                    </div>
+                    <p class="horo-text" id="horo-text"></p>
                 </div>
             </div>
 

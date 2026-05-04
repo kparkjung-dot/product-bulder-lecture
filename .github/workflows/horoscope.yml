@@ -1,0 +1,76 @@
+name: Daily Horoscope Update
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # 09:00 UTC = ~06:00 Chile time
+  workflow_dispatch:        # Allow manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-horoscope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate horoscopes via Claude API
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 << 'PYEOF'
+          import json, os, urllib.request
+          from datetime import datetime, timezone, timedelta
+
+          chile_tz = timezone(timedelta(hours=-4))
+          today = datetime.now(chile_tz).strftime('%Y-%m-%d')
+
+          prompt = (
+              f"Eres un astrólogo experto. Genera el horóscopo del día {today} en español para los 12 signos. "
+              "Cada horóscopo: 2 oraciones, una sobre amor/relaciones y otra sobre trabajo/dinero. "
+              "Tono positivo y motivador, como el de una revista chilena popular. "
+              "Responde ÚNICAMENTE con JSON válido, sin texto extra:\n"
+              '{"fecha": "' + today + '", "signos": {'
+              '"Aries": "...", "Tauro": "...", "Géminis": "...", "Cáncer": "...", '
+              '"Leo": "...", "Virgo": "...", "Libra": "...", "Escorpio": "...", '
+              '"Sagitario": "...", "Capricornio": "...", "Acuario": "...", "Piscis": "..."}}'
+          )
+
+          payload = json.dumps({
+              "model": "claude-haiku-4-5-20251001",
+              "max_tokens": 2048,
+              "messages": [{"role": "user", "content": prompt}]
+          }).encode()
+
+          req = urllib.request.Request(
+              "https://api.anthropic.com/v1/messages",
+              data=payload,
+              headers={
+                  "Content-Type": "application/json",
+                  "x-api-key": os.environ["ANTHROPIC_API_KEY"],
+                  "anthropic-version": "2023-06-01"
+              }
+          )
+
+          with urllib.request.urlopen(req) as r:
+              res = json.loads(r.read())
+
+          text = res["content"][0]["text"].strip()
+          start = text.find("{")
+          end = text.rfind("}") + 1
+          horoscope = json.loads(text[start:end])
+
+          os.makedirs("data", exist_ok=True)
+          with open("data/horoscope.json", "w", encoding="utf-8") as f:
+              json.dump(horoscope, f, ensure_ascii=False, indent=2)
+
+          print(f"Horóscopo generado para {today}")
+          PYEOF
+
+      - name: Commit updated horoscope
+        run: |
+          git config user.name "queque-bot"
+          git config user.email "queque-bot@users.noreply.github.com"
+          git add data/horoscope.json
+          git diff --staged --quiet || git commit -m "chore: horóscopo diario $(date +%Y-%m-%d)"
+          git push
