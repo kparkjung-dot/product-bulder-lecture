@@ -79,7 +79,7 @@ const FOODS_ALMUERZO = [
     // Chilena
     { name: 'Lomo a lo pobre',             emoji: '🍳', cat: 'chilena' },
     { name: 'Chorrillana',                 emoji: '🍟', cat: 'chilena' },
-    { name: 'Pollo broaster',              emoji: '🍗', cat: 'chilena' },
+    { name: 'Pollo broaster',              emoji: '🍗', cat: 'comida_rapida' },
     { name: 'Pastel de choclo',            emoji: '🌽', cat: 'chilena' },
     { name: 'Cazuela de vacuno',           emoji: '🍲', cat: 'chilena' },
     { name: 'Cazuela de pollo',            emoji: '🍲', cat: 'chilena' },
@@ -128,6 +128,10 @@ const FOODS_ALMUERZO = [
     { name: 'Pizza margherita',           emoji: '🍕', cat: 'italiana' },
     { name: 'Pasta al pesto',             emoji: '🍝', cat: 'italiana' },
     { name: 'Pasta carbonara',            emoji: '🍝', cat: 'italiana' },
+    // Comida rápida
+    { name: 'Hamburguesa con queso',      emoji: '🍔', cat: 'comida_rapida' },
+    { name: 'Completo italiano',          emoji: '🌭', cat: 'comida_rapida' },
+    { name: 'Pollo frito con papas',      emoji: '🍗', cat: 'comida_rapida' },
 ];
 
 const FOODS_ONCE = [
