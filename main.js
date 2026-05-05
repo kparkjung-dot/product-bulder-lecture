@@ -620,8 +620,8 @@ function generateStoryImage(emoji, foodName) {
 
     // Background
     const grad = ctx.createLinearGradient(0, 0, W, H);
-    grad.addColorStop(0, '#d97706');
-    grad.addColorStop(1, '#92400e');
+    grad.addColorStop(0, '#fb923c');
+    grad.addColorStop(1, '#ea580c');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, W, H);
 

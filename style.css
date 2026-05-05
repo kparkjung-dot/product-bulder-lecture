@@ -13,17 +13,17 @@
     --text-muted: #78716c;
     --border: #e2ddd6;
     --shadow: rgba(28, 25, 23, 0.07);
-    --primary: #b45309;
-    --primary-hover: #92400e;
-    --primary-soft: #fef3c7;
-    --tab-active-bg: #b45309;
+    --primary: #f97316;
+    --primary-hover: #ea580c;
+    --primary-soft: #fff7ed;
+    --tab-active-bg: #f97316;
     --tab-active-text: #fff;
     --tab-inactive-bg: #ede9e4;
     --tab-inactive-text: #78716c;
-    --chip-bg: #fef3c7;
-    --chip-border: #fcd34d;
-    --chip-text: #92400e;
-    --result-bg: linear-gradient(135deg, #fffbf5, #fef9ec);
+    --chip-bg: #fff7ed;
+    --chip-border: #fdba74;
+    --chip-text: #c2410c;
+    --result-bg: linear-gradient(135deg, #fff7ed, #ffedd5);
     --coming-bg: #ede9e4;
     --input-bg: #fafafa;
 }
@@ -43,16 +43,16 @@ body.dark {
     --text-muted: #7a7a8a;
     --border: #2a2f40;
     --shadow: rgba(0, 0, 0, 0.4);
-    --primary: #d97706;
-    --primary-hover: #b45309;
-    --primary-soft: #1c1408;
-    --tab-active-bg: #d97706;
+    --primary: #fb923c;
+    --primary-hover: #ea580c;
+    --primary-soft: #1c0f06;
+    --tab-active-bg: #fb923c;
     --tab-active-text: #fff;
     --tab-inactive-bg: #252a38;
     --tab-inactive-text: #888;
-    --chip-bg: #1c1408;
-    --chip-border: #78350f;
-    --chip-text: #fbbf24;
+    --chip-bg: #1c0f06;
+    --chip-border: #7c2d12;
+    --chip-text: #fdba74;
     --result-bg: linear-gradient(135deg, #1a1710, #1e1c14);
     --coming-bg: #1e2030;
     --input-bg: #161b27;
@@ -278,10 +278,10 @@ header {
 }
 
 .mood-btn.active {
-    background: linear-gradient(135deg, #d97706, #b45309);
+    background: linear-gradient(135deg, #fb923c, #f97316);
     color: #fff;
     border-color: transparent;
-    box-shadow: 0 3px 10px rgba(180, 83, 9, 0.35);
+    box-shadow: 0 3px 10px rgba(249, 115, 22, 0.35);
 }
 
 /* Platform badge (¿Qué ver?) */
@@ -427,7 +427,7 @@ header {
 .main-btn {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, #d97706, #b45309, #92400e);
+    background: linear-gradient(135deg, #fb923c, #f97316, #ea580c);
     background-size: 200% 200%;
     color: #fff;
     border: none;
@@ -438,11 +438,11 @@ header {
     letter-spacing: 0.3px;
     font-family: inherit;
     transition: background-position 0.3s ease, transform 0.1s, opacity 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(180, 83, 9, 0.35), 0 1px 3px rgba(180, 83, 9, 0.15);
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.35), 0 1px 3px rgba(249, 115, 22, 0.15);
 }
 .main-btn:hover:not(:disabled) {
     background-position: right center;
-    box-shadow: 0 6px 26px rgba(180, 83, 9, 0.5), 0 2px 6px rgba(180, 83, 9, 0.2);
+    box-shadow: 0 6px 26px rgba(249, 115, 22, 0.5), 0 2px 6px rgba(249, 115, 22, 0.2);
     transform: translateY(-1px);
 }
 .main-btn:active:not(:disabled) { transform: scale(0.98); }
