@@ -19,50 +19,43 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.HOROSCOPO }}
         run: |
           python3 << 'PYEOF'
-          import json, os, urllib.request
+          import json, os, re, urllib.request
           from datetime import datetime, timezone, timedelta
 
           chile_tz = timezone(timedelta(hours=-4))
           today = datetime.now(chile_tz).strftime('%Y-%m-%d')
 
           prompt = (
-              f"Eres un astrólogo experto con 30 años de experiencia, especializado en astrología occidental moderna. "
+              f"Eres un astrólogo experto con 30 años de experiencia. "
               f"Genera el horóscopo del día {today} en español para los 12 signos del zodiaco. "
-              "IMPORTANTE: Cada signo debe tener contenido ÚNICO, ESPECÍFICO y DIFERENTE al resto. "
-              "Personaliza según el elemento de cada signo: "
-              "Fuego (Aries/Leo/Sagitario): energético, apasionado, directo. "
-              "Tierra (Tauro/Virgo/Capricornio): práctico, concreto, material. "
-              "Aire (Géminis/Libra/Acuario): intelectual, social, comunicativo. "
-              "Agua (Cáncer/Escorpio/Piscis): emocional, intuitivo, profundo. "
-              "Para CADA signo incluye estos 8 campos: "
-              "1) 'general': 4 oraciones. Menciona el planeta regente del signo, describe la energía del día con un aspecto astrológico concreto y cómo afecta a ese signo específicamente. Sé profundo y creíble. "
-              "2) 'amor': 3 oraciones. Diferencia entre solteros y en pareja. Consejo romántico específico para la personalidad del signo. "
-              "3) 'trabajo': 3 oraciones. Oportunidades laborales, consejo financiero y advertencia si aplica. Concreto y accionable. "
-              "4) 'salud': 2 oraciones. Bienestar físico y mental. Un consejo preventivo o de autocuidado específico para el signo. "
-              "5) 'consejo': 1 frase poderosa, práctica y personalizada. Que resuene con la esencia del signo. "
-              "6) 'numero_suerte': un número entero entre 1 y 99, diferente para cada signo hoy. "
-              "7) 'color_suerte': un color en español que potencie la energía del signo hoy (ej: 'Azul cobalto', 'Verde esmeralda'). "
-              "8) 'energia': entero del 1 al 10 indicando nivel de energía general del signo hoy. Varía entre signos. "
-              "Tono: cálido, profundo, creíble. No uses frases genéricas ni clichés. "
-              "Responde ÚNICAMENTE con JSON válido sin texto extra ni markdown:\n"
-              '{"fecha": "' + today + '", "signos": {'
-              '"Aries": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":7,"color_suerte":"Rojo fuego","energia":8}, '
-              '"Tauro": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":14,"color_suerte":"Verde esmeralda","energia":6}, '
-              '"Géminis": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":21,"color_suerte":"Amarillo dorado","energia":9}, '
-              '"Cáncer": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":3,"color_suerte":"Plateado","energia":7}, '
-              '"Leo": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":32,"color_suerte":"Naranja intenso","energia":9}, '
-              '"Virgo": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":18,"color_suerte":"Beige dorado","energia":6}, '
-              '"Libra": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":9,"color_suerte":"Rosa pálido","energia":7}, '
-              '"Escorpio": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":44,"color_suerte":"Granate","energia":8}, '
-              '"Sagitario": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":55,"color_suerte":"Púrpura real","energia":9}, '
-              '"Capricornio": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":27,"color_suerte":"Marrón tierra","energia":5}, '
-              '"Acuario": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":61,"color_suerte":"Azul eléctrico","energia":8}, '
-              '"Piscis": {"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":12,"color_suerte":"Turquesa","energia":7}}}'
+              "REGLAS CRÍTICAS: "
+              "1) Responde ÚNICAMENTE con JSON válido, sin markdown, sin texto antes o después. "
+              "2) NUNCA uses saltos de línea dentro de los valores string. Cada valor debe ser una sola línea. "
+              "3) NUNCA uses comillas dobles dentro de los textos. "
+              "Personaliza según el elemento: Fuego (Aries/Leo/Sagitario): energético. "
+              "Tierra (Tauro/Virgo/Capricornio): práctico. Aire (Géminis/Libra/Acuario): intelectual. "
+              "Agua (Cáncer/Escorpio/Piscis): emocional. "
+              "Para CADA signo: general (4 oraciones), amor (3 oraciones), trabajo (3 oraciones), "
+              "salud (2 oraciones), consejo (1 frase), numero_suerte (entero 1-99), "
+              "color_suerte (color en español), energia (entero 1-10). "
+              '{"fecha":"' + today + '","signos":{'
+              '"Aries":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":7,"color_suerte":"Rojo fuego","energia":8},'
+              '"Tauro":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":14,"color_suerte":"Verde esmeralda","energia":6},'
+              '"Géminis":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":21,"color_suerte":"Amarillo dorado","energia":9},'
+              '"Cáncer":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":3,"color_suerte":"Plateado","energia":7},'
+              '"Leo":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":32,"color_suerte":"Naranja intenso","energia":9},'
+              '"Virgo":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":18,"color_suerte":"Beige dorado","energia":6},'
+              '"Libra":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":9,"color_suerte":"Rosa pálido","energia":7},'
+              '"Escorpio":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":44,"color_suerte":"Granate","energia":8},'
+              '"Sagitario":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":55,"color_suerte":"Púrpura real","energia":9},'
+              '"Capricornio":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":27,"color_suerte":"Marrón tierra","energia":5},'
+              '"Acuario":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":61,"color_suerte":"Azul eléctrico","energia":8},'
+              '"Piscis":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":12,"color_suerte":"Turquesa","energia":7}}}'
           )
 
           payload = json.dumps({
               "model": "claude-haiku-4-5-20251001",
-              "max_tokens": 4096,
+              "max_tokens": 8192,
               "messages": [{"role": "user", "content": prompt}]
           }).encode()
 
@@ -80,6 +73,9 @@ jobs:
               res = json.loads(r.read())
 
           text = res["content"][0]["text"].strip()
+          # Remove markdown code fences if present
+          text = re.sub(r'^```(?:json)?\s*\n?', '', text)
+          text = re.sub(r'\n?```\s*$', '', text)
           start = text.find("{")
           end = text.rfind("}") + 1
           horoscope = json.loads(text[start:end])
