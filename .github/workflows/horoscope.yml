@@ -19,43 +19,68 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.HOROSCOPO }}
         run: |
           python3 << 'PYEOF'
-          import json, os, re, urllib.request
+          import json, os, urllib.request
           from datetime import datetime, timezone, timedelta
 
           chile_tz = timezone(timedelta(hours=-4))
           today = datetime.now(chile_tz).strftime('%Y-%m-%d')
 
+          SIGNS = ["Aries","Tauro","Géminis","Cáncer","Leo","Virgo",
+                   "Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"]
+
+          sign_schema = {
+              "type": "object",
+              "properties": {
+                  "general":       {"type": "string"},
+                  "amor":          {"type": "string"},
+                  "trabajo":       {"type": "string"},
+                  "salud":         {"type": "string"},
+                  "consejo":       {"type": "string"},
+                  "numero_suerte": {"type": "integer", "minimum": 1, "maximum": 99},
+                  "color_suerte":  {"type": "string"},
+                  "energia":       {"type": "integer", "minimum": 1, "maximum": 10}
+              },
+              "required": ["general","amor","trabajo","salud","consejo","numero_suerte","color_suerte","energia"]
+          }
+
+          tool = {
+              "name": "guardar_horoscopo",
+              "description": "Guarda el horóscopo diario para los 12 signos",
+              "input_schema": {
+                  "type": "object",
+                  "properties": {
+                      "fecha": {"type": "string"},
+                      "signos": {
+                          "type": "object",
+                          "properties": {sign: sign_schema for sign in SIGNS},
+                          "required": SIGNS
+                      }
+                  },
+                  "required": ["fecha", "signos"]
+              }
+          }
+
           prompt = (
               f"Eres un astrólogo experto con 30 años de experiencia. "
               f"Genera el horóscopo del día {today} en español para los 12 signos del zodiaco. "
-              "REGLAS CRÍTICAS: "
-              "1) Responde ÚNICAMENTE con JSON válido, sin markdown, sin texto antes o después. "
-              "2) NUNCA uses saltos de línea dentro de los valores string. Cada valor debe ser una sola línea. "
-              "3) NUNCA uses comillas dobles dentro de los textos. "
-              "Personaliza según el elemento: Fuego (Aries/Leo/Sagitario): energético. "
-              "Tierra (Tauro/Virgo/Capricornio): práctico. Aire (Géminis/Libra/Acuario): intelectual. "
-              "Agua (Cáncer/Escorpio/Piscis): emocional. "
-              "Para CADA signo: general (4 oraciones), amor (3 oraciones), trabajo (3 oraciones), "
-              "salud (2 oraciones), consejo (1 frase), numero_suerte (entero 1-99), "
-              "color_suerte (color en español), energia (entero 1-10). "
-              '{"fecha":"' + today + '","signos":{'
-              '"Aries":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":7,"color_suerte":"Rojo fuego","energia":8},'
-              '"Tauro":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":14,"color_suerte":"Verde esmeralda","energia":6},'
-              '"Géminis":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":21,"color_suerte":"Amarillo dorado","energia":9},'
-              '"Cáncer":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":3,"color_suerte":"Plateado","energia":7},'
-              '"Leo":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":32,"color_suerte":"Naranja intenso","energia":9},'
-              '"Virgo":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":18,"color_suerte":"Beige dorado","energia":6},'
-              '"Libra":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":9,"color_suerte":"Rosa pálido","energia":7},'
-              '"Escorpio":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":44,"color_suerte":"Granate","energia":8},'
-              '"Sagitario":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":55,"color_suerte":"Púrpura real","energia":9},'
-              '"Capricornio":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":27,"color_suerte":"Marrón tierra","energia":5},'
-              '"Acuario":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":61,"color_suerte":"Azul eléctrico","energia":8},'
-              '"Piscis":{"general":"...","amor":"...","trabajo":"...","salud":"...","consejo":"...","numero_suerte":12,"color_suerte":"Turquesa","energia":7}}}'
+              "Cada signo debe tener contenido ÚNICO, específico y diferente. "
+              "Elemento Fuego (Aries/Leo/Sagitario): energético, apasionado. "
+              "Elemento Tierra (Tauro/Virgo/Capricornio): práctico, concreto. "
+              "Elemento Aire (Géminis/Libra/Acuario): intelectual, social. "
+              "Elemento Agua (Cáncer/Escorpio/Piscis): emocional, intuitivo. "
+              "general: 4 oraciones con planeta regente y aspecto astrológico concreto. "
+              "amor: 3 oraciones diferenciando solteros y en pareja. "
+              "trabajo: 3 oraciones con oportunidades y consejo financiero. "
+              "salud: 2 oraciones con consejo de autocuidado. "
+              "consejo: 1 frase poderosa y personalizada. "
+              "Usa la herramienta guardar_horoscopo para entregar el resultado."
           )
 
           payload = json.dumps({
               "model": "claude-haiku-4-5-20251001",
               "max_tokens": 8192,
+              "tools": [tool],
+              "tool_choice": {"type": "tool", "name": "guardar_horoscopo"},
               "messages": [{"role": "user", "content": prompt}]
           }).encode()
 
@@ -72,13 +97,9 @@ jobs:
           with urllib.request.urlopen(req) as r:
               res = json.loads(r.read())
 
-          text = res["content"][0]["text"].strip()
-          # Remove markdown code fences if present
-          text = re.sub(r'^```(?:json)?\s*\n?', '', text)
-          text = re.sub(r'\n?```\s*$', '', text)
-          start = text.find("{")
-          end = text.rfind("}") + 1
-          horoscope = json.loads(text[start:end])
+          horoscope = next(
+              b["input"] for b in res["content"] if b.get("type") == "tool_use"
+          )
 
           os.makedirs("data", exist_ok=True)
           with open("data/horoscope.json", "w", encoding="utf-8") as f:
