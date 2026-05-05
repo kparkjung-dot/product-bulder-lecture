@@ -16,7 +16,7 @@ jobs:
 
       - name: Generate horoscopes via Claude API
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.HOROSCOPO }}
         run: |
           python3 << 'PYEOF'
           import json, os, urllib.request
