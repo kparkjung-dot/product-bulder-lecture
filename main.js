@@ -338,7 +338,7 @@ randomBtn.addEventListener('click', () => {
     slotMachine(pool, randomEmoji, randomName, randomCard, (item) => {
         randomHint.textContent = hint;
         randomBtn.disabled = false;
-        showShareBtn('comer', item.name);
+        showShareBtn('comer', item.name, item.emoji);
     }, finalItem);
 });
 
@@ -516,8 +516,113 @@ hacerCustomBtn.addEventListener('click', () => {
 
 renderHacerChips();
 
+// ── Instagram Story image generation ──────────────────
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    const lines = [];
+    for (const word of words) {
+        const test = line ? line + ' ' + word : word;
+        if (ctx.measureText(test).width > maxWidth && line) {
+            lines.push(line);
+            line = word;
+        } else {
+            line = test;
+        }
+    }
+    lines.push(line);
+    const startY = y - ((lines.length - 1) * lineHeight) / 2;
+    lines.forEach((l, i) => ctx.fillText(l, x, startY + i * lineHeight));
+}
+
+function generateStoryImage(emoji, foodName) {
+    const W = 540, H = 960;
+    const canvas = document.createElement('canvas');
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    // Background
+    const grad = ctx.createLinearGradient(0, 0, W, H);
+    grad.addColorStop(0, '#f07828');
+    grad.addColorStop(1, '#b84400');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Decorative circles
+    [[W * 0.88, H * 0.10, 130, 0.09], [W * 0.12, H * 0.85, 100, 0.07], [W * 0.5, H * 0.96, 70, 0.05]].forEach(([cx, cy, r, a]) => {
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${a})`;
+        ctx.fill();
+    });
+
+    ctx.textAlign = 'center';
+
+    // Logo
+    ctx.font = 'bold 60px "Segoe UI", system-ui, sans-serif';
+    ctx.fillStyle = '#fff';
+    ctx.fillText('¿Queque?', W / 2, 140);
+
+    ctx.font = '24px "Segoe UI", system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.75)';
+    ctx.fillText('El que decide por ti', W / 2, 182);
+
+    ctx.beginPath();
+    ctx.moveTo(W / 2 - 60, 205);
+    ctx.lineTo(W / 2 + 60, 205);
+    ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Emoji
+    ctx.font = '190px serif';
+    ctx.fillStyle = '#fff';
+    ctx.fillText(emoji, W / 2, 485);
+
+    // Label
+    ctx.font = '26px "Segoe UI", system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillText('Hoy me toca comer...', W / 2, 578);
+
+    // Food name
+    ctx.font = 'bold 52px "Segoe UI", system-ui, sans-serif';
+    ctx.fillStyle = '#fff';
+    wrapText(ctx, foodName, W / 2, 652, W - 80, 64);
+
+    // URL
+    ctx.font = '22px "Segoe UI", system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.65)';
+    ctx.fillText('queque.cl', W / 2, H - 68);
+
+    return canvas;
+}
+
+function shareAsStory(emoji, foodName) {
+    const canvas = generateStoryImage(emoji, foodName);
+    canvas.toBlob(async (blob) => {
+        const file = new File([blob], 'queque-story.png', { type: 'image/png' });
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+            try {
+                await navigator.share({ files: [file] });
+                return;
+            } catch (err) {
+                if (err.name === 'AbortError') return;
+            }
+        }
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'queque-story.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 'image/png');
+}
+
 // ── WhatsApp share ─────────────────────────────────────
-function showShareBtn(context, resultText) {
+function showShareBtn(context, resultText, emoji = null) {
     const wrapper = document.getElementById(`${context}-share-wrapper`);
     if (!wrapper) return;
     const btn = document.getElementById(`${context}-share-btn`);
@@ -529,6 +634,12 @@ function showShareBtn(context, resultText) {
     };
     const text = messages[context] || `¡¿Queque? me recomienda: *${resultText}* → ${siteUrl}`;
     btn.onclick = () => window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+
+    const instaBtn = document.getElementById(`${context}-insta-btn`);
+    if (instaBtn && emoji !== null) {
+        instaBtn.onclick = () => shareAsStory(emoji, resultText);
+    }
+
     wrapper.classList.remove('hidden');
 }
 

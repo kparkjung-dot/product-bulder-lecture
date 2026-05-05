@@ -301,10 +301,12 @@ header {
 }
 .platform-badge.hidden { display: none; }
 
-/* WhatsApp share button */
+/* Share button wrapper */
 .share-btn-wrapper {
     display: flex;
     justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 .share-btn-wrapper.hidden { display: none; }
 
@@ -335,6 +337,18 @@ header {
     transform: translateY(-1px);
 }
 .share-btn--whatsapp:active { transform: scale(0.97); }
+
+.share-btn--instagram {
+    background: linear-gradient(135deg, #c13584, #e1306c, #fd1d1d, #fcb045);
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(193, 53, 132, 0.4);
+}
+.share-btn--instagram:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 5px 18px rgba(193, 53, 132, 0.55);
+    transform: translateY(-1px);
+}
+.share-btn--instagram:active { transform: scale(0.97); }
 
 /* Ad zones */
 .ad-zone {
