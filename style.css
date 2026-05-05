@@ -7,24 +7,24 @@
     --horo-sign-hover: #ede9fe;
     --horo-sign-active-bg: #7c3aed;
     --horo-sign-active-text: #fff;
-    --bg: #fdf6ee;
+    --bg: #f5f2ed;
     --card-bg: #ffffff;
-    --text: #1a1a1a;
-    --text-muted: #888;
-    --border: #ede8e0;
-    --shadow: rgba(200, 120, 40, 0.1);
-    --primary: #e8600a;
-    --primary-hover: #c94f05;
-    --primary-soft: #fff3eb;
-    --tab-active-bg: #e8600a;
+    --text: #1c1917;
+    --text-muted: #78716c;
+    --border: #e2ddd6;
+    --shadow: rgba(28, 25, 23, 0.07);
+    --primary: #b45309;
+    --primary-hover: #92400e;
+    --primary-soft: #fef3c7;
+    --tab-active-bg: #b45309;
     --tab-active-text: #fff;
-    --tab-inactive-bg: #f5f0ea;
-    --tab-inactive-text: #888;
-    --chip-bg: #fff3eb;
-    --chip-border: #f5c89a;
-    --chip-text: #b34a00;
-    --result-bg: linear-gradient(135deg, #fff8f2, #fff3e6);
-    --coming-bg: #f5f0ea;
+    --tab-inactive-bg: #ede9e4;
+    --tab-inactive-text: #78716c;
+    --chip-bg: #fef3c7;
+    --chip-border: #fcd34d;
+    --chip-text: #92400e;
+    --result-bg: linear-gradient(135deg, #fffbf5, #fef9ec);
+    --coming-bg: #ede9e4;
     --input-bg: #fafafa;
 }
 
@@ -43,17 +43,17 @@ body.dark {
     --text-muted: #7a7a8a;
     --border: #2a2f40;
     --shadow: rgba(0, 0, 0, 0.4);
-    --primary: #f07730;
-    --primary-hover: #e06520;
-    --primary-soft: #2a1a0a;
-    --tab-active-bg: #f07730;
+    --primary: #d97706;
+    --primary-hover: #b45309;
+    --primary-soft: #1c1408;
+    --tab-active-bg: #d97706;
     --tab-active-text: #fff;
     --tab-inactive-bg: #252a38;
     --tab-inactive-text: #888;
-    --chip-bg: #2a1a0a;
-    --chip-border: #6b3a10;
-    --chip-text: #f0a060;
-    --result-bg: linear-gradient(135deg, #1e1810, #231e14);
+    --chip-bg: #1c1408;
+    --chip-border: #78350f;
+    --chip-text: #fbbf24;
+    --result-bg: linear-gradient(135deg, #1a1710, #1e1c14);
     --coming-bg: #1e2030;
     --input-bg: #161b27;
 }
@@ -278,10 +278,10 @@ header {
 }
 
 .mood-btn.active {
-    background: linear-gradient(135deg, #f07020, #e8600a);
+    background: linear-gradient(135deg, #d97706, #b45309);
     color: #fff;
     border-color: transparent;
-    box-shadow: 0 3px 10px rgba(232, 96, 10, 0.35);
+    box-shadow: 0 3px 10px rgba(180, 83, 9, 0.35);
 }
 
 /* Platform badge (¿Qué ver?) */
@@ -427,7 +427,7 @@ header {
 .main-btn {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, #f07828, #e8600a, #c94f05);
+    background: linear-gradient(135deg, #d97706, #b45309, #92400e);
     background-size: 200% 200%;
     color: #fff;
     border: none;
@@ -438,11 +438,11 @@ header {
     letter-spacing: 0.3px;
     font-family: inherit;
     transition: background-position 0.3s ease, transform 0.1s, opacity 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(232, 96, 10, 0.4), 0 1px 3px rgba(232, 96, 10, 0.2);
+    box-shadow: 0 4px 20px rgba(180, 83, 9, 0.35), 0 1px 3px rgba(180, 83, 9, 0.15);
 }
 .main-btn:hover:not(:disabled) {
     background-position: right center;
-    box-shadow: 0 6px 26px rgba(232, 96, 10, 0.55), 0 2px 6px rgba(232, 96, 10, 0.25);
+    box-shadow: 0 6px 26px rgba(180, 83, 9, 0.5), 0 2px 6px rgba(180, 83, 9, 0.2);
     transform: translateY(-1px);
 }
 .main-btn:active:not(:disabled) { transform: scale(0.98); }
