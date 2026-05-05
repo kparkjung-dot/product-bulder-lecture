@@ -77,61 +77,57 @@ const FOODS_DESAYUNO = [
 
 const FOODS_ALMUERZO = [
     // Chilena
-    { name: 'Lomo a lo pobre',             emoji: '🍳' },
-    { name: 'Chorrillana',                 emoji: '🍟' },
-    { name: 'Pollo broaster',              emoji: '🍗' },
-    { name: 'Pastel de choclo',            emoji: '🌽' },
-    { name: 'Cazuela de vacuno',           emoji: '🍲' },
-    { name: 'Cazuela de pollo',            emoji: '🍲' },
-    { name: 'Plateada al horno',           emoji: '🍖' },
-    { name: 'Porotos granados',            emoji: '🫘' },
-    { name: 'Carbonada',                   emoji: '🥘' },
-    { name: 'Tallarines a la bolognesa',   emoji: '🍝' },
-    { name: 'Caldillo de congrio',         emoji: '🐟' },
-    { name: 'Ceviche de reineta',          emoji: '🍋' },
-    { name: 'Machas a la parmesana',       emoji: '🦪' },
-    { name: 'Chupe de mariscos',           emoji: '🦐' },
-    { name: 'Jaibas rellenas',             emoji: '🦀' },
-    { name: 'Churrasco italiano',          emoji: '🥩' },
-    { name: 'Barros Luco',                 emoji: '🧀' },
-    // China
-    { name: 'Arroz frito con verduras',    emoji: '🍚' },
-    { name: 'Chow mein de pollo',          emoji: '🍜' },
-    { name: 'Cerdo agridulce',             emoji: '🍖' },
-    { name: 'Sopa wonton',                 emoji: '🥣' },
-    // Coreana
-    { name: 'Bibimbap',                    emoji: '🍲' },
-    { name: 'Pollo coreano frito (KFC)',   emoji: '🍗' },
-    { name: 'Ramen coreano picante',       emoji: '🍜' },
-    { name: 'Bulgogi',                     emoji: '🥩' },
-    { name: 'Tteokbokki',                  emoji: '🌶️' },
-    // India
-    { name: 'Pollo tikka masala',          emoji: '🍛' },
-    { name: 'Butter chicken',             emoji: '🍛' },
-    // Japonesa
-    { name: 'Ramen tonkotsu',             emoji: '🍜' },
-    { name: 'Katsu curry',                emoji: '🍛' },
-    { name: 'Udon con tempura',           emoji: '🍜' },
-    { name: 'Donburi de pollo teriyaki',  emoji: '🍚' },
-    { name: 'Miso ramen',                 emoji: '🍜' },
-    // Mexicana / Peruana
-    { name: 'Tacos de carne asada',       emoji: '🌮' },
-    { name: 'Burritos de pollo',          emoji: '🌯' },
-    { name: 'Lomo saltado',               emoji: '🍳' },
-    { name: 'Ají de gallina',             emoji: '🍲' },
-    { name: 'Ceviche peruano',            emoji: '🍋' },
+    { name: 'Lomo a lo pobre',             emoji: '🍳', cat: 'chilena' },
+    { name: 'Chorrillana',                 emoji: '🍟', cat: 'chilena' },
+    { name: 'Pollo broaster',              emoji: '🍗', cat: 'chilena' },
+    { name: 'Pastel de choclo',            emoji: '🌽', cat: 'chilena' },
+    { name: 'Cazuela de vacuno',           emoji: '🍲', cat: 'chilena' },
+    { name: 'Cazuela de pollo',            emoji: '🍲', cat: 'chilena' },
+    { name: 'Plateada al horno',           emoji: '🍖', cat: 'chilena' },
+    { name: 'Porotos granados',            emoji: '🫘', cat: 'chilena' },
+    { name: 'Carbonada',                   emoji: '🥘', cat: 'chilena' },
+    { name: 'Tallarines a la bolognesa',   emoji: '🍝', cat: 'chilena' },
+    { name: 'Caldillo de congrio',         emoji: '🐟', cat: 'chilena' },
+    { name: 'Ceviche de reineta',          emoji: '🍋', cat: 'chilena' },
+    { name: 'Machas a la parmesana',       emoji: '🦪', cat: 'chilena' },
+    { name: 'Chupe de mariscos',           emoji: '🦐', cat: 'chilena' },
+    { name: 'Jaibas rellenas',             emoji: '🦀', cat: 'chilena' },
+    { name: 'Churrasco italiano',          emoji: '🥩', cat: 'chilena' },
+    { name: 'Barros Luco',                 emoji: '🧀', cat: 'chilena' },
+    { name: 'Asado de tira a la parrilla', emoji: '🥩', cat: 'chilena' },
+    { name: 'Costillas BBQ',              emoji: '🍖', cat: 'chilena' },
+    { name: 'Filete al merkén',           emoji: '🥩', cat: 'chilena' },
+    { name: 'Entraña con chimichurri',    emoji: '🥩', cat: 'chilena' },
+    { name: 'Pollo al horno con papas',   emoji: '🍗', cat: 'chilena' },
+    // Asiática
+    { name: 'Arroz frito con verduras',    emoji: '🍚', cat: 'asiatica' },
+    { name: 'Chow mein de pollo',          emoji: '🍜', cat: 'asiatica' },
+    { name: 'Cerdo agridulce',             emoji: '🍖', cat: 'asiatica' },
+    { name: 'Sopa wonton',                 emoji: '🥣', cat: 'asiatica' },
+    { name: 'Bibimbap',                    emoji: '🍲', cat: 'asiatica' },
+    { name: 'Pollo coreano frito (KFC)',   emoji: '🍗', cat: 'asiatica' },
+    { name: 'Ramen coreano picante',       emoji: '🍜', cat: 'asiatica' },
+    { name: 'Bulgogi',                     emoji: '🥩', cat: 'asiatica' },
+    { name: 'Tteokbokki',                  emoji: '🌶️', cat: 'asiatica' },
+    { name: 'Pollo tikka masala',          emoji: '🍛', cat: 'asiatica' },
+    { name: 'Butter chicken',             emoji: '🍛', cat: 'asiatica' },
+    { name: 'Ramen tonkotsu',             emoji: '🍜', cat: 'asiatica' },
+    { name: 'Katsu curry',                emoji: '🍛', cat: 'asiatica' },
+    { name: 'Udon con tempura',           emoji: '🍜', cat: 'asiatica' },
+    { name: 'Donburi de pollo teriyaki',  emoji: '🍚', cat: 'asiatica' },
+    { name: 'Miso ramen',                 emoji: '🍜', cat: 'asiatica' },
+    // Internacional
+    { name: 'Tacos de carne asada',       emoji: '🌮', cat: 'internacional' },
+    { name: 'Burritos de pollo',          emoji: '🌯', cat: 'internacional' },
+    { name: 'Lomo saltado',               emoji: '🍳', cat: 'internacional' },
+    { name: 'Ají de gallina',             emoji: '🍲', cat: 'internacional' },
+    { name: 'Ceviche peruano',            emoji: '🍋', cat: 'internacional' },
     // Italiana
-    { name: 'Lasaña de carne',            emoji: '🍝' },
-    { name: 'Risotto de champiñones',     emoji: '🍚' },
-    { name: 'Pizza margherita',           emoji: '🍕' },
-    { name: 'Pasta al pesto',             emoji: '🍝' },
-    { name: 'Pasta carbonara',            emoji: '🍝' },
-    // Carnes
-    { name: 'Asado de tira a la parrilla', emoji: '🥩' },
-    { name: 'Costillas BBQ',              emoji: '🍖' },
-    { name: 'Filete al merkén',           emoji: '🥩' },
-    { name: 'Entraña con chimichurri',    emoji: '🥩' },
-    { name: 'Pollo al horno con papas',   emoji: '🍗' },
+    { name: 'Lasaña de carne',            emoji: '🍝', cat: 'italiana' },
+    { name: 'Risotto de champiñones',     emoji: '🍚', cat: 'italiana' },
+    { name: 'Pizza margherita',           emoji: '🍕', cat: 'italiana' },
+    { name: 'Pasta al pesto',             emoji: '🍝', cat: 'italiana' },
+    { name: 'Pasta carbonara',            emoji: '🍝', cat: 'italiana' },
 ];
 
 const FOODS_ONCE = [
@@ -154,58 +150,51 @@ const FOODS_ONCE = [
 
 const FOODS_CENA = [
     // Chilena
-    { name: 'Churrasco con palta',         emoji: '🥩' },
-    { name: 'Barros Jarpa',                emoji: '🧀' },
-    { name: 'Lomito clásico',              emoji: '🥪' },
-    { name: 'Chacarero',                   emoji: '🥖' },
-    { name: 'Choripán con pebre',          emoji: '🌭' },
-    { name: 'Completo dinámico',           emoji: '🌭' },
-    // Sushi
-    { name: 'Roll california',             emoji: '🍣' },
-    { name: 'Roll de salmón con palta',    emoji: '🍣' },
-    { name: 'Temaki de salmón con palta',  emoji: '🍣' },
-    { name: 'Sashimi de salmón',           emoji: '🐠' },
-    { name: 'Roll de camarón tempura',     emoji: '🍣' },
-    // Comida rápida
-    { name: 'Hamburguesa con queso',       emoji: '🍔' },
-    { name: 'Pizza de mechada',            emoji: '🍕' },
-    { name: 'Pizza napolitana',            emoji: '🍕' },
-    { name: 'Pollo frito con papas',       emoji: '🍗' },
-    { name: 'Hot dog al estilo chileno',   emoji: '🌭' },
-    // Coreana
-    { name: 'Samgyeopsal (cerdo a la plancha)', emoji: '🥓' },
-    { name: 'Korean BBQ mixto',            emoji: '🔥' },
-    { name: 'Pollo coreano picante',       emoji: '🍗' },
-    { name: 'Kimchi jjigae',               emoji: '🍲' },
-    // China
-    { name: 'Arroz frito especial',        emoji: '🍚' },
-    { name: 'Mapo tofu',                   emoji: '🌶️' },
-    // India
-    { name: 'Pollo tikka masala',          emoji: '🍛' },
-    { name: 'Curry de garbanzos',          emoji: '🍛' },
-    // Japonesa
-    { name: 'Ramen shoyu',                 emoji: '🍜' },
-    { name: 'Gyoza frita',                 emoji: '🥟' },
-    { name: 'Yakisoba',                    emoji: '🍜' },
-    { name: 'Tonkatsu',                    emoji: '🍱' },
+    { name: 'Churrasco con palta',         emoji: '🥩', cat: 'chilena' },
+    { name: 'Barros Jarpa',                emoji: '🧀', cat: 'chilena' },
+    { name: 'Lomito clásico',              emoji: '🥪', cat: 'chilena' },
+    { name: 'Chacarero',                   emoji: '🥖', cat: 'chilena' },
+    { name: 'Choripán con pebre',          emoji: '🌭', cat: 'chilena' },
+    { name: 'Completo dinámico',           emoji: '🌭', cat: 'chilena' },
+    { name: 'Asado de tira a la parrilla', emoji: '🥩', cat: 'chilena' },
+    { name: 'Costillas BBQ',              emoji: '🍖', cat: 'chilena' },
+    { name: 'Filete al merkén',           emoji: '🥩', cat: 'chilena' },
+    { name: 'Entraña con chimichurri',    emoji: '🥩', cat: 'chilena' },
+    { name: 'T-bone a la parrilla',       emoji: '🥩', cat: 'chilena' },
+    // Asiática
+    { name: 'Roll california',             emoji: '🍣', cat: 'asiatica' },
+    { name: 'Roll de salmón con palta',    emoji: '🍣', cat: 'asiatica' },
+    { name: 'Temaki de salmón con palta',  emoji: '🍣', cat: 'asiatica' },
+    { name: 'Sashimi de salmón',           emoji: '🐠', cat: 'asiatica' },
+    { name: 'Roll de camarón tempura',     emoji: '🍣', cat: 'asiatica' },
+    { name: 'Samgyeopsal (cerdo a la plancha)', emoji: '🥓', cat: 'asiatica' },
+    { name: 'Korean BBQ mixto',            emoji: '🔥', cat: 'asiatica' },
+    { name: 'Pollo coreano picante',       emoji: '🍗', cat: 'asiatica' },
+    { name: 'Kimchi jjigae',               emoji: '🍲', cat: 'asiatica' },
+    { name: 'Arroz frito especial',        emoji: '🍚', cat: 'asiatica' },
+    { name: 'Mapo tofu',                   emoji: '🌶️', cat: 'asiatica' },
+    { name: 'Pollo tikka masala',          emoji: '🍛', cat: 'asiatica' },
+    { name: 'Curry de garbanzos',          emoji: '🍛', cat: 'asiatica' },
+    { name: 'Ramen shoyu',                 emoji: '🍜', cat: 'asiatica' },
+    { name: 'Gyoza frita',                 emoji: '🥟', cat: 'asiatica' },
+    { name: 'Yakisoba',                    emoji: '🍜', cat: 'asiatica' },
+    { name: 'Tonkatsu',                    emoji: '🍱', cat: 'asiatica' },
+    { name: 'Pad thai de camarones',       emoji: '🍜', cat: 'asiatica' },
+    { name: 'Curry verde tailandés',       emoji: '🍛', cat: 'asiatica' },
     // Italiana
-    { name: 'Pizza quattro formaggi',      emoji: '🍕' },
-    { name: 'Pasta arrabiata',             emoji: '🍝' },
-    { name: 'Lasaña vegetariana',          emoji: '🍝' },
-    // Carnes
-    { name: 'Asado de tira a la parrilla', emoji: '🥩' },
-    { name: 'Costillas BBQ',              emoji: '🍖' },
-    { name: 'Filete al merkén',           emoji: '🥩' },
-    { name: 'Entraña con chimichurri',    emoji: '🥩' },
-    { name: 'T-bone a la parrilla',       emoji: '🥩' },
-    // Mexicana
-    { name: 'Tacos al pastor',             emoji: '🌮' },
-    { name: 'Quesadillas de pollo',        emoji: '🌮' },
-    // Thai
-    { name: 'Pad thai de camarones',       emoji: '🍜' },
-    { name: 'Curry verde tailandés',       emoji: '🍛' },
-    // Árabe
-    { name: 'Shawarma de pollo',           emoji: '🌯' },
+    { name: 'Pizza quattro formaggi',      emoji: '🍕', cat: 'italiana' },
+    { name: 'Pasta arrabiata',             emoji: '🍝', cat: 'italiana' },
+    { name: 'Lasaña vegetariana',          emoji: '🍝', cat: 'italiana' },
+    // Internacional
+    { name: 'Tacos al pastor',             emoji: '🌮', cat: 'internacional' },
+    { name: 'Quesadillas de pollo',        emoji: '🌮', cat: 'internacional' },
+    { name: 'Shawarma de pollo',           emoji: '🌯', cat: 'internacional' },
+    // Comida rápida
+    { name: 'Hamburguesa con queso',       emoji: '🍔', cat: 'comida_rapida' },
+    { name: 'Pizza de mechada',            emoji: '🍕', cat: 'comida_rapida' },
+    { name: 'Pizza napolitana',            emoji: '🍕', cat: 'comida_rapida' },
+    { name: 'Pollo frito con papas',       emoji: '🍗', cat: 'comida_rapida' },
+    { name: 'Hot dog al estilo chileno',   emoji: '🌭', cat: 'comida_rapida' },
 ];
 
 const MEAL_POOLS = {
@@ -236,6 +225,60 @@ function getNextItem(key, pool) {
         _queues.set(key, shuffled);
     }
     return _queues.get(key).pop();
+}
+
+// ── Category filter ────────────────────────────────────
+const CAT_META = {
+    chilena:       '🇨🇱 Chilena',
+    asiatica:      '🌏 Asiática',
+    italiana:      '🍕 Italiana',
+    internacional: '🌮 Internacional',
+    comida_rapida: '🍔 Comida rápida',
+};
+const CAT_ORDER = ['chilena', 'asiatica', 'italiana', 'internacional', 'comida_rapida'];
+
+let activeCats = new Set(
+    JSON.parse(localStorage.getItem('queque_cats') || 'null') || CAT_ORDER
+);
+
+function saveCats() {
+    localStorage.setItem('queque_cats', JSON.stringify([...activeCats]));
+}
+
+function getFilteredPool(pool) {
+    if (!pool[0]?.cat) return pool;
+    const filtered = pool.filter(item => activeCats.has(item.cat));
+    return filtered.length > 0 ? filtered : pool;
+}
+
+function renderCatFilter(pool) {
+    const filterEl  = document.getElementById('cat-filter');
+    const chipsEl   = document.getElementById('cat-filter-chips');
+    const available = CAT_ORDER.filter(cat => pool.some(item => item.cat === cat));
+
+    if (available.length === 0) { filterEl.classList.add('hidden'); return; }
+    filterEl.classList.remove('hidden');
+    chipsEl.innerHTML = '';
+
+    available.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'cat-filter-chip' + (activeCats.has(cat) ? ' active' : '');
+        btn.textContent = CAT_META[cat];
+        btn.addEventListener('click', () => {
+            const activeAvail = available.filter(c => activeCats.has(c));
+            if (activeCats.has(cat) && activeAvail.length <= 1) return;
+            if (activeCats.has(cat)) activeCats.delete(cat); else activeCats.add(cat);
+            saveCats();
+            _queues.delete(selectedMeal);
+            btn.classList.toggle('active', activeCats.has(cat));
+            btn.classList.toggle('', !activeCats.has(cat));
+        });
+        chipsEl.appendChild(btn);
+    });
+}
+
+function updateCatFilter() {
+    renderCatFilter(MEAL_POOLS[selectedMeal].pool);
 }
 
 // ── Slot machine animation ─────────────────────────────
@@ -293,6 +336,7 @@ document.querySelectorAll('.meal-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         selectedMeal = btn.dataset.meal;
         updateMealButtons();
+        updateCatFilter();
         randomCard.classList.remove('revealed');
         randomHint.textContent = 'Pulsa el botón y te lo decimos nosotros';
         randomEmoji.textContent = '🍽️';
@@ -301,13 +345,15 @@ document.querySelectorAll('.meal-btn').forEach(btn => {
 });
 
 updateMealButtons();
+updateCatFilter();
 
 randomBtn.addEventListener('click', () => {
     randomBtn.disabled = true;
     document.getElementById('comer-share-wrapper').classList.add('hidden');
     const { pool, hint } = MEAL_POOLS[selectedMeal];
-    const finalItem = getNextItem(selectedMeal, pool);
-    slotMachine(pool, randomEmoji, randomName, randomCard, (item) => {
+    const filteredPool = getFilteredPool(pool);
+    const finalItem = getNextItem(selectedMeal, filteredPool);
+    slotMachine(filteredPool, randomEmoji, randomName, randomCard, (item) => {
         randomHint.textContent = hint;
         randomBtn.disabled = false;
         showShareBtn('comer', item.name, item.emoji);

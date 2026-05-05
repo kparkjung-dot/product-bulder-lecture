@@ -365,6 +365,35 @@ header {
 .ad-zone--tabs    { margin-bottom: 16px; }
 .ad-zone--comments { margin-bottom: 16px; }
 
+/* Category filter chips */
+.cat-filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.cat-filter.hidden { display: none; }
+
+.cat-filter-chip {
+    padding: 6px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    background: var(--tab-inactive-bg);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.cat-filter-chip.active {
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-color: var(--chip-border);
+}
+
+.cat-filter-chip:not(.active) {
+    opacity: 0.45;
+    text-decoration: line-through;
+}
+
 /* Meal time selector */
 .meal-selector {
     display: flex;
