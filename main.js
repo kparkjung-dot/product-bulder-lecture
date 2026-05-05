@@ -10,29 +10,83 @@ themeBtn.addEventListener('click', () => {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
-// ── Disqus per-category reload ─────────────────────────
+// ── Firebase anonymous comments ───────────────────────
+firebase.initializeApp({
+    apiKey: 'AIzaSyCGD_C2OG9gom7clnJPl1g9B0xbLkO9lBQ',
+    authDomain: 'queque-test.firebaseapp.com',
+    projectId: 'queque-test',
+    storageBucket: 'queque-test.firebasestorage.app',
+    messagingSenderId: '308848177676',
+    appId: '1:308848177676:web:827f12717cd857c3517429',
+});
+const db = firebase.firestore();
+
 const COMMENTS_META = {
-    comer:      { badge: '🍽️ ¿Qué comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
-    horoscopo:  { badge: '🔮 Horóscopo',      desc: '¿Tu horóscopo de hoy te hizo sentido? ¡Comparte tu experiencia!' },
-    hacer:      { badge: '🎯 ¿Qué hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
-    ver:        { badge: '🎬 ¿Qué ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
+    comer:     { badge: '🍽️ ¿Qué comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
+    horoscopo: { badge: '🔮 Horóscopo',      desc: '¿Tu horóscopo de hoy te hizo sentido? ¡Comparte tu experiencia!' },
+    hacer:     { badge: '🎯 ¿Qué hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
+    ver:       { badge: '🎬 ¿Qué ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
 };
 
-function reloadDisqus(catId) {
-    const meta = COMMENTS_META[catId] || COMMENTS_META.comer;
+const BAD_WORDS = ['puta','huevon','weon','culiao','mierda','concha','pico','maricon','forro',
+    'pene','pija','culo','teta','sexo','porno','fuck','shit','bitch','cunt','dick','pussy','ass'];
+
+function normalize(str) {
+    return str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+function hasBadWord(text) {
+    const n = normalize(text);
+    return BAD_WORDS.some(w => n.includes(w));
+}
+function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function formatCommentTime(ts) {
+    if (!ts) return '';
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString('es-CL', { day: 'numeric', month: 'short' }) + ' ' +
+           d.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+}
+
+let currentCat = 'comer';
+let unsubComments = null;
+
+function loadComments(cat) {
+    const listEl = document.getElementById('comment-list');
+    listEl.innerHTML = '<div class="comment-empty">Cargando comentarios...</div>';
+    if (unsubComments) { unsubComments(); unsubComments = null; }
+    unsubComments = db.collection('comments_' + cat)
+        .orderBy('ts', 'desc')
+        .limit(20)
+        .onSnapshot(snap => {
+            if (snap.empty) {
+                listEl.innerHTML = '<div class="comment-empty">Sé el primero en comentar ✍️</div>';
+                return;
+            }
+            listEl.innerHTML = '';
+            snap.forEach(doc => {
+                const d = doc.data();
+                const item = document.createElement('div');
+                item.className = 'comment-item';
+                item.innerHTML =
+                    '<div class="comment-header">' +
+                        '<span class="comment-author">' + escapeHtml(d.name || 'Anónimo') + '</span>' +
+                        '<span class="comment-time">' + formatCommentTime(d.ts) + '</span>' +
+                    '</div>' +
+                    '<div class="comment-body">' + escapeHtml(d.text) + '</div>';
+                listEl.appendChild(item);
+            });
+        }, () => {
+            listEl.innerHTML = '<div class="comment-empty">No se pudieron cargar los comentarios.</div>';
+        });
+}
+
+function switchComments(cat) {
+    const meta = COMMENTS_META[cat] || COMMENTS_META.comer;
     document.getElementById('comments-cat-badge').textContent = meta.badge;
     document.getElementById('comments-desc').textContent = meta.desc;
-
-    if (typeof DISQUS !== 'undefined') {
-        DISQUS.reset({
-            reload: true,
-            config: function () {
-                this.page.identifier = 'queque-' + catId;
-                this.page.url = window.location.origin + window.location.pathname;
-                this.language = 'es';
-            }
-        });
-    }
+    currentCat = cat;
+    loadComments(cat);
 }
 
 // ── Category tabs ──────────────────────────────────────
@@ -43,7 +97,7 @@ document.querySelectorAll('.cat-tab:not([disabled])').forEach(tab => {
         tab.classList.add('active');
         const cat = tab.dataset.cat;
         document.getElementById(`panel-${cat}`).classList.add('active');
-        reloadDisqus(cat);
+        switchComments(cat);
         if (cat === 'horoscopo' && !horoscopeData) loadHoroscope();
     });
 });
@@ -878,6 +932,47 @@ document.querySelectorAll('.sign-btn').forEach(btn => {
         requestAnimationFrame(() => card.classList.remove('hidden'));
     });
 });
+
+// ── Comment submission ─────────────────────────────────
+const commentSubmit   = document.getElementById('comment-submit');
+const commentFeedback = document.getElementById('comment-feedback');
+
+function showCommentFeedback(msg, type) {
+    commentFeedback.textContent = msg;
+    commentFeedback.className = 'comment-feedback ' + type;
+    setTimeout(() => { commentFeedback.className = 'comment-feedback hidden'; }, 3500);
+}
+
+commentSubmit.addEventListener('click', async () => {
+    const name = document.getElementById('comment-name').value.trim();
+    const text = document.getElementById('comment-text').value.trim();
+    if (!text) { showCommentFeedback('Escribe algo para comentar 📝', 'error'); return; }
+    if (text.length < 3) { showCommentFeedback('El comentario es muy corto.', 'error'); return; }
+    if (hasBadWord(name) || hasBadWord(text)) {
+        showCommentFeedback('Tu comentario contiene palabras no permitidas.', 'error'); return;
+    }
+    const lastSubmit = parseInt(localStorage.getItem('queque_last_comment') || '0');
+    if (Date.now() - lastSubmit < 30000) {
+        showCommentFeedback('Espera 30 segundos antes de comentar de nuevo.', 'error'); return;
+    }
+    commentSubmit.disabled = true;
+    try {
+        await db.collection('comments_' + currentCat).add({
+            name: name || 'Anónimo',
+            text,
+            ts: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+        document.getElementById('comment-text').value = '';
+        localStorage.setItem('queque_last_comment', Date.now().toString());
+        showCommentFeedback('¡Comentario publicado! 🎉', 'success');
+    } catch {
+        showCommentFeedback('Error al publicar. Inténtalo de nuevo.', 'error');
+    } finally {
+        commentSubmit.disabled = false;
+    }
+});
+
+switchComments('comer');
 
 // ── Contact form ───────────────────────────────────────
 const contactForm = document.querySelector('.contact-form');

@@ -622,6 +622,44 @@ body.dark .form-status.error   { background: #2e1515; color: #ef9a9a; border-col
 
 .comments-section .section-title { margin-bottom: 20px; }
 
+/* Comment form */
+.comment-form-wrap { margin-bottom: 20px; }
+.comment-form-fields { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.comment-form-fields input,
+.comment-form-fields textarea {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: none;
+}
+.comment-form-fields input:focus,
+.comment-form-fields textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.12);
+}
+.comment-submit-btn { padding: 12px; font-size: 15px; }
+.comment-feedback { font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 8px; margin-top: 8px; }
+.comment-feedback.hidden { display: none; }
+.comment-feedback.success { background: #e8f5e9; color: #2e7d32; }
+.comment-feedback.error   { background: #ffebee; color: #c62828; }
+body.dark .comment-feedback.success { background: #1b2e1c; color: #81c784; }
+body.dark .comment-feedback.error   { background: #2e1515; color: #ef9a9a; }
+
+/* Comment list */
+.comment-list { display: flex; flex-direction: column; gap: 12px; }
+.comment-empty { font-size: 13px; color: var(--text-muted); text-align: center; padding: 16px 0; }
+.comment-item { background: var(--tab-inactive-bg); border-radius: 14px; padding: 12px 16px; }
+.comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.comment-author { font-size: 13px; font-weight: 700; color: var(--text); }
+.comment-time { font-size: 11px; color: var(--text-muted); }
+.comment-body { font-size: 14px; color: var(--text); line-height: 1.5; word-break: break-word; }
+
 /* ── Horoscope ─────────────────────────────────────────── */
 .ai-notice {
     display: flex;

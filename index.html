@@ -276,7 +276,17 @@
                     <span class="comments-cat-badge" id="comments-cat-badge">🍽️ ¿Qué comer?</span>
                 </div>
                 <p class="section-desc" id="comments-desc">¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!</p>
-                <div id="disqus_thread"></div>
+                <div class="comment-form-wrap">
+                    <div class="comment-form-fields">
+                        <input type="text" id="comment-name" placeholder="Tu nombre (opcional)" maxlength="30" autocomplete="off">
+                        <textarea id="comment-text" placeholder="¿Qué piensas? Cuéntanos..." maxlength="280" rows="2"></textarea>
+                    </div>
+                    <button class="main-btn comment-submit-btn" id="comment-submit">Comentar</button>
+                    <div class="comment-feedback hidden" id="comment-feedback"></div>
+                </div>
+                <div class="comment-list" id="comment-list">
+                    <div class="comment-empty">Cargando comentarios...</div>
+                </div>
             </section>
 
             <!-- Contact -->
@@ -311,20 +321,8 @@
         </footer>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src="main.js"></script>
-    <script>
-        var disqus_config = function () {
-            this.page.url = window.location.origin + window.location.pathname;
-            this.page.identifier = 'queque-comer';
-            this.language = 'es';
-        };
-        (function() {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://queque-2.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </body>
 </html>
