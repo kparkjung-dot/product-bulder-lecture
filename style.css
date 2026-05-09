@@ -7,25 +7,25 @@
     --horo-sign-hover: #ede9fe;
     --horo-sign-active-bg: #7c3aed;
     --horo-sign-active-text: #fff;
-    --bg: #f5f2ed;
+    --bg: #f0f7f6;
     --card-bg: #ffffff;
-    --text: #1c1917;
-    --text-muted: #78716c;
-    --border: #e2ddd6;
-    --shadow: rgba(28, 25, 23, 0.07);
-    --primary: #f97316;
-    --primary-hover: #ea580c;
-    --primary-soft: #fff7ed;
-    --tab-active-bg: #f97316;
+    --text: #1a3330;
+    --text-muted: #4a7b77;
+    --border: #c5ddd9;
+    --shadow: rgba(20, 60, 55, 0.08);
+    --primary: #2a9d8f;
+    --primary-hover: #21867a;
+    --primary-soft: #e8f7f5;
+    --tab-active-bg: #2a9d8f;
     --tab-active-text: #fff;
-    --tab-inactive-bg: #ede9e4;
-    --tab-inactive-text: #78716c;
-    --chip-bg: #fff7ed;
-    --chip-border: #fdba74;
-    --chip-text: #c2410c;
-    --result-bg: linear-gradient(135deg, #fff7ed, #ffedd5);
-    --coming-bg: #ede9e4;
-    --input-bg: #fafafa;
+    --tab-inactive-bg: #dff0ed;
+    --tab-inactive-text: #4a7b77;
+    --chip-bg: #e8f7f5;
+    --chip-border: #7ec8c0;
+    --chip-text: #1a7a6e;
+    --result-bg: linear-gradient(135deg, #e8f7f5, #d0f0eb);
+    --coming-bg: #dff0ed;
+    --input-bg: #f8fffe;
 }
 
 body.dark {
@@ -43,19 +43,19 @@ body.dark {
     --text-muted: #7a7a8a;
     --border: #2a2f40;
     --shadow: rgba(0, 0, 0, 0.4);
-    --primary: #fb923c;
-    --primary-hover: #ea580c;
-    --primary-soft: #1c0f06;
-    --tab-active-bg: #fb923c;
+    --primary: #3dbfb0;
+    --primary-hover: #2a9d8f;
+    --primary-soft: #0a2422;
+    --tab-active-bg: #3dbfb0;
     --tab-active-text: #fff;
-    --tab-inactive-bg: #252a38;
-    --tab-inactive-text: #888;
-    --chip-bg: #1c0f06;
-    --chip-border: #7c2d12;
-    --chip-text: #fdba74;
-    --result-bg: linear-gradient(135deg, #1a1710, #1e1c14);
-    --coming-bg: #1e2030;
-    --input-bg: #161b27;
+    --tab-inactive-bg: #0f2422;
+    --tab-inactive-text: #5a8a86;
+    --chip-bg: #0a2422;
+    --chip-border: #1a5e58;
+    --chip-text: #4ecdc4;
+    --result-bg: linear-gradient(135deg, #0a1f1d, #0d2422);
+    --coming-bg: #0f2422;
+    --input-bg: #0d1f1e;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -278,10 +278,10 @@ header {
 }
 
 .mood-btn.active {
-    background: linear-gradient(135deg, #fb923c, #f97316);
+    background: linear-gradient(135deg, #3dbfb0, #2a9d8f);
     color: #fff;
     border-color: transparent;
-    box-shadow: 0 3px 10px rgba(249, 115, 22, 0.35);
+    box-shadow: 0 3px 10px rgba(42, 157, 143, 0.35);
 }
 
 /* Platform badge (¿Qué ver?) */
@@ -427,7 +427,7 @@ header {
 .main-btn {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, #fb923c, #f97316, #ea580c);
+    background: linear-gradient(135deg, #3dbfb0, #2a9d8f, #1f7a70);
     background-size: 200% 200%;
     color: #fff;
     border: none;
@@ -438,11 +438,11 @@ header {
     letter-spacing: 0.3px;
     font-family: inherit;
     transition: background-position 0.3s ease, transform 0.1s, opacity 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.35), 0 1px 3px rgba(249, 115, 22, 0.15);
+    box-shadow: 0 4px 20px rgba(42, 157, 143, 0.35), 0 1px 3px rgba(42, 157, 143, 0.15);
 }
 .main-btn:hover:not(:disabled) {
     background-position: right center;
-    box-shadow: 0 6px 26px rgba(249, 115, 22, 0.5), 0 2px 6px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 6px 26px rgba(42, 157, 143, 0.5), 0 2px 6px rgba(42, 157, 143, 0.2);
     transform: translateY(-1px);
 }
 .main-btn:active:not(:disabled) { transform: scale(0.98); }
@@ -469,7 +469,7 @@ header {
 .input-row input:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(232, 96, 10, 0.12);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
 }
 
 .add-btn {
@@ -600,7 +600,7 @@ header {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(232, 96, 10, 0.12);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
 }
 
 .form-group textarea { min-height: 100px; resize: vertical; }
@@ -641,7 +641,7 @@ body.dark .form-status.error   { background: #2e1515; color: #ef9a9a; border-col
 .comment-form-fields textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.12);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
 }
 .comment-submit-btn { padding: 12px; font-size: 15px; }
 .comment-feedback { font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 8px; margin-top: 8px; }
