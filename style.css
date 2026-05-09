@@ -87,7 +87,7 @@ header {
 .logo-main {
     font-size: 38px;
     font-weight: 900;
-    color: var(--primary);
+    color: #f43f5e;
     line-height: 1;
     letter-spacing: -1px;
 }
