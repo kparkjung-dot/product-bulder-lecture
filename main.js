@@ -296,11 +296,11 @@ const CAT_META = {
 const CAT_ORDER = ['chilena', 'asiatica', 'italiana', 'internacional', 'comida_rapida'];
 
 let activeCats = new Set(
-    JSON.parse(localStorage.getItem('queque_cats') || 'null') || CAT_ORDER
+    JSON.parse(localStorage.getItem('tetinca_cats') || 'null') || CAT_ORDER
 );
 
 function saveCats() {
-    localStorage.setItem('queque_cats', JSON.stringify([...activeCats]));
+    localStorage.setItem('tetinca_cats', JSON.stringify([...activeCats]));
 }
 
 function getFilteredPool(pool) {
@@ -638,7 +638,7 @@ function generateStoryImage(emoji, foodName) {
     // Logo
     ctx.font = 'bold 60px "Segoe UI", system-ui, sans-serif';
     ctx.fillStyle = '#fff';
-    ctx.fillText('¿Queque?', W / 2, 140);
+    ctx.fillText('¿Tetinca?', W / 2, 140);
 
     ctx.font = '24px "Segoe UI", system-ui, sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.75)';
@@ -669,7 +669,7 @@ function generateStoryImage(emoji, foodName) {
     // URL
     ctx.font = '22px "Segoe UI", system-ui, sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.65)';
-    ctx.fillText('queque.cl', W / 2, H - 68);
+    ctx.fillText('tetinca.cl', W / 2, H - 68);
 
     return canvas;
 }
@@ -677,7 +677,7 @@ function generateStoryImage(emoji, foodName) {
 function shareAsStory(emoji, foodName) {
     const canvas = generateStoryImage(emoji, foodName);
     canvas.toBlob(async (blob) => {
-        const file = new File([blob], 'queque-story.png', { type: 'image/png' });
+        const file = new File([blob], 'tetinca-story.png', { type: 'image/png' });
         if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
             try {
                 await navigator.share({ files: [file] });
@@ -689,7 +689,7 @@ function shareAsStory(emoji, foodName) {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'queque-story.png';
+        a.download = 'tetinca-story.png';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -702,13 +702,13 @@ function showShareBtn(context, resultText, emoji = null) {
     const wrapper = document.getElementById(`${context}-share-wrapper`);
     if (!wrapper) return;
     const btn = document.getElementById(`${context}-share-btn`);
-    const siteUrl = 'https://queque.cl';
+    const siteUrl = 'https://tetinca.cl';
     const messages = {
-        comer:  `¡¿Queque? me dijo que coma *${resultText}* hoy 🍽️\n¿Tú qué vas a comer? → ${siteUrl}`,
-        hacer:  `¡¿Queque? me recomienda *${resultText}* hoy 🎯\n¿Tú qué vas a hacer? → ${siteUrl}`,
-        ver:    `¡¿Queque? me recomienda ver *${resultText}* 🎬\n¿Tú qué ves esta noche? → ${siteUrl}`,
+        comer:  `¡¿Tetinca? me dijo que coma *${resultText}* hoy 🍽️\n¿Tú qué vas a comer? → ${siteUrl}`,
+        hacer:  `¡¿Tetinca? me recomienda *${resultText}* hoy 🎯\n¿Tú qué vas a hacer? → ${siteUrl}`,
+        ver:    `¡¿Tetinca? me recomienda ver *${resultText}* 🎬\n¿Tú qué ves esta noche? → ${siteUrl}`,
     };
-    const text = messages[context] || `¡¿Queque? me recomienda: *${resultText}* → ${siteUrl}`;
+    const text = messages[context] || `¡¿Tetinca? me recomienda: *${resultText}* → ${siteUrl}`;
     btn.onclick = () => window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
 
     const instaBtn = document.getElementById(`${context}-insta-btn`);
@@ -951,7 +951,7 @@ commentSubmit.addEventListener('click', async () => {
     if (hasBadWord(name) || hasBadWord(text)) {
         showCommentFeedback('Tu comentario contiene palabras no permitidas.', 'error'); return;
     }
-    const lastSubmit = parseInt(localStorage.getItem('queque_last_comment') || '0');
+    const lastSubmit = parseInt(localStorage.getItem('tetinca_last_comment') || '0');
     if (Date.now() - lastSubmit < 30000) {
         showCommentFeedback('Espera 30 segundos antes de comentar de nuevo.', 'error'); return;
     }
@@ -963,7 +963,7 @@ commentSubmit.addEventListener('click', async () => {
             ts: firebase.firestore.FieldValue.serverTimestamp(),
         });
         document.getElementById('comment-text').value = '';
-        localStorage.setItem('queque_last_comment', Date.now().toString());
+        localStorage.setItem('tetinca_last_comment', Date.now().toString());
         showCommentFeedback('¡Comentario publicado! 🎉', 'success');
     } catch {
         showCommentFeedback('Error al publicar. Inténtalo de nuevo.', 'error');
