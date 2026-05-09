@@ -3,6 +3,10 @@ name: Daily Horoscope Update
 on:
   schedule:
     - cron: '0 9 * * *'   # 09:00 UTC = ~06:00 Chile time
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'data/horoscope.json'
   workflow_dispatch:        # Allow manual trigger from GitHub Actions tab
 
 permissions:
