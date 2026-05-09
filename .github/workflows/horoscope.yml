@@ -77,7 +77,7 @@ jobs:
           )
 
           payload = json.dumps({
-              "model": "claude-haiku-4-5-20251001",
+              "model": "claude-haiku-4-5",
               "max_tokens": 8192,
               "tools": [tool],
               "tool_choice": {"type": "tool", "name": "guardar_horoscopo"},
@@ -94,12 +94,24 @@ jobs:
               }
           )
 
-          with urllib.request.urlopen(req) as r:
-              res = json.loads(r.read())
+          try:
+              with urllib.request.urlopen(req) as r:
+                  res = json.loads(r.read())
+          except urllib.error.HTTPError as e:
+              body = e.read().decode()
+              print(f"API Error {e.code}: {body}")
+              raise
 
-          horoscope = next(
-              b["input"] for b in res["content"] if b.get("type") == "tool_use"
+          print(f"API response stop_reason: {res.get('stop_reason')}")
+          print(f"Content types: {[b.get('type') for b in res.get('content', [])]}")
+
+          tool_block = next(
+              (b for b in res["content"] if b.get("type") == "tool_use"), None
           )
+          if tool_block is None:
+              print(f"Full response: {json.dumps(res, ensure_ascii=False)}")
+              raise ValueError("No tool_use block found in API response")
+          horoscope = tool_block["input"]
 
           os.makedirs("data", exist_ok=True)
           with open("data/horoscope.json", "w", encoding="utf-8") as f:
