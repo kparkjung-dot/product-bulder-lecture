@@ -4,11 +4,13 @@ service cloud.firestore {
     match /{collection}/{docId} {
       allow read: if true;
       allow create: if collection.matches('comments_.*')
-                    && request.resource.data.keys().hasAll(['text', 'ts'])
                     && request.resource.data.text is string
                     && request.resource.data.text.size() >= 3
                     && request.resource.data.text.size() <= 500;
-      allow update, delete: if false;
+      allow update: if collection.matches('comments_.*')
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reports'])
+                    && request.resource.data.reports == resource.data.reports + 1;
+      allow delete: if true;
     }
   }
 }

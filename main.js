@@ -50,6 +50,74 @@ function formatCommentTime(ts) {
 
 let currentCat = 'comer';
 let unsubComments = null;
+let isAdminMode = false;
+let logoTaps = 0, logoTapTimer = null;
+const ADMIN_HASH = '9c58f514b13304e33ae37067398b4c7ce6ae701f4004c66549627be6d76da2f1'; // tetinca2026
+
+async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+document.querySelector('.logo-main').addEventListener('click', () => {
+    logoTaps++;
+    if (logoTapTimer) clearTimeout(logoTapTimer);
+    if (logoTaps >= 5) { logoTaps = 0; showAdminModal(); return; }
+    logoTapTimer = setTimeout(() => { logoTaps = 0; }, 2000);
+});
+
+function showAdminModal() {
+    const overlay = document.createElement('div');
+    overlay.className = 'admin-overlay';
+    overlay.innerHTML =
+        '<div class="admin-modal">' +
+            '<h3>Acceso de administrador</h3>' +
+            '<input type="password" id="admin-pw-input" placeholder="Contraseña" autocomplete="off">' +
+            '<div class="admin-modal-actions">' +
+                '<button class="admin-cancel-btn">Cancelar</button>' +
+                '<button class="admin-enter-btn">Entrar</button>' +
+            '</div>' +
+            '<div class="admin-error hidden" id="admin-error">Contraseña incorrecta</div>' +
+        '</div>';
+    document.body.appendChild(overlay);
+    const input = overlay.querySelector('#admin-pw-input');
+    input.focus();
+    overlay.querySelector('.admin-cancel-btn').addEventListener('click', () => overlay.remove());
+    overlay.querySelector('.admin-enter-btn').addEventListener('click', () => verifyAdmin(input.value, overlay));
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') verifyAdmin(input.value, overlay); });
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+}
+
+async function verifyAdmin(password, overlay) {
+    const hash = await sha256(password);
+    if (hash === ADMIN_HASH) {
+        isAdminMode = true;
+        overlay.remove();
+        loadComments(currentCat);
+        const banner = document.createElement('div');
+        banner.className = 'admin-banner';
+        banner.id = 'admin-banner';
+        banner.innerHTML =
+            '🔑 Modo administrador activo' +
+            '<button id="admin-delete-all-btn">🗑️ Borrar todos</button>' +
+            '<button id="admin-exit-btn">Salir</button>';
+        document.querySelector('.comments-section').prepend(banner);
+        document.getElementById('admin-exit-btn').addEventListener('click', () => {
+            isAdminMode = false;
+            banner.remove();
+            loadComments(currentCat);
+        });
+        document.getElementById('admin-delete-all-btn').addEventListener('click', async () => {
+            if (!confirm('¿Borrar TODOS los comentarios de esta sección?')) return;
+            const snap = await db.collection('comments_' + currentCat).get();
+            const batch = db.batch();
+            snap.forEach(doc => batch.delete(doc.ref));
+            await batch.commit();
+        });
+    } else {
+        overlay.querySelector('#admin-error').classList.remove('hidden');
+    }
+}
 
 function loadComments(cat) {
     const listEl = document.getElementById('comment-list');
@@ -63,19 +131,53 @@ function loadComments(cat) {
                 listEl.innerHTML = '<div class="comment-empty">Sé el primero en comentar ✍️</div>';
                 return;
             }
+            const reported = JSON.parse(localStorage.getItem('tetinca_reported') || '[]');
             listEl.innerHTML = '';
             snap.forEach(doc => {
                 const d = doc.data();
+                const docId = doc.id;
+                const reports = d.reports || 0;
+                const isReported = reports >= 3;
+                const alreadyReported = reported.includes(docId);
+
                 const item = document.createElement('div');
-                item.className = 'comment-item';
+                item.className = 'comment-item' + (isReported ? ' comment-reported' : '');
                 item.innerHTML =
                     '<div class="comment-header">' +
                         '<span class="comment-author">' + escapeHtml(d.name || 'Anónimo') + '</span>' +
                         '<span class="comment-time">' + formatCommentTime(d.ts) + '</span>' +
+                        (isAdminMode ? '<button class="comment-delete-btn" data-id="' + docId + '" data-cat="' + cat + '">🗑️</button>' : '') +
                     '</div>' +
-                    '<div class="comment-body">' + escapeHtml(d.text) + '</div>';
+                    '<div class="comment-body' + (isReported ? ' comment-hidden-text' : '') + '">' +
+                        (isReported ? 'Comentario oculto por reportes' : escapeHtml(d.text)) +
+                    '</div>' +
+                    '<div class="comment-footer">' +
+                        (isReported
+                            ? '<span class="comment-report-label">⚑ Reportado</span>'
+                            : '<button class="comment-report-btn' + (alreadyReported ? ' already-reported' : '') + '" data-id="' + docId + '" data-cat="' + cat + '"' + (alreadyReported ? ' disabled' : '') + '>⚑ Reportar</button>') +
+                    '</div>';
                 listEl.appendChild(item);
             });
+
+            listEl.querySelectorAll('.comment-report-btn:not([disabled])').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    btn.disabled = true;
+                    await db.collection('comments_' + btn.dataset.cat).doc(btn.dataset.id).update({
+                        reports: firebase.firestore.FieldValue.increment(1)
+                    });
+                    const rep = JSON.parse(localStorage.getItem('tetinca_reported') || '[]');
+                    rep.push(btn.dataset.id);
+                    localStorage.setItem('tetinca_reported', JSON.stringify(rep));
+                });
+            });
+
+            listEl.querySelectorAll('.comment-delete-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    if (!confirm('¿Borrar este comentario?')) return;
+                    await db.collection('comments_' + btn.dataset.cat).doc(btn.dataset.id).delete();
+                });
+            });
+
         }, () => {
             listEl.innerHTML = '<div class="comment-empty">No se pudieron cargar los comentarios.</div>';
         });
