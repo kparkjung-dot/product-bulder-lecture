@@ -1016,3 +1016,65 @@ footer {
     .result-name { font-size: 19px; }
     .sign-grid  { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ── How it works strip ──────────────────────────────── */
+.how-it-works {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 4px;
+    padding: 9px 14px;
+    background: var(--primary-soft);
+    border: 1px solid var(--chip-border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.how-it-works--horo {
+    background: var(--horo-primary-soft);
+    border-color: var(--horo-border);
+}
+
+.how-step {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.how-num {
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 11px;
+    flex-shrink: 0;
+}
+
+.how-num--horo {
+    background: var(--horo-primary);
+}
+
+.how-text {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.how-sep {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    opacity: 0.5;
+    line-height: 1;
+}
+
+.how-sep--horo {
+    color: var(--horo-primary);
+}
