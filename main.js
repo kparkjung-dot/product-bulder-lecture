@@ -22,10 +22,10 @@ firebase.initializeApp({
 const db = firebase.firestore();
 
 const COMMENTS_META = {
-    comer:     { badge: '🍽️ ¿Qué comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
+    comer:     { badge: '🍽️ ¿Te tinca comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
     horoscopo: { badge: '🔮 Horóscopo',      desc: '¿Tu horóscopo de hoy te hizo sentido? ¡Comparte tu experiencia!' },
-    hacer:     { badge: '🎯 ¿Qué hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
-    ver:       { badge: '🎬 ¿Qué ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
+    hacer:     { badge: '🎯 ¿Te tinca hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
+    ver:       { badge: '🎬 ¿Te tinca ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
 };
 
 const BAD_WORDS = ['puta','huevon','weon','culiao','mierda','concha','pico','maricon','forro',
@@ -398,7 +398,7 @@ document.querySelectorAll('.meal-btn').forEach(btn => {
         randomCard.classList.remove('revealed');
         randomHint.textContent = 'Pulsa el botón y te lo decimos nosotros';
         randomEmoji.textContent = '🍽️';
-        randomName.textContent = '¿Qué vamos a comer hoy?';
+        randomName.textContent = '¿Te tinca comer?';
     });
 });
 
@@ -817,7 +817,7 @@ document.querySelectorAll('.mood-btn').forEach(btn => {
         const verCard = document.getElementById('ver-result');
         verCard.classList.remove('revealed');
         document.getElementById('ver-emoji').textContent = '🎬';
-        document.getElementById('ver-name').textContent = '¿Qué ponemos esta noche?';
+        document.getElementById('ver-name').textContent = '¿Te tinca ver algo?';
         document.getElementById('ver-hint').textContent = 'Elige un género y decidimos por ti';
         document.getElementById('ver-platform').classList.add('hidden');
         document.getElementById('ver-share-wrapper').classList.add('hidden');
