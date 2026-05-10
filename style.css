@@ -329,6 +329,11 @@ header {
     border-color: transparent;
     box-shadow: 0 3px 10px rgba(37,99,235,0.35);
 }
+.mood-btn--special[data-mood="cines"].active {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgba(220,38,38,0.35);
+}
 
 /* Update badge */
 .ver-update-badge {

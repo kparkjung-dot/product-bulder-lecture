@@ -1,0 +1,172 @@
+name: Weekly Cinema Update
+
+on:
+  schedule:
+    - cron: '0 14 * * 4'  # Every Thursday at 14:00 UTC (new releases hit Chilean theaters on Thursdays)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-cinema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pip install playwright beautifulsoup4 requests
+          playwright install chromium --with-deps
+
+      - name: Scrape current cinema listings
+        run: |
+          python3 << 'PYEOF'
+          import json, re, os
+          from datetime import datetime, timezone
+          from urllib.request import urlopen, Request
+          import xml.etree.ElementTree as ET
+
+          today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+          movies = []
+
+          BROWSER_HEADERS = {
+              'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+              'Accept-Language': 'es-CL,es;q=0.9',
+          }
+
+          ARTICLES = {'a','an','the','and','or','but','in','of','to','for','with','by','at','on','from','la','el','los','las','de','del','en','y','e'}
+
+          def slug_to_title(slug):
+              words = slug.replace('-', ' ').split()
+              result = []
+              for i, w in enumerate(words):
+                  result.append(w if (i > 0 and w.lower() in ARTICLES) else w.capitalize())
+              return ' '.join(result)
+
+          # ── 1. Cinemark via sitemap ──────────────────────────
+          print("Scraping Cinemark via sitemap...")
+          try:
+              req = Request('https://www.cinemark.cl/sitemap.xml', headers=BROWSER_HEADERS)
+              with urlopen(req, timeout=15) as r:
+                  xml_content = r.read()
+              tree = ET.fromstring(xml_content)
+              ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+              seen = set()
+              for url_el in tree.findall('.//sm:url', ns):
+                  loc = url_el.find('sm:loc', ns)
+                  if loc is None:
+                      continue
+                  href = loc.text.strip()
+                  m = re.search(r'/pelicula/([^/?#]+)', href)
+                  if not m:
+                      continue
+                  slug = m.group(1).strip('/')
+                  if slug in seen:
+                      continue
+                  seen.add(slug)
+                  name = slug_to_title(slug)
+                  movies.append({'name': name, 'emoji': '🎟️', 'platform': 'Cinemark'})
+              print(f"  Cinemark: {len(seen)} movies found")
+          except Exception as e:
+              print(f"  Cinemark sitemap failed: {e}")
+
+          # ── 2. Cinépolis via playwright (headless browser) ──
+          print("Scraping Cinépolis with headless browser...")
+          try:
+              from playwright.sync_api import sync_playwright
+              with sync_playwright() as p:
+                  browser = p.chromium.launch()
+                  ctx = browser.new_context(
+                      user_agent=BROWSER_HEADERS['User-Agent'],
+                      locale='es-CL',
+                  )
+                  page = ctx.new_page()
+                  page.goto('https://www.cinepolis.cl/cartelera', wait_until='networkidle', timeout=40000)
+                  page.wait_for_timeout(3000)
+
+                  # Try several common selector patterns for cinema sites
+                  selectors = [
+                      'h2.movie-title', 'h3.movie-title', '.movie-title',
+                      '.movie-name', 'h2.title', 'h3.title',
+                      '[class*="MovieTitle"]', '[class*="movie-title"]',
+                      '[class*="movieTitle"]', '[class*="pelicula"] h2',
+                      '[class*="pelicula"] h3', '[class*="film"] h2',
+                      'article h2', 'article h3',
+                  ]
+                  found = []
+                  for sel in selectors:
+                      els = page.query_selector_all(sel)
+                      if els:
+                          for el in els:
+                              txt = el.inner_text().strip()
+                              if 3 < len(txt) < 80 and txt not in found:
+                                  found.append(txt)
+                          if found:
+                              print(f"  Cinépolis: {len(found)} movies via selector '{sel}'")
+                              break
+
+                  # Fallback: extract text from structured data (JSON-LD)
+                  if not found:
+                      scripts = page.query_selector_all('script[type="application/ld+json"]')
+                      for script in scripts:
+                          try:
+                              data = json.loads(script.inner_text())
+                              if isinstance(data, list):
+                                  data = data[0]
+                              if data.get('@type') in ('Movie', 'VideoObject') and data.get('name'):
+                                  found.append(data['name'])
+                              elif 'itemListElement' in data:
+                                  for item in data['itemListElement']:
+                                      n = item.get('name') or item.get('item', {}).get('name')
+                                      if n:
+                                          found.append(n)
+                          except Exception:
+                              pass
+
+                  browser.close()
+
+                  cinepolis_seen = set()
+                  for name in found:
+                      if name not in cinepolis_seen:
+                          cinepolis_seen.add(name)
+                          movies.append({'name': name, 'emoji': '🎟️', 'platform': 'Cinépolis'})
+                  print(f"  Cinépolis: {len(cinepolis_seen)} movies added")
+
+          except Exception as e:
+              print(f"  Cinépolis playwright failed: {e}")
+
+          # ── 3. Save results ──────────────────────────────────
+          if not movies:
+              print("No movies scraped — keeping existing data unchanged")
+              exit(0)
+
+          # Deduplicate by name (keep first occurrence)
+          seen_names = set()
+          unique = []
+          for m in movies:
+              key = m['name'].lower()
+              if key not in seen_names:
+                  seen_names.add(key)
+                  unique.append(m)
+
+          sources = list({m['platform'] for m in unique})
+          result = {
+              'updated_at': today,
+              'sources': sources,
+              'cartelera': unique,
+          }
+
+          with open('data/cinema.json', 'w', encoding='utf-8') as f:
+              json.dump(result, f, ensure_ascii=False, indent=2)
+
+          print(f"Saved {len(unique)} movies from {sources}")
+          PYEOF
+
+      - name: Commit updated cinema listings
+        run: |
+          git config user.name "queque-bot"
+          git config user.email "queque-bot@users.noreply.github.com"
+          git add data/cinema.json
+          git diff --staged --quiet || git commit -m "chore: cartelera cines $(date +%Y-%m-%d)"
+          git push

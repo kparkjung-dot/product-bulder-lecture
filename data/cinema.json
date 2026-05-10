@@ -1,0 +1,16 @@
+{
+  "updated_at": "2026-05-10",
+  "sources": ["Cinemark"],
+  "cartelera": [
+    { "name": "Star Wars: The Mandalorian & Grogu", "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Toy Story 5",                        "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Super Mario Galaxy: La Película",    "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Mufasa: El Rey León",                "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Karate Kid: Leyendas",               "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Thunderbolts",                       "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Until Dawn",                         "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Final Destination: Bloodlines",      "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Warfare",                            "emoji": "🎟️", "platform": "Cinemark" },
+    { "name": "Sinners",                            "emoji": "🎟️", "platform": "Cinemark" }
+  ]
+}

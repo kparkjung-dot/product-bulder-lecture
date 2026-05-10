@@ -833,6 +833,7 @@ function showShareBtn(context, resultText, emoji = null) {
 // ── ¿Qué ver? — movies & series by mood ───────────────
 let MOVIES = {};
 let moviesUpdatedAt = null;
+let cinemaUpdatedAt = null;
 
 async function loadMovies() {
     try {
@@ -845,19 +846,37 @@ async function loadMovies() {
         console.error('Failed to load movies:', e);
     }
 }
+
+async function loadCinema() {
+    try {
+        const res = await fetch('data/cinema.json?v=' + Date.now());
+        const data = await res.json();
+        MOVIES['cines'] = data.cartelera;
+        cinemaUpdatedAt = data.updated_at;
+        updateVerBadge();
+    } catch (e) {
+        console.error('Failed to load cinema:', e);
+    }
+}
+
 loadMovies();
+loadCinema();
 
 const PLATFORM_COLORS = {
     'Netflix':      { bg: '#e50914', text: '#fff' },
     'Prime Video':  { bg: '#00a8e0', text: '#fff' },
     'Disney+':      { bg: '#0063e5', text: '#fff' },
     'Max':          { bg: '#6b2df5', text: '#fff' },
+    'Cinépolis':    { bg: '#fbbf24', text: '#1c1917' },
+    'Cinemark':     { bg: '#dc2626', text: '#fff'    },
 };
 
-const MOOD_UPDATE_LABEL = {
-    clasico: (date) => `🎞️ Selección de grandes clásicos del cine`,
-    estreno: (date) => `✨ Estrenos — actualizado en ${date}`,
-};
+function fmtDate(iso) {
+    if (!iso) return '';
+    const [y, m, d] = iso.split('-');
+    const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    return `${parseInt(d,10)} ${months[parseInt(m,10)-1]} ${y}`;
+}
 
 function fmtMonthYear(iso) {
     if (!iso) return '';
@@ -866,12 +885,18 @@ function fmtMonthYear(iso) {
     return `${months[parseInt(m,10)-1]} ${y}`;
 }
 
+const MOOD_UPDATE_LABEL = {
+    clasico: ()     => `🎞️ Selección de grandes clásicos del cine`,
+    estreno: ()     => `✨ Estrenos — actualizado en ${fmtMonthYear(moviesUpdatedAt)}`,
+    cines:   ()     => `🎟️ Cartelera Cinemark · Cinépolis — actualizado ${fmtDate(cinemaUpdatedAt)}`,
+};
+
 function updateVerBadge() {
     const badge = document.getElementById('ver-update-badge');
     if (!badge) return;
     const fn = MOOD_UPDATE_LABEL[selectedMood];
     if (fn) {
-        badge.textContent = fn(fmtMonthYear(moviesUpdatedAt));
+        badge.textContent = fn();
         badge.classList.remove('hidden');
     } else {
         badge.classList.add('hidden');
