@@ -831,80 +831,21 @@ function showShareBtn(context, resultText, emoji = null) {
 }
 
 // ── ¿Qué ver? — movies & series by mood ───────────────
-const MOVIES = {
-    comedia: [
-        { name: 'Superbad',                      emoji: '😂', platform: 'Netflix'      },
-        { name: 'The Grand Budapest Hotel',      emoji: '😂', platform: 'Disney+'      },
-        { name: 'Knives Out',                    emoji: '😂', platform: 'Netflix'      },
-        { name: 'Game Night',                    emoji: '😂', platform: 'Max'          },
-        { name: 'What We Do in the Shadows',     emoji: '😂', platform: 'Disney+'      },
-        { name: 'The Nice Guys',                 emoji: '😂', platform: 'Prime Video'  },
-        { name: 'Palm Springs',                  emoji: '😂', platform: 'Prime Video'  },
-        { name: 'Schitt\'s Creek',               emoji: '😂', platform: 'Netflix'      },
-        { name: 'Abbott Elementary',             emoji: '😂', platform: 'Disney+'      },
-        { name: 'Only Murders in the Building',  emoji: '😂', platform: 'Disney+'      },
-    ],
-    drama: [
-        { name: 'Succession',                    emoji: '🎭', platform: 'Max'          },
-        { name: 'The Shawshank Redemption',      emoji: '🎭', platform: 'Netflix'      },
-        { name: 'Breaking Bad',                  emoji: '🎭', platform: 'Netflix'      },
-        { name: 'Parasite',                      emoji: '🎭', platform: 'Prime Video'  },
-        { name: 'The Crown',                     emoji: '🎭', platform: 'Netflix'      },
-        { name: 'Ozark',                         emoji: '🎭', platform: 'Netflix'      },
-        { name: 'Mare of Easttown',              emoji: '🎭', platform: 'Max'          },
-        { name: 'Peaky Blinders',                emoji: '🎭', platform: 'Netflix'      },
-        { name: 'The Bear',                      emoji: '🎭', platform: 'Disney+'      },
-        { name: 'Manchester by the Sea',         emoji: '🎭', platform: 'Prime Video'  },
-    ],
-    accion: [
-        { name: 'Mad Max: Fury Road',            emoji: '💥', platform: 'Max'          },
-        { name: 'John Wick',                     emoji: '💥', platform: 'Netflix'      },
-        { name: 'The Gray Man',                  emoji: '💥', platform: 'Netflix'      },
-        { name: 'Extraction',                    emoji: '💥', platform: 'Netflix'      },
-        { name: 'Top Gun: Maverick',             emoji: '💥', platform: 'Prime Video'  },
-        { name: 'The Boys',                      emoji: '💥', platform: 'Prime Video'  },
-        { name: 'Squid Game',                    emoji: '💥', platform: 'Netflix'      },
-        { name: 'Nobody',                        emoji: '💥', platform: 'Netflix'      },
-        { name: 'Reacher',                       emoji: '💥', platform: 'Prime Video'  },
-        { name: 'Money Heist',                   emoji: '💥', platform: 'Netflix'      },
-    ],
-    terror: [
-        { name: 'Hereditary',                    emoji: '👻', platform: 'Max'          },
-        { name: 'A Quiet Place',                 emoji: '👻', platform: 'Prime Video'  },
-        { name: 'The Haunting of Hill House',    emoji: '👻', platform: 'Netflix'      },
-        { name: 'Midsommar',                     emoji: '👻', platform: 'Prime Video'  },
-        { name: 'Get Out',                       emoji: '👻', platform: 'Prime Video'  },
-        { name: 'The Black Phone',               emoji: '👻', platform: 'Netflix'      },
-        { name: 'Barbarian',                     emoji: '👻', platform: 'Disney+'      },
-        { name: 'Midnight Mass',                 emoji: '👻', platform: 'Netflix'      },
-        { name: 'The Menu',                      emoji: '👻', platform: 'Disney+'      },
-        { name: 'Smile',                         emoji: '👻', platform: 'Prime Video'  },
-    ],
-    romance: [
-        { name: 'To All the Boys I\'ve Loved',  emoji: '❤️', platform: 'Netflix'      },
-        { name: 'Bridgerton',                    emoji: '❤️', platform: 'Netflix'      },
-        { name: 'The Notebook',                  emoji: '❤️', platform: 'Netflix'      },
-        { name: 'Normal People',                 emoji: '❤️', platform: 'Disney+'      },
-        { name: 'About Time',                    emoji: '❤️', platform: 'Prime Video'  },
-        { name: 'Outlander',                     emoji: '❤️', platform: 'Netflix'      },
-        { name: 'La La Land',                    emoji: '❤️', platform: 'Prime Video'  },
-        { name: 'One Day',                       emoji: '❤️', platform: 'Netflix'      },
-        { name: 'Virgin River',                  emoji: '❤️', platform: 'Netflix'      },
-        { name: 'When Harry Met Sally',          emoji: '❤️', platform: 'Max'          },
-    ],
-    documental: [
-        { name: 'Making a Murderer',             emoji: '🔬', platform: 'Netflix'      },
-        { name: 'Our Planet',                    emoji: '🔬', platform: 'Netflix'      },
-        { name: 'The Last Dance',                emoji: '🔬', platform: 'Netflix'      },
-        { name: 'Wild Wild Country',             emoji: '🔬', platform: 'Netflix'      },
-        { name: 'My Octopus Teacher',            emoji: '🔬', platform: 'Netflix'      },
-        { name: 'The Tinder Swindler',           emoji: '🔬', platform: 'Netflix'      },
-        { name: 'Abstract: The Art of Design',   emoji: '🔬', platform: 'Netflix'      },
-        { name: 'Chef\'s Table',                 emoji: '🔬', platform: 'Netflix'      },
-        { name: 'Formula 1: Drive to Survive',   emoji: '🔬', platform: 'Netflix'      },
-        { name: 'Don\'t F**k with Cats',         emoji: '🔬', platform: 'Netflix'      },
-    ],
-};
+let MOVIES = {};
+let moviesUpdatedAt = null;
+
+async function loadMovies() {
+    try {
+        const res = await fetch('data/movies.json?v=' + Date.now());
+        const data = await res.json();
+        MOVIES = data.categories;
+        moviesUpdatedAt = data.updated_at;
+        updateVerBadge();
+    } catch (e) {
+        console.error('Failed to load movies:', e);
+    }
+}
+loadMovies();
 
 const PLATFORM_COLORS = {
     'Netflix':      { bg: '#e50914', text: '#fff' },
@@ -912,6 +853,30 @@ const PLATFORM_COLORS = {
     'Disney+':      { bg: '#0063e5', text: '#fff' },
     'Max':          { bg: '#6b2df5', text: '#fff' },
 };
+
+const MOOD_UPDATE_LABEL = {
+    clasico: (date) => `🎞️ Selección de grandes clásicos del cine`,
+    estreno: (date) => `✨ Estrenos — actualizado en ${date}`,
+};
+
+function fmtMonthYear(iso) {
+    if (!iso) return '';
+    const [y, m] = iso.split('-');
+    const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    return `${months[parseInt(m,10)-1]} ${y}`;
+}
+
+function updateVerBadge() {
+    const badge = document.getElementById('ver-update-badge');
+    if (!badge) return;
+    const fn = MOOD_UPDATE_LABEL[selectedMood];
+    if (fn) {
+        badge.textContent = fn(fmtMonthYear(moviesUpdatedAt));
+        badge.classList.remove('hidden');
+    } else {
+        badge.classList.add('hidden');
+    }
+}
 
 let selectedMood = 'comedia';
 
@@ -925,6 +890,7 @@ document.querySelectorAll('.mood-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         selectedMood = btn.dataset.mood;
         updateMoodButtons();
+        updateVerBadge();
         const verCard = document.getElementById('ver-result');
         verCard.classList.remove('revealed');
         document.getElementById('ver-emoji').textContent = '🎬';
@@ -945,10 +911,11 @@ const verHint     = document.getElementById('ver-hint');
 const verPlatform = document.getElementById('ver-platform');
 
 verBtn.addEventListener('click', () => {
+    const pool = MOVIES[selectedMood];
+    if (!pool || pool.length === 0) return;
     verBtn.disabled = true;
     document.getElementById('ver-share-wrapper').classList.add('hidden');
     verPlatform.classList.add('hidden');
-    const pool = MOVIES[selectedMood];
     const finalItem = getNextItem('ver-' + selectedMood, pool);
     slotMachine(pool, verEmoji, verName, verCard, (item) => {
         verBtn.disabled = false;

@@ -1,0 +1,130 @@
+name: Monthly Movies Update
+
+on:
+  schedule:
+    - cron: '0 5 1 * *'   # 1st of every month at 05:00 UTC
+  workflow_dispatch:        # Allow manual trigger from GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-movies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate movie picks via Claude API
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.HOROSCOPO }}
+        run: |
+          python3 << 'PYEOF'
+          import json, os, urllib.request
+          from datetime import datetime, timezone
+
+          today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+
+          # Load existing data to preserve non-updated categories
+          with open("data/movies.json", encoding="utf-8") as f:
+              existing = json.load(f)
+
+          PLATFORMS = ["Netflix", "Prime Video", "Disney+", "Max"]
+
+          schema = {
+              "type": "object",
+              "properties": {
+                  "clasico": {
+                      "type": "array", "minItems": 12, "maxItems": 12,
+                      "items": {
+                          "type": "object",
+                          "properties": {
+                              "name":     {"type": "string"},
+                              "emoji":    {"type": "string", "enum": ["🎞️"]},
+                              "platform": {"type": "string", "enum": PLATFORMS}
+                          },
+                          "required": ["name", "emoji", "platform"]
+                      }
+                  },
+                  "estreno": {
+                      "type": "array", "minItems": 12, "maxItems": 12,
+                      "items": {
+                          "type": "object",
+                          "properties": {
+                              "name":     {"type": "string"},
+                              "emoji":    {"type": "string", "enum": ["✨"]},
+                              "platform": {"type": "string", "enum": PLATFORMS}
+                          },
+                          "required": ["name", "emoji", "platform"]
+                      }
+                  }
+              },
+              "required": ["clasico", "estreno"]
+          }
+
+          tool = {
+              "name": "guardar_peliculas",
+              "description": "Guarda la selección mensual de películas clásicas y estrenos",
+              "input_schema": schema
+          }
+
+          prompt = (
+              f"Eres un experto en cine con criterio internacional. "
+              f"Para el mes de {today[:7]}, selecciona: "
+              "1. CLASICO (12 películas): grandes clásicos del cine mundial (anteriores al año 2000), "
+              "variados en género y cultura, disponibles en Netflix, Prime Video, Disney+ o Max. "
+              "Mezcla clásicos de Hollywood con cine europeo, asiático y latinoamericano. "
+              "2. ESTRENO (12 títulos): estrenos recientes de 2024 o 2025 que ya están en streaming "
+              "(Netflix, Prime Video, Disney+ o Max). Incluye películas y series. "
+              "Varía géneros: acción, drama, comedia, animación, terror, thriller. "
+              "Usa la herramienta guardar_peliculas para entregar el resultado."
+          )
+
+          payload = json.dumps({
+              "model": "claude-haiku-4-5",
+              "max_tokens": 4096,
+              "tools": [tool],
+              "tool_choice": {"type": "tool", "name": "guardar_peliculas"},
+              "messages": [{"role": "user", "content": prompt}]
+          }).encode()
+
+          req = urllib.request.Request(
+              "https://api.anthropic.com/v1/messages",
+              data=payload,
+              headers={
+                  "Content-Type": "application/json",
+                  "x-api-key": os.environ["ANTHROPIC_API_KEY"],
+                  "anthropic-version": "2023-06-01"
+              }
+          )
+
+          try:
+              with urllib.request.urlopen(req) as r:
+                  res = json.loads(r.read())
+          except urllib.error.HTTPError as e:
+              print(f"API Error {e.code}: {e.read().decode()}")
+              raise
+
+          tool_block = next(
+              (b for b in res["content"] if b.get("type") == "tool_use"), None
+          )
+          if tool_block is None:
+              raise ValueError("No tool_use block in API response")
+
+          picks = tool_block["input"]
+          existing["categories"]["clasico"] = picks["clasico"]
+          existing["categories"]["estreno"] = picks["estreno"]
+          existing["updated_at"] = today
+
+          with open("data/movies.json", "w", encoding="utf-8") as f:
+              json.dump(existing, f, ensure_ascii=False, indent=2)
+
+          print(f"Movies updated for {today}: {len(picks['clasico'])} clásicos, {len(picks['estreno'])} estrenos")
+          PYEOF
+
+      - name: Commit updated movies
+        run: |
+          git config user.name "queque-bot"
+          git config user.email "queque-bot@users.noreply.github.com"
+          git add data/movies.json
+          git diff --staged --quiet || git commit -m "chore: películas mensuales $(date +%Y-%m)"
+          git push

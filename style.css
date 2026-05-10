@@ -317,6 +317,34 @@ header {
     box-shadow: 0 3px 10px rgba(82, 82, 91, 0.3);
 }
 
+/* Special mood buttons: Clásico & Estreno */
+.mood-btn--special { border-style: dashed; }
+.mood-btn--special[data-mood="clasico"].active {
+    background: linear-gradient(135deg, #78350f, #92400e);
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgba(120,53,15,0.35);
+}
+.mood-btn--special[data-mood="estreno"].active {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgba(37,99,235,0.35);
+}
+
+/* Update badge */
+.ver-update-badge {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--tab-inactive-bg);
+    border-radius: 20px;
+    padding: 5px 14px;
+    display: block;
+    width: fit-content;
+    margin: -6px auto 0;
+}
+.ver-update-badge.hidden { display: none; }
+
 /* Platform badge (¿Qué ver?) */
 .platform-badge {
     display: inline-block;
