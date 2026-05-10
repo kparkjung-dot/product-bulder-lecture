@@ -867,8 +867,8 @@ const PLATFORM_COLORS = {
     'Prime Video':  { bg: '#00a8e0', text: '#fff' },
     'Disney+':      { bg: '#0063e5', text: '#fff' },
     'Max':          { bg: '#6b2df5', text: '#fff' },
-    'Cinépolis':    { bg: '#fbbf24', text: '#1c1917' },
     'Cinemark':     { bg: '#dc2626', text: '#fff'    },
+    'Hoyts':        { bg: '#111827', text: '#fff'    },
 };
 
 function fmtDate(iso) {
@@ -888,7 +888,7 @@ function fmtMonthYear(iso) {
 const MOOD_UPDATE_LABEL = {
     clasico: ()     => `🎞️ Selección de grandes clásicos del cine`,
     estreno: ()     => `✨ Estrenos — actualizado en ${fmtMonthYear(moviesUpdatedAt)}`,
-    cines:   ()     => `🎟️ Cartelera Cinemark · Cinépolis — actualizado ${fmtDate(cinemaUpdatedAt)}`,
+    cines:   ()     => `🎟️ Cartelera Cinemark · Hoyts — actualizado ${fmtDate(cinemaUpdatedAt)}`,
 };
 
 function updateVerBadge() {

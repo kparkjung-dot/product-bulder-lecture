@@ -71,8 +71,10 @@ jobs:
           except Exception as e:
               print(f"  Cinemark sitemap failed: {e}")
 
-          # ── 2. Cinépolis via playwright (headless browser) ──
-          print("Scraping Cinépolis with headless browser...")
+          # ── 2. Hoyts via playwright (headless browser) ─────
+          # Note: Cinépolis does not operate in Chile.
+          # Hoyts (CineHoyts) is the second major chain.
+          print("Scraping Hoyts with headless browser...")
           try:
               from playwright.sync_api import sync_playwright
               with sync_playwright() as p:
@@ -82,59 +84,67 @@ jobs:
                       locale='es-CL',
                   )
                   page = ctx.new_page()
-                  page.goto('https://www.cinepolis.cl/cartelera', wait_until='networkidle', timeout=40000)
-                  page.wait_for_timeout(3000)
 
-                  # Try several common selector patterns for cinema sites
-                  selectors = [
-                      'h2.movie-title', 'h3.movie-title', '.movie-title',
-                      '.movie-name', 'h2.title', 'h3.title',
-                      '[class*="MovieTitle"]', '[class*="movie-title"]',
-                      '[class*="movieTitle"]', '[class*="pelicula"] h2',
-                      '[class*="pelicula"] h3', '[class*="film"] h2',
-                      'article h2', 'article h3',
-                  ]
-                  found = []
-                  for sel in selectors:
-                      els = page.query_selector_all(sel)
-                      if els:
-                          for el in els:
-                              txt = el.inner_text().strip()
-                              if 3 < len(txt) < 80 and txt not in found:
-                                  found.append(txt)
-                          if found:
-                              print(f"  Cinépolis: {len(found)} movies via selector '{sel}'")
+                  # Try known Hoyts Chile URLs
+                  hoyts_loaded = False
+                  for url in ['https://www.hoyts.cl/cartelera', 'https://www.hoyts.cl/peliculas', 'https://www.hoyts.cl']:
+                      try:
+                          page.goto(url, wait_until='networkidle', timeout=30000)
+                          page.wait_for_timeout(2000)
+                          if page.title() and len(page.title()) > 3:
+                              print(f"  Hoyts: loaded {url} — title: {page.title()}")
+                              hoyts_loaded = True
                               break
+                      except Exception:
+                          continue
 
-                  # Fallback: extract text from structured data (JSON-LD)
-                  if not found:
-                      scripts = page.query_selector_all('script[type="application/ld+json"]')
-                      for script in scripts:
-                          try:
-                              data = json.loads(script.inner_text())
-                              if isinstance(data, list):
-                                  data = data[0]
-                              if data.get('@type') in ('Movie', 'VideoObject') and data.get('name'):
-                                  found.append(data['name'])
-                              elif 'itemListElement' in data:
-                                  for item in data['itemListElement']:
-                                      n = item.get('name') or item.get('item', {}).get('name')
-                                      if n:
-                                          found.append(n)
-                          except Exception:
-                              pass
+                  found = []
+                  if hoyts_loaded:
+                      selectors = [
+                          '.movie-title', '.movie-name', 'h2.title', 'h3.title',
+                          '[class*="movie"] h2', '[class*="movie"] h3',
+                          '[class*="Movie"] h2', '[class*="Movie"] h3',
+                          '[class*="pelicula"] h2', '[class*="pelicula"] h3',
+                          '[class*="film"] h2', '[class*="film"] h3',
+                          'article h2', 'article h3',
+                      ]
+                      for sel in selectors:
+                          els = page.query_selector_all(sel)
+                          if els:
+                              for el in els:
+                                  txt = el.inner_text().strip()
+                                  if 3 < len(txt) < 80 and txt not in found:
+                                      found.append(txt)
+                              if found:
+                                  print(f"  Hoyts: {len(found)} movies via selector '{sel}'")
+                                  break
+
+                      # Fallback: JSON-LD structured data
+                      if not found:
+                          for script in page.query_selector_all('script[type="application/ld+json"]'):
+                              try:
+                                  data = json.loads(script.inner_text())
+                                  if isinstance(data, list): data = data[0]
+                                  if data.get('@type') in ('Movie', 'VideoObject') and data.get('name'):
+                                      found.append(data['name'])
+                                  elif 'itemListElement' in data:
+                                      for item in data['itemListElement']:
+                                          n = item.get('name') or item.get('item', {}).get('name')
+                                          if n: found.append(n)
+                              except Exception:
+                                  pass
 
                   browser.close()
 
-                  cinepolis_seen = set()
+                  hoyts_seen = set()
                   for name in found:
-                      if name not in cinepolis_seen:
-                          cinepolis_seen.add(name)
-                          movies.append({'name': name, 'emoji': '🎟️', 'platform': 'Cinépolis'})
-                  print(f"  Cinépolis: {len(cinepolis_seen)} movies added")
+                      if name not in hoyts_seen:
+                          hoyts_seen.add(name)
+                          movies.append({'name': name, 'emoji': '🎟️', 'platform': 'Hoyts'})
+                  print(f"  Hoyts: {len(hoyts_seen)} movies added")
 
           except Exception as e:
-              print(f"  Cinépolis playwright failed: {e}")
+              print(f"  Hoyts playwright failed: {e}")
 
           # ── 3. Save results ──────────────────────────────────
           if not movies:
