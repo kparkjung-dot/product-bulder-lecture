@@ -2,7 +2,7 @@ name: Daily Horoscope Update
 
 on:
   schedule:
-    - cron: '0 9 * * *'   # 09:00 UTC = ~06:00 Chile time
+    - cron: '0 4 * * *'   # 04:00 UTC = 00:00 Chile time (midnight)
   push:
     branches: [main]
     paths-ignore:
@@ -28,6 +28,16 @@ jobs:
 
           chile_tz = timezone(timedelta(hours=-4))
           today = datetime.now(chile_tz).strftime('%Y-%m-%d')
+
+          # Skip if today's horoscope is already current
+          try:
+              with open("data/horoscope.json", encoding="utf-8") as f:
+                  existing = json.load(f)
+              if existing.get("fecha") == today:
+                  print(f"Horóscopo para {today} ya está actualizado. Saltando.")
+                  exit(0)
+          except (FileNotFoundError, json.JSONDecodeError):
+              pass
 
           SIGNS = ["Aries","Tauro","Géminis","Cáncer","Leo","Virgo",
                    "Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"]
