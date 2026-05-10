@@ -15,39 +15,39 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: |
-          pip install playwright beautifulsoup4 requests
-          playwright install chromium --with-deps
+        run: pip install beautifulsoup4
 
       - name: Scrape current cinema listings
         run: |
           python3 << 'PYEOF'
-          import json, re, os
+          import json, re
           from datetime import datetime, timezone
           from urllib.request import urlopen, Request
           import xml.etree.ElementTree as ET
+          from bs4 import BeautifulSoup
 
           today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
           movies = []
 
-          BROWSER_HEADERS = {
+          HEADERS = {
               'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
               'Accept-Language': 'es-CL,es;q=0.9',
           }
 
-          ARTICLES = {'a','an','the','and','or','but','in','of','to','for','with','by','at','on','from','la','el','los','las','de','del','en','y','e'}
+          ARTICLES = {'a','an','the','and','or','but','in','of','to','for','with','by','at','on',
+                      'from','la','el','los','las','de','del','en','y','e','un','una'}
 
           def slug_to_title(slug):
               words = slug.replace('-', ' ').split()
-              result = []
-              for i, w in enumerate(words):
-                  result.append(w if (i > 0 and w.lower() in ARTICLES) else w.capitalize())
-              return ' '.join(result)
+              return ' '.join(
+                  w if (i > 0 and w.lower() in ARTICLES) else w.capitalize()
+                  for i, w in enumerate(words)
+              )
 
           # ── 1. Cinemark via sitemap ──────────────────────────
           print("Scraping Cinemark via sitemap...")
           try:
-              req = Request('https://www.cinemark.cl/sitemap.xml', headers=BROWSER_HEADERS)
+              req = Request('https://www.cinemark.cl/sitemap.xml', headers=HEADERS)
               with urlopen(req, timeout=15) as r:
                   xml_content = r.read()
               tree = ET.fromstring(xml_content)
@@ -57,101 +57,63 @@ jobs:
                   loc = url_el.find('sm:loc', ns)
                   if loc is None:
                       continue
-                  href = loc.text.strip()
-                  m = re.search(r'/pelicula/([^/?#]+)', href)
+                  m = re.search(r'/pelicula/([^/?#]+)', loc.text.strip())
                   if not m:
                       continue
                   slug = m.group(1).strip('/')
                   if slug in seen:
                       continue
                   seen.add(slug)
-                  name = slug_to_title(slug)
-                  movies.append({'name': name, 'emoji': '🎟️', 'platform': 'Cinemark'})
+                  movies.append({'name': slug_to_title(slug), 'emoji': '🎟️', 'platform': 'Cinemark'})
               print(f"  Cinemark: {len(seen)} movies found")
           except Exception as e:
-              print(f"  Cinemark sitemap failed: {e}")
+              print(f"  Cinemark failed: {e}")
 
-          # ── 2. Hoyts via playwright (headless browser) ─────
-          # Note: Cinépolis does not operate in Chile.
-          # Hoyts (CineHoyts) is the second major chain.
-          print("Scraping Hoyts with headless browser...")
+          # ── 2. Cinépolis Chile (ex-CineHoyts) via HTML parse ─
+          # cinehoyts.cl redirects to cinepolischile.cl
+          # Movie titles are in static <h2> tags — no JS rendering needed
+          print("Scraping Cinépolis Chile (cinepolischile.cl)...")
           try:
-              from playwright.sync_api import sync_playwright
-              with sync_playwright() as p:
-                  browser = p.chromium.launch()
-                  ctx = browser.new_context(
-                      user_agent=BROWSER_HEADERS['User-Agent'],
-                      locale='es-CL',
-                  )
-                  page = ctx.new_page()
+              req = Request('https://www.cinepolischile.cl', headers=HEADERS)
+              with urlopen(req, timeout=15) as r:
+                  html = r.read().decode('utf-8', errors='replace')
+              soup = BeautifulSoup(html, 'html.parser')
 
-                  # Try known Hoyts Chile URLs
-                  hoyts_loaded = False
-                  for url in ['https://www.hoyts.cl/cartelera', 'https://www.hoyts.cl/peliculas', 'https://www.hoyts.cl']:
-                      try:
-                          page.goto(url, wait_until='networkidle', timeout=30000)
-                          page.wait_for_timeout(2000)
-                          if page.title() and len(page.title()) > 3:
-                              print(f"  Hoyts: loaded {url} — title: {page.title()}")
-                              hoyts_loaded = True
-                              break
-                      except Exception:
-                          continue
+              cp_seen = set()
+              # Movie cards contain /pelicula/ links; grab the h2 in each card
+              for a in soup.find_all('a', href=re.compile(r'/pelicula/')):
+                  card = a
+                  h2 = None
+                  for _ in range(6):
+                      card = card.parent
+                      if not card:
+                          break
+                      h2 = card.find('h2')
+                      if h2:
+                          break
+                  if h2:
+                      title = h2.get_text(separator=' ', strip=True)
+                      if 3 < len(title) < 100 and title.upper() not in cp_seen:
+                          cp_seen.add(title.upper())
+                          movies.append({'name': title.title(), 'emoji': '🎟️', 'platform': 'Cinépolis'})
 
-                  found = []
-                  if hoyts_loaded:
-                      selectors = [
-                          '.movie-title', '.movie-name', 'h2.title', 'h3.title',
-                          '[class*="movie"] h2', '[class*="movie"] h3',
-                          '[class*="Movie"] h2', '[class*="Movie"] h3',
-                          '[class*="pelicula"] h2', '[class*="pelicula"] h3',
-                          '[class*="film"] h2', '[class*="film"] h3',
-                          'article h2', 'article h3',
-                      ]
-                      for sel in selectors:
-                          els = page.query_selector_all(sel)
-                          if els:
-                              for el in els:
-                                  txt = el.inner_text().strip()
-                                  if 3 < len(txt) < 80 and txt not in found:
-                                      found.append(txt)
-                              if found:
-                                  print(f"  Hoyts: {len(found)} movies via selector '{sel}'")
-                                  break
+              # Fallback: just grab all h2s if card approach found nothing
+              if not cp_seen:
+                  for h2 in soup.find_all('h2'):
+                      title = h2.get_text(separator=' ', strip=True)
+                      if 3 < len(title) < 80 and title.upper() not in cp_seen:
+                          cp_seen.add(title.upper())
+                          movies.append({'name': title.title(), 'emoji': '🎟️', 'platform': 'Cinépolis'})
 
-                      # Fallback: JSON-LD structured data
-                      if not found:
-                          for script in page.query_selector_all('script[type="application/ld+json"]'):
-                              try:
-                                  data = json.loads(script.inner_text())
-                                  if isinstance(data, list): data = data[0]
-                                  if data.get('@type') in ('Movie', 'VideoObject') and data.get('name'):
-                                      found.append(data['name'])
-                                  elif 'itemListElement' in data:
-                                      for item in data['itemListElement']:
-                                          n = item.get('name') or item.get('item', {}).get('name')
-                                          if n: found.append(n)
-                              except Exception:
-                                  pass
-
-                  browser.close()
-
-                  hoyts_seen = set()
-                  for name in found:
-                      if name not in hoyts_seen:
-                          hoyts_seen.add(name)
-                          movies.append({'name': name, 'emoji': '🎟️', 'platform': 'Hoyts'})
-                  print(f"  Hoyts: {len(hoyts_seen)} movies added")
-
+              print(f"  Cinépolis Chile: {len(cp_seen)} movies found")
           except Exception as e:
-              print(f"  Hoyts playwright failed: {e}")
+              print(f"  Cinépolis Chile failed: {e}")
 
           # ── 3. Save results ──────────────────────────────────
           if not movies:
               print("No movies scraped — keeping existing data unchanged")
               exit(0)
 
-          # Deduplicate by name (keep first occurrence)
           seen_names = set()
           unique = []
           for m in movies:
@@ -160,7 +122,7 @@ jobs:
                   seen_names.add(key)
                   unique.append(m)
 
-          sources = list({m['platform'] for m in unique})
+          sources = sorted({m['platform'] for m in unique})
           result = {
               'updated_at': today,
               'sources': sources,
