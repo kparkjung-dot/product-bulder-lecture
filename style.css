@@ -58,6 +58,39 @@ body.dark {
     --input-bg: #27272a;
 }
 
+/* ── Per-tab accent colors ──────────────────────────── */
+
+.cat-tab[data-cat="comer"].active    { background: #ea580c; color: #fff; box-shadow: 0 4px 14px rgba(234,88,12,0.30); }
+.cat-tab[data-cat="hacer"].active    { background: #16a34a; color: #fff; box-shadow: 0 4px 14px rgba(22,163,74,0.30); }
+.cat-tab[data-cat="horoscopo"].active{ background: #7c3aed; color: #fff; box-shadow: 0 4px 14px rgba(124,58,237,0.30); }
+.cat-tab[data-cat="ver"].active      { background: #2563eb; color: #fff; box-shadow: 0 4px 14px rgba(37,99,235,0.30); }
+body.dark .cat-tab[data-cat="comer"].active    { background: #c2410c; }
+body.dark .cat-tab[data-cat="hacer"].active    { background: #15803d; }
+body.dark .cat-tab[data-cat="horoscopo"].active{ background: #6d28d9; }
+body.dark .cat-tab[data-cat="ver"].active      { background: #1d4ed8; }
+
+/* comer — orange */
+body.theme-comer { --primary:#ea580c; --primary-hover:#c2410c; --primary-soft:#ffedd5; --result-bg:linear-gradient(135deg,#fff7ed,#ffedd5); }
+body.theme-comer .main-btn { background:linear-gradient(135deg,#fb923c,#ea580c,#c2410c); box-shadow:0 4px 20px rgba(234,88,12,.35),0 1px 3px rgba(194,65,12,.15); }
+body.theme-comer .main-btn:hover:not(:disabled) { box-shadow:0 6px 26px rgba(234,88,12,.5),0 2px 6px rgba(194,65,12,.2); }
+body.dark.theme-comer { --primary:#fb923c; --primary-hover:#f97316; --primary-soft:#431407; --result-bg:linear-gradient(135deg,#1c1108,#2a1a0e); }
+
+/* hacer — green */
+body.theme-hacer { --primary:#16a34a; --primary-hover:#15803d; --primary-soft:#dcfce7; --result-bg:linear-gradient(135deg,#f0fdf4,#dcfce7); }
+body.theme-hacer .main-btn { background:linear-gradient(135deg,#4ade80,#16a34a,#15803d); box-shadow:0 4px 20px rgba(22,163,74,.35),0 1px 3px rgba(21,128,61,.15); }
+body.theme-hacer .main-btn:hover:not(:disabled) { box-shadow:0 6px 26px rgba(22,163,74,.5),0 2px 6px rgba(21,128,61,.2); }
+body.dark.theme-hacer { --primary:#4ade80; --primary-hover:#22c55e; --primary-soft:#052e16; --result-bg:linear-gradient(135deg,#071411,#0d2419); }
+
+/* horoscopo — purple */
+body.theme-horoscopo { --primary:#7c3aed; --primary-hover:#6d28d9; --primary-soft:#ede9fe; --result-bg:linear-gradient(135deg,#faf5ff,#ede9fe); }
+body.dark.theme-horoscopo { --primary:#a78bfa; --primary-hover:#8b5cf6; --primary-soft:#2e1d5a; --result-bg:linear-gradient(135deg,#0f0720,#1a0f38); }
+
+/* ver — blue */
+body.theme-ver { --primary:#2563eb; --primary-hover:#1d4ed8; --primary-soft:#dbeafe; --result-bg:linear-gradient(135deg,#eff6ff,#dbeafe); }
+body.theme-ver .main-btn { background:linear-gradient(135deg,#60a5fa,#2563eb,#1d4ed8); box-shadow:0 4px 20px rgba(37,99,235,.35),0 1px 3px rgba(29,78,216,.15); }
+body.theme-ver .main-btn:hover:not(:disabled) { box-shadow:0 6px 26px rgba(37,99,235,.5),0 2px 6px rgba(29,78,216,.2); }
+body.dark.theme-ver { --primary:#60a5fa; --primary-hover:#93c5fd; --primary-soft:#1e3a8a; --result-bg:linear-gradient(135deg,#0c1a2e,#111e3a); }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {

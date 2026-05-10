@@ -4,6 +4,14 @@ if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
     themeBtn.textContent = '☀️';
 }
+
+const CAT_THEMES = ['theme-comer','theme-hacer','theme-horoscopo','theme-ver'];
+function applyCatTheme(cat) {
+    document.body.classList.remove(...CAT_THEMES);
+    document.body.classList.add(`theme-${cat}`);
+}
+applyCatTheme('comer');
+
 themeBtn.addEventListener('click', () => {
     const isDark = document.body.classList.toggle('dark');
     themeBtn.textContent = isDark ? '☀️' : '🌙';
@@ -200,6 +208,7 @@ document.querySelectorAll('.cat-tab:not([disabled])').forEach(tab => {
         const cat = tab.dataset.cat;
         document.getElementById(`panel-${cat}`).classList.add('active');
         switchComments(cat);
+        applyCatTheme(cat);
         if (cat === 'horoscopo' && !horoscopeData) loadHoroscope();
     });
 });
