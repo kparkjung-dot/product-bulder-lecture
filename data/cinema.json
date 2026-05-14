@@ -1,29 +1,9 @@
 {
-  "updated_at": "2026-05-10",
+  "updated_at": "2026-05-14",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
-    {
-      "name": "Star Wars the Mandalorian and Grogu",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "2026 Txt Moa Con in Japan Live Viewing",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "The Amazing Digital Circus el Ultimo Acto",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Mortal Kombat 2",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
     {
       "name": "El Diablo Viste a la Moda 2",
       "emoji": "🎟️",
@@ -35,42 +15,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Billie Eilish Hit Me Hard and Soft the Tour",
+      "name": "Umamusume Pretty Derby",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Super Mario Galaxy la Pelicula",
+      "name": "Mortal Kombat 2",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Las Ovejas Detectives",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Exit 8",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Hokum la Maldicion de la Bruja",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Iron Maiden Burning Ambition",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Vida Que Vendra",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Estacion del Terror",
+      "name": "Ponyo 2008 Ghibli Fest 2026",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -95,11 +50,6 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Ponyo 2008 Ghibli Fest 2026",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "En la Zona Gris",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -110,12 +60,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Umamusume Pretty Derby",
+      "name": "Cuando Cae el Otono",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Cuando Cae el Otono",
+      "name": "Star Wars the Mandalorian and Grogu",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -135,12 +85,32 @@
       "platform": "Cinemark"
     },
     {
-      "name": "David",
+      "name": "Billie Eilish Hit Me Hard and Soft the Tour",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Nga Hinarere los Hijos",
+      "name": "Las Ovejas Detectives",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Iron Maiden Burning Ambition",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Hokum la Maldicion de la Bruja",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "2026 Txt Moa Con in Japan Live Viewing",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Claro",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -165,6 +135,11 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Amarga Navidad",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Amos del Universo",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -175,17 +150,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "The Amazing Digital Circus el Ultimo Acto",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Letras Robadas",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Drama",
+      "name": "Mil Pedazos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "La Posesion de la Momia",
+      "name": "Operacion Sombra",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -196,6 +176,16 @@
     },
     {
       "name": "El Dia de la Revelacion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Renacidos",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Posesion de la Momia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -215,17 +205,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Super Mario Galaxy la Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Proyecto Fin del Mundo",
+      "name": "Moana",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
+      "name": "Proyecto Fin del Mundo",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
