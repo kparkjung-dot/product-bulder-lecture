@@ -45,7 +45,7 @@ const COMMENTS_META = {
     hacer:       { badge: '🎯 ¿Te tinca hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
     ver:         { badge: '🎬 ¿Te tinca ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
     encuesta:    { badge: '🗳️ Votemos',             desc: '¿Qué te pareció la pregunta de hoy? ¡Cuéntanos!' },
-    trivia:      { badge: '🧠 Trivia Chilena',      desc: '¿Cómo te fue en la trivia? ¿Fue fácil o difícil?' },
+    trivia:      { badge: '🧠 Trivia',              desc: '¿Cómo te fue en la trivia? ¿Fue fácil o difícil?' },
     confesiones: { badge: '🤫 Confesiones',         desc: '¿Te identificaste con alguna? ¡Comenta!' },
     sudoku:      { badge: '🔢 Sudoku',              desc: '¿Cuánto tardaste? ¡Comparte tu tiempo!' },
 };
