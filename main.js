@@ -903,6 +903,7 @@ const PLATFORM_COLORS = {
     'Prime Video':  { bg: '#00a8e0', text: '#fff' },
     'Disney+':      { bg: '#0063e5', text: '#fff' },
     'Max':          { bg: '#6b2df5', text: '#fff' },
+    'Paramount+':   { bg: '#0064ff', text: '#fff' },
     'Cinemark':     { bg: '#dc2626', text: '#fff'    },
     'Cinépolis':    { bg: '#fbbf24', text: '#1c1917' },
 };
