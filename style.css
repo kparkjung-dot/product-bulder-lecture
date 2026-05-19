@@ -248,6 +248,9 @@ body.dark .sudoku-cell.same-num { background: #78350f; }
 .sudoku-complete-title { font-size: 1.6rem; font-weight: 900; margin-bottom: 1.25rem; }
 .sudoku-complete-stats { display: flex; flex-direction: column; gap: .5rem; align-items: center; margin-bottom: 1.75rem; }
 .sudoku-complete-stats div { background: var(--bg); border-radius: 12px; padding: .65rem 1.5rem; font-weight: 700; font-size: 1rem; min-width: 180px; }
+.sudoku-change-diff { margin-top: 1.25rem; display: flex; align-items: center; gap: .4rem; justify-content: center; flex-wrap: wrap; font-size: .8rem; color: var(--text-muted); font-weight: 600; }
+.sudoku-diff-change-btn { padding: .3rem .75rem; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text-muted); font-size: .78rem; font-weight: 700; cursor: pointer; transition: all .2s; }
+.sudoku-diff-change-btn:hover { border-color: var(--primary); color: var(--primary); }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 

@@ -3125,9 +3125,13 @@ function initSudokuTab() {
     document.getElementById('sudoku-new-btn').addEventListener('click', sdkStart);
     document.getElementById('sudoku-erase-btn').addEventListener('click', sdkErase);
     document.getElementById('sudoku-hint-btn').addEventListener('click', sdkHint);
-    document.getElementById('sudoku-play-again-btn').addEventListener('click', () => {
-        document.getElementById('sudoku-complete').classList.add('hidden');
-        document.getElementById('sudoku-welcome').classList.remove('hidden');
+    document.getElementById('sudoku-play-again-btn').addEventListener('click', sdkStart);
+    document.querySelectorAll('.sudoku-diff-change-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            sudokuDifficulty = btn.dataset.diff;
+            document.querySelectorAll('.sudoku-diff-btn').forEach(b => b.classList.toggle('active', b.dataset.diff === sudokuDifficulty));
+            sdkStart();
+        });
     });
     document.addEventListener('keydown', sdkKeyHandler);
 }
