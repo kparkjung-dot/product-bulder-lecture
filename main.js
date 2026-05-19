@@ -3151,24 +3151,29 @@ function sdkHide(id) {
 function sdkInjectStyles() {
     const old = document.getElementById('sdk-styles');
     if (old) old.remove();
-    const avail = Math.min(window.innerWidth - 72, 354); // 32 body + 40 game padding
+    const avail = Math.min(window.innerWidth - 72, 354);
     const cp = Math.floor(avail / 9);
-    const go = cp * 9 + 6; // outer = inner + 3px border each side
+    const gw = cp * 9; // grid width = pure cell area, no border
     const fs = Math.max(11, Math.round(cp * 0.46));
     const s = document.createElement('style');
     s.id = 'sdk-styles';
+    // No border/border-radius/overflow:hidden on grid — use box-shadow outline
+    // so corner cells are NEVER clipped
     s.textContent = `
+        @keyframes sdkShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}
+          40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
         .sudoku-grid-wrap{display:flex!important;justify-content:center!important;margin-bottom:1rem!important;}
         #sudoku-grid{display:grid!important;grid-template-columns:repeat(9,${cp}px)!important;
-          grid-template-rows:repeat(9,${cp}px)!important;width:${go}px!important;height:${go}px!important;
-          border:3px solid #7c3aed!important;border-radius:8px!important;overflow:hidden!important;
-          box-sizing:border-box!important;box-shadow:0 4px 20px rgba(124,58,237,.2)!important;}
+          grid-template-rows:repeat(9,${cp}px)!important;width:${gw}px!important;height:${gw}px!important;
+          box-shadow:0 0 0 3px #7c3aed,0 6px 24px rgba(124,58,237,.25)!important;
+          border-radius:6px!important;box-sizing:content-box!important;}
         .sudoku-cell{width:${cp}px!important;height:${cp}px!important;font-size:${fs}px!important;
           display:flex!important;align-items:center!important;justify-content:center!important;
           font-weight:700!important;cursor:pointer!important;user-select:none!important;
-          box-sizing:border-box!important;transition:background .1s!important;}
+          box-sizing:border-box!important;transition:background .12s!important;}
+        .sudoku-cell.sdk-shake{animation:sdkShake .28s ease!important;}
         .sudoku-numpad{display:grid!important;grid-template-columns:repeat(9,1fr)!important;
-          gap:4px!important;width:${go}px!important;margin:0 auto .9rem!important;}
+          gap:4px!important;width:${gw}px!important;margin:0 auto .9rem!important;}
         .sudoku-num-btn{aspect-ratio:1!important;display:flex!important;align-items:center!important;
           justify-content:center!important;font-weight:900!important;font-size:${fs}px!important;
           cursor:pointer!important;border:2px solid #d4d4d8!important;border-radius:10px!important;
@@ -3177,6 +3182,30 @@ function sdkInjectStyles() {
         .sudoku-num-btn.num-done{opacity:.2!important;pointer-events:none!important;}
     `;
     document.head.appendChild(s);
+}
+
+function sdkPlaySound(correct) {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        if (correct) {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(523, ctx.currentTime);
+            osc.frequency.setValueAtTime(659, ctx.currentTime + 0.12);
+            gain.gain.setValueAtTime(0.25, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+            osc.start(); osc.stop(ctx.currentTime + 0.45);
+        } else {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220, ctx.currentTime);
+            osc.frequency.setValueAtTime(160, ctx.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.18, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+            osc.start(); osc.stop(ctx.currentTime + 0.3);
+        }
+    } catch(e) {}
 }
 
 function sdkStart() {
@@ -3265,12 +3294,29 @@ function sdkInput(num) {
     const {r, c} = sudokuSelected;
     if (sudokuFixed[r][c]) return;
     sudokuCurrent[r][c] = num;
-    if (num !== 0 && num !== sudokuSolution[r][c]) {
+    const correct = (num === sudokuSolution[r][c]);
+    if (!correct) {
         sudokuMistakes++;
         document.getElementById('sudoku-mistakes').textContent = `❌ ${sudokuMistakes}`;
     }
     sdkRenderGrid();
     sdkUpdateNumpad();
+    // Visual + audio feedback
+    const cell = document.querySelector(`.sudoku-cell[data-r="${r}"][data-c="${c}"]`);
+    if (cell) {
+        if (correct) {
+            cell.style.background = '#dcfce7';
+            cell.style.color = '#16a34a';
+            sdkPlaySound(true);
+            setTimeout(() => sdkHighlight(), 600);
+        } else {
+            cell.style.background = '#fee2e2';
+            cell.style.color = '#ef4444';
+            cell.classList.add('sdk-shake');
+            sdkPlaySound(false);
+            setTimeout(() => cell && cell.classList.remove('sdk-shake'), 300);
+        }
+    }
     if (sdkIsSolved()) sdkFinish();
 }
 
