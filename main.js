@@ -3162,27 +3162,42 @@ function sdkStart() {
     document.getElementById('sudoku-mistakes').textContent = '❌ 0';
     document.getElementById('sudoku-hints-left').textContent = '(3)';
     document.getElementById('sudoku-hint-btn').disabled = false;
-    requestAnimationFrame(() => {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
         sdkRenderGrid();
         sdkBuildNumpad();
-    });
+    }));
+}
+
+function sdkCalcSize() {
+    // Derive available width purely from window — no DOM measurement needed
+    const bodyPad = 32;  // 16px each side
+    const gamePad = 40;  // 1.25rem (~20px) each side
+    const avail = Math.min(window.innerWidth - bodyPad - gamePad, 354);
+    const cellPx = Math.floor(avail / 9);
+    return cellPx;
 }
 
 function sdkRenderGrid() {
     const grid = document.getElementById('sudoku-grid');
     grid.innerHTML = '';
-    const wrap = document.querySelector('.sudoku-grid-wrap');
-    const avail = wrap ? Math.min(wrap.clientWidth || 300, 360) : 300;
-    const cellPx = Math.floor((avail - 6) / 9);
-    const gridPx = cellPx * 9;
+    const cellPx = sdkCalcSize();
+    const gridInner = cellPx * 9;   // inner content size
+    const gridOuter = gridInner + 6; // +3px border each side
     const fs = Math.max(11, Math.round(cellPx * 0.46));
+
     Object.assign(grid.style, {
         display: 'grid',
         gridTemplateColumns: `repeat(9, ${cellPx}px)`,
         gridTemplateRows: `repeat(9, ${cellPx}px)`,
-        width: (gridPx + 6) + 'px',
-        height: (gridPx + 6) + 'px',
+        width: gridOuter + 'px',
+        height: gridOuter + 'px',
+        border: '3px solid #7c3aed',
+        borderRadius: '8px',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        boxShadow: '0 4px 20px rgba(124,58,237,.2)',
     });
+
     for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
         const cell = document.createElement('div');
         cell.className = 'sudoku-cell';
@@ -3198,20 +3213,23 @@ function sdkRenderGrid() {
             cursor: 'pointer',
             userSelect: 'none',
             fontWeight: '700',
-            borderRight: (c === 2 || c === 5) ? '2px solid #7c3aed' : (c === 8 ? 'none' : '1px solid var(--border, #e2e8f0)'),
-            borderBottom: (r === 2 || r === 5) ? '2px solid #7c3aed' : (r === 8 ? 'none' : '1px solid var(--border, #e2e8f0)'),
+            transition: 'background .1s',
+            borderRight: (c === 8) ? 'none' : (c === 2 || c === 5) ? '2px solid #7c3aed' : '1px solid #d4d4d8',
+            borderBottom: (r === 8) ? 'none' : (r === 2 || r === 5) ? '2px solid #7c3aed' : '1px solid #d4d4d8',
         });
         const val = sudokuCurrent[r][c];
         if (sudokuFixed[r][c]) {
-            cell.classList.add('given');
-            if (sudokuHinted.has(`${r},${c}`)) cell.classList.add('hinted');
+            cell.style.color = '#18181b';
+            cell.style.fontWeight = '900';
+            if (sudokuHinted.has(`${r},${c}`)) cell.style.color = '#059669';
             cell.textContent = val;
         } else if (val !== 0) {
+            cell.style.color = '#7c3aed';
+            if (val !== sudokuSolution[r][c]) cell.style.color = '#ef4444';
             cell.textContent = val;
-            if (val !== sudokuSolution[r][c]) cell.classList.add('error');
+        } else {
+            cell.style.color = '#7c3aed';
         }
-        if (c === 2 || c === 5) cell.classList.add('box-right');
-        if (r === 2 || r === 5) cell.classList.add('box-bottom');
         cell.addEventListener('click', () => sdkSelectCell(r, c));
         grid.appendChild(cell);
     }
@@ -3226,15 +3244,40 @@ function sdkSelectCell(r, c) {
 
 function sdkHighlight() {
     document.querySelectorAll('.sudoku-cell').forEach(cell => {
-        cell.classList.remove('selected', 'highlighted', 'same-num');
-        if (!sudokuSelected) return;
         const cr = +cell.dataset.r, cc = +cell.dataset.c;
+        const isFixed = sudokuFixed[cr][cc];
+        const isHinted = sudokuHinted.has(`${cr},${cc}`);
+        const val = sudokuCurrent[cr][cc];
+
+        // Reset background
+        cell.style.background = '';
+
+        if (!sudokuSelected) return;
         const {r, c} = sudokuSelected;
-        if (cr === r && cc === c) { cell.classList.add('selected'); return; }
+
+        if (cr === r && cc === c) {
+            cell.style.background = '#7c3aed';
+            cell.style.color = '#fff';
+            return;
+        }
+
+        // Restore correct text color after deselect
+        if (isFixed) {
+            cell.style.color = isHinted ? '#059669' : '#18181b';
+        } else if (val !== 0) {
+            cell.style.color = (val !== sudokuSolution[cr][cc]) ? '#ef4444' : '#7c3aed';
+        } else {
+            cell.style.color = '#7c3aed';
+        }
+
         const sameBox = Math.floor(cr/3) === Math.floor(r/3) && Math.floor(cc/3) === Math.floor(c/3);
-        if (cr === r || cc === c || sameBox) cell.classList.add('highlighted');
         const selVal = sudokuCurrent[r][c];
-        if (selVal !== 0 && sudokuCurrent[cr][cc] === selVal) cell.classList.add('same-num');
+
+        if (selVal !== 0 && sudokuCurrent[cr][cc] === selVal) {
+            cell.style.background = '#fde68a';
+        } else if (cr === r || cc === c || sameBox) {
+            cell.style.background = '#ede9fe';
+        }
     });
 }
 
@@ -3302,12 +3345,50 @@ function sdkFinish() {
 function sdkBuildNumpad() {
     const pad = document.getElementById('sudoku-numpad');
     pad.innerHTML = '';
+    const cellPx = sdkCalcSize();
+    const btnPx = Math.max(cellPx - 2, 30);
+    const fs = Math.max(13, Math.round(btnPx * 0.46));
+
+    Object.assign(pad.style, {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(9, 1fr)',
+        gap: '4px',
+        marginBottom: '.9rem',
+        width: '100%',
+    });
+
     for (let n = 1; n <= 9; n++) {
         const btn = document.createElement('button');
         btn.className = 'sudoku-num-btn';
         btn.textContent = n;
         btn.dataset.num = n;
+        Object.assign(btn.style, {
+            aspectRatio: '1',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontWeight: '900',
+            fontSize: fs + 'px',
+            cursor: 'pointer',
+            border: '2px solid #d4d4d8',
+            borderRadius: '10px',
+            background: '#f4f4f5',
+            color: '#7c3aed',
+            transition: 'all .15s',
+        });
         btn.addEventListener('click', () => sdkInput(n));
+        btn.addEventListener('mouseenter', () => {
+            btn.style.background = '#7c3aed';
+            btn.style.color = '#fff';
+            btn.style.borderColor = '#7c3aed';
+        });
+        btn.addEventListener('mouseleave', () => {
+            if (!btn.disabled) {
+                btn.style.background = '#f4f4f5';
+                btn.style.color = '#7c3aed';
+                btn.style.borderColor = '#d4d4d8';
+            }
+        });
         pad.appendChild(btn);
     }
     sdkUpdateNumpad();
