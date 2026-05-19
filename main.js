@@ -132,6 +132,7 @@ async function verifyAdmin(password, overlay) {
         isAdminMode = true;
         overlay.remove();
         loadComments(currentCat);
+        if (confessionsInitialized) loadConfessions();
         const banner = document.createElement('div');
         banner.className = 'admin-banner';
         banner.id = 'admin-banner';
@@ -144,6 +145,7 @@ async function verifyAdmin(password, overlay) {
             isAdminMode = false;
             banner.remove();
             loadComments(currentCat);
+            if (confessionsInitialized) loadConfessions();
         });
         document.getElementById('admin-delete-all-btn').addEventListener('click', async () => {
             if (!confirm('¿Borrar TODOS los comentarios de esta sección?')) return;
@@ -1456,8 +1458,15 @@ function toggleConfessionReplies(confId, btn) {
                     '<div class="conf-reply-meta">' +
                         '<span class="conf-reply-author">👤 ' + escapeHtml(d.name || 'Anónimo') + '</span>' +
                         '<span>' + formatTimeAgo(d.ts) + '</span>' +
+                        (isAdminMode ? '<button class="comment-delete-btn conf-reply-delete-btn" data-id="' + doc.id + '">🗑️</button>' : '') +
                     '</div>' +
                     '<div class="conf-reply-body">' + escapeHtml(d.text) + '</div>';
+                if (isAdminMode) {
+                    div.querySelector('.conf-reply-delete-btn').addEventListener('click', async () => {
+                        if (!confirm('¿Borrar esta respuesta?')) return;
+                        await db.collection('comments_confesion_' + confId).doc(doc.id).delete();
+                    });
+                }
                 listEl.appendChild(div);
             });
         }, () => { listEl.innerHTML = '<div class="comment-empty">No se pudieron cargar respuestas.</div>'; });
@@ -1492,6 +1501,7 @@ function loadConfessions() {
                     '<div class="confession-meta">' +
                         '<span class="confession-author">👤 ' + escapeHtml(d.name || 'Anónimo') + '</span>' +
                         '<span class="confession-time">' + formatTimeAgo(d.ts) + '</span>' +
+                        (isAdminMode ? '<button class="comment-delete-btn conf-delete-btn" data-id="' + confId + '">🗑️</button>' : '') +
                     '</div>' +
                     '<div class="confession-text">' + escapeHtml(d.text) + '</div>' +
                     '<div class="confession-footer">' +
@@ -1522,6 +1532,13 @@ function loadConfessions() {
                         }).catch(() => {});
                     });
                 });
+
+                if (isAdminMode) {
+                    item.querySelector('.conf-delete-btn').addEventListener('click', async () => {
+                        if (!confirm('¿Borrar esta confesión?')) return;
+                        await db.collection('comments_confesiones').doc(confId).delete();
+                    });
+                }
 
                 item.querySelector('.conf-toggle-btn').addEventListener('click', function() {
                     toggleConfessionReplies(confId, this);
