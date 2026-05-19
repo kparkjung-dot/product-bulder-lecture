@@ -1150,10 +1150,10 @@ function renderPollResults(v0, v1, voted) {
     document.getElementById('poll-total').textContent = total2 ? `${total2} voto${total2 !== 1 ? 's' : ''}` : 'Sé el primero en votar';
     const res0 = document.getElementById('poll-res0');
     const res1 = document.getElementById('poll-res1');
-    res0.classList.toggle('my-vote', voted === 0);
-    res1.classList.toggle('my-vote', voted === 1);
     res0.classList.toggle('winner', pct0 >= pct1);
     res1.classList.toggle('winner', pct1 > pct0);
+    document.getElementById('poll-mv0').classList.toggle('hidden', voted !== 0);
+    document.getElementById('poll-mv1').classList.toggle('hidden', voted !== 1);
     document.getElementById('poll-voting').classList.add('hidden');
     document.getElementById('poll-results').classList.remove('hidden');
 }
@@ -1164,8 +1164,17 @@ function initPoll() {
     const dateStr = new Date().toLocaleDateString('es-CL', { timeZone: 'America/Santiago', day: 'numeric', month: 'long' });
     document.getElementById('poll-date-label').textContent = dateStr;
     document.getElementById('poll-question').textContent = poll.q;
-    document.getElementById('poll-opt0-text').textContent = poll.opts[0];
-    document.getElementById('poll-opt1-text').textContent = poll.opts[1];
+    function setOptHtml(spanId, optText) {
+        const m = optText.match(/^(\S+)\s(.+)$/);
+        const el = document.getElementById(spanId);
+        if (m) {
+            el.innerHTML = `<span class="poll-opt-emoji">${m[1]}</span><span class="poll-opt-label">${m[2]}</span>`;
+        } else {
+            el.textContent = optText;
+        }
+    }
+    setOptHtml('poll-opt0-text', poll.opts[0]);
+    setOptHtml('poll-opt1-text', poll.opts[1]);
     document.getElementById('poll-res0-text').textContent = poll.opts[0];
     document.getElementById('poll-res1-text').textContent = poll.opts[1];
     const voted = localStorage.getItem('tetinca_poll_' + dateKey);
