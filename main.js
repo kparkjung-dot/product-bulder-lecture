@@ -49,15 +49,32 @@ const COMMENTS_META = {
     confesiones: { badge: '🤫 Confesiones',         desc: '¿Te identificaste con alguna? ¡Comenta!' },
 };
 
-const BAD_WORDS = ['puta','huevon','weon','culiao','mierda','concha','pico','maricon','forro',
-    'pene','pija','culo','teta','sexo','porno','fuck','shit','bitch','cunt','dick','pussy','ass'];
+const BAD_WORDS = [
+    // Chilean/Spanish profanity
+    'puta','puto','weon','weona','wea','huevon','huevona',
+    'culiao','culiada','culiar','culiado','culiando',
+    'mierda','concha','chucha','conchetumare','ctm',
+    'aweonao','aweonado','maricon','maricona','marika','forro',
+    'saco de wea',
+    // Genitals
+    'pico','pene','pija','verga','culo','teta','tetas','poto','cuca','raja',
+    // Sexual
+    'coger','cogida','follar','follando','culiar','mamada','porno','prostituta',
+    // English
+    'fuck','shit','bitch','cunt','dick','pussy','ass','asshole',
+    'bastard','cock','whore','slut','nigger','nigga','faggot','motherfucker',
+];
 
 function normalize(str) {
     return str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 }
 function hasBadWord(text) {
     const n = normalize(text);
-    return BAD_WORDS.some(w => n.includes(w));
+    return BAD_WORDS.some(w => {
+        const nw = normalize(w);
+        if (nw.includes(' ')) return n.includes(nw);
+        return new RegExp('(?<![a-z])' + nw + '(?![a-z])').test(n);
+    });
 }
 function escapeHtml(str) {
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -1489,6 +1506,7 @@ function loadConfessions() {
                                 '<textarea class="conf-reply-textarea" placeholder="Escribe tu respuesta..." maxlength="200" rows="2"></textarea>' +
                                 '<button class="conf-reply-submit">Enviar</button>' +
                             '</div>' +
+                            '<div class="conf-reply-feedback hidden"></div>' +
                         '</div>' +
                     '</div>';
 
@@ -1512,10 +1530,16 @@ function loadConfessions() {
                 item.querySelector('.conf-reply-submit').addEventListener('click', async function() {
                     const nameEl = item.querySelector('.conf-reply-name');
                     const textEl = item.querySelector('.conf-reply-textarea');
+                    const feedbackEl = item.querySelector('.conf-reply-feedback');
                     const name = nameEl.value.trim();
                     const text = textEl.value.trim();
-                    if (!text || text.length < 3) return;
-                    if (hasBadWord(name) || hasBadWord(text)) return;
+                    const showFb = (msg, type) => {
+                        feedbackEl.textContent = msg;
+                        feedbackEl.className = 'conf-reply-feedback ' + type;
+                        setTimeout(() => { feedbackEl.className = 'conf-reply-feedback hidden'; }, 3500);
+                    };
+                    if (!text || text.length < 3) { showFb('Escribe al menos 3 caracteres.', 'error'); return; }
+                    if (hasBadWord(name) || hasBadWord(text)) { showFb('Tu respuesta contiene palabras no permitidas 🙏', 'error'); return; }
                     this.disabled = true;
                     try {
                         await db.collection('comments_confesion_' + confId).add({
@@ -1525,7 +1549,8 @@ function loadConfessions() {
                         });
                         textEl.value = '';
                         nameEl.value = '';
-                    } catch(e) { /* silent */ }
+                        showFb('¡Respuesta publicada! 🎉', 'success');
+                    } catch(e) { showFb('Error al publicar. Inténtalo de nuevo.', 'error'); }
                     finally { this.disabled = false; }
                 });
 

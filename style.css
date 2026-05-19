@@ -1747,5 +1747,11 @@ body.dark .trivia-opt-btn.wrong   { border-color: #f87171 !important; background
 }
 .conf-reply-submit:hover:not(:disabled) { opacity: 0.85; }
 .conf-reply-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.conf-reply-feedback { font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; margin-top: 4px; }
+.conf-reply-feedback.hidden { display: none; }
+.conf-reply-feedback.success { background: #e8f5e9; color: #2e7d32; }
+.conf-reply-feedback.error   { background: #ffebee; color: #c62828; }
+body.dark .conf-reply-feedback.success { background: #1b2e1c; color: #81c784; }
+body.dark .conf-reply-feedback.error   { background: #2e1515; color: #ef9a9a; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
