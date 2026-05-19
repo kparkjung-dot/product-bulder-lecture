@@ -1406,6 +1406,46 @@ function formatTimeAgo(ts) {
 }
 
 let unsubConfessions = null;
+const activeReplyUnsubs = new Map();
+
+function toggleConfessionReplies(confId, btn) {
+    const repliesEl = document.getElementById('conf-replies-' + confId);
+    const isOpen = !repliesEl.classList.contains('hidden');
+    if (isOpen) {
+        repliesEl.classList.add('hidden');
+        btn.classList.remove('open');
+        if (activeReplyUnsubs.has(confId)) { activeReplyUnsubs.get(confId)(); activeReplyUnsubs.delete(confId); }
+        return;
+    }
+    repliesEl.classList.remove('hidden');
+    btn.classList.add('open');
+    const listEl = document.getElementById('conf-reply-list-' + confId);
+    const countEl = document.getElementById('conf-count-' + confId);
+    listEl.innerHTML = '<div class="comment-empty" style="font-size:.85rem;padding:.4rem 0">Cargando...</div>';
+    const unsub = db.collection('comments_confesion_' + confId)
+        .orderBy('ts', 'asc').limit(30)
+        .onSnapshot(snap => {
+            if (countEl) countEl.textContent = snap.size;
+            if (snap.empty) {
+                listEl.innerHTML = '<div class="comment-empty" style="font-size:.85rem;padding:.4rem 0">Sé el primero en responder 💬</div>';
+                return;
+            }
+            listEl.innerHTML = '';
+            snap.forEach(doc => {
+                const d = doc.data();
+                const div = document.createElement('div');
+                div.className = 'conf-reply-item';
+                div.innerHTML =
+                    '<div class="conf-reply-meta">' +
+                        '<span class="conf-reply-author">👤 ' + escapeHtml(d.name || 'Anónimo') + '</span>' +
+                        '<span>' + formatTimeAgo(d.ts) + '</span>' +
+                    '</div>' +
+                    '<div class="conf-reply-body">' + escapeHtml(d.text) + '</div>';
+                listEl.appendChild(div);
+            });
+        }, () => { listEl.innerHTML = '<div class="comment-empty">No se pudieron cargar respuestas.</div>'; });
+    activeReplyUnsubs.set(confId, unsub);
+}
 
 function loadConfessions() {
     const listEl = document.getElementById('confession-list');
@@ -1432,8 +1472,26 @@ function loadConfessions() {
                     return `<button class="react-btn${hasReacted ? ' reacted' : ''}" data-id="${confId}" data-key="${r.key}"${hasReacted ? ' disabled' : ''}>${r.emoji} <span>${count}</span></button>`;
                 }).join('');
                 item.innerHTML =
-                    `<div class="confession-text">${escapeHtml(d.text)}</div>` +
-                    `<div class="confession-footer"><div class="confession-reactions">${reactBtns}</div><span class="confession-time">${formatTimeAgo(d.ts)}</span></div>`;
+                    '<div class="confession-meta">' +
+                        '<span class="confession-author">👤 ' + escapeHtml(d.name || 'Anónimo') + '</span>' +
+                        '<span class="confession-time">' + formatTimeAgo(d.ts) + '</span>' +
+                    '</div>' +
+                    '<div class="confession-text">' + escapeHtml(d.text) + '</div>' +
+                    '<div class="confession-footer">' +
+                        '<div class="confession-reactions">' + reactBtns + '</div>' +
+                        '<button class="conf-toggle-btn" data-id="' + confId + '">💬 <span id="conf-count-' + confId + '">0</span></button>' +
+                    '</div>' +
+                    '<div class="conf-replies hidden" id="conf-replies-' + confId + '">' +
+                        '<div class="conf-reply-list" id="conf-reply-list-' + confId + '"></div>' +
+                        '<div class="conf-reply-form">' +
+                            '<input type="text" class="conf-reply-name" placeholder="Tu nombre (opcional)" maxlength="20" autocomplete="off">' +
+                            '<div class="conf-reply-row">' +
+                                '<textarea class="conf-reply-textarea" placeholder="Escribe tu respuesta..." maxlength="200" rows="2"></textarea>' +
+                                '<button class="conf-reply-submit">Enviar</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+
                 item.querySelectorAll('.react-btn:not([disabled])').forEach(btn => {
                     btn.addEventListener('click', () => {
                         btn.disabled = true;
@@ -1446,6 +1504,31 @@ function loadConfessions() {
                         }).catch(() => {});
                     });
                 });
+
+                item.querySelector('.conf-toggle-btn').addEventListener('click', function() {
+                    toggleConfessionReplies(confId, this);
+                });
+
+                item.querySelector('.conf-reply-submit').addEventListener('click', async function() {
+                    const nameEl = item.querySelector('.conf-reply-name');
+                    const textEl = item.querySelector('.conf-reply-textarea');
+                    const name = nameEl.value.trim();
+                    const text = textEl.value.trim();
+                    if (!text || text.length < 3) return;
+                    if (hasBadWord(name) || hasBadWord(text)) return;
+                    this.disabled = true;
+                    try {
+                        await db.collection('comments_confesion_' + confId).add({
+                            name: name || 'Anónimo',
+                            text,
+                            ts: firebase.firestore.FieldValue.serverTimestamp(),
+                        });
+                        textEl.value = '';
+                        nameEl.value = '';
+                    } catch(e) { /* silent */ }
+                    finally { this.disabled = false; }
+                });
+
                 listEl.appendChild(item);
             });
         }, () => {
@@ -1474,14 +1557,17 @@ document.getElementById('confession-submit').addEventListener('click', async () 
     if (Date.now() - lastConf < 60000) { showConfFeedback('Espera 1 minuto antes de confesar de nuevo.', 'error'); return; }
     const submitBtn = document.getElementById('confession-submit');
     submitBtn.disabled = true;
+    const authorName = document.getElementById('confession-author').value.trim();
     try {
         await db.collection('comments_confesiones').add({
+            name: authorName || 'Anónimo',
             text,
             ts: firebase.firestore.FieldValue.serverTimestamp(),
             joy: 0, cry: 0, wow: 0, hands: 0,
         });
         confessionTextEl.value = '';
         confessionCharsEl.textContent = '0';
+        document.getElementById('confession-author').value = '';
         localStorage.setItem('tetinca_last_confession', Date.now().toString());
         showConfFeedback('¡Confesión publicada! 🤫', 'success');
     } catch {
