@@ -187,15 +187,15 @@ body.dark.theme-sudoku { --primary:#a78bfa; --primary-hover:#8b5cf6; --primary-s
 .sudoku-grid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
     border: 3px solid var(--primary); border-radius: 8px; overflow: hidden;
-    width: 100%; max-width: 340px; aspect-ratio: 1 / 1;
+    width: 100%; max-width: 340px;
     box-shadow: 0 4px 20px rgba(124,58,237,.2);
 }
 .sudoku-cell {
+    aspect-ratio: 1;
     border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: clamp(.7rem, 2.4vw, 1rem); font-weight: 700;
+    cursor: pointer; font-size: clamp(.7rem, 3.5vw, 1.1rem); font-weight: 700;
     color: var(--text); user-select: none; transition: background .1s;
 }
 .sudoku-cell:nth-child(9n)   { border-right: none; }
