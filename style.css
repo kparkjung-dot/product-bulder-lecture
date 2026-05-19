@@ -68,6 +68,12 @@ body.dark .cat-tab[data-cat="comer"].active    { background: #c2410c; }
 body.dark .cat-tab[data-cat="hacer"].active    { background: #15803d; }
 body.dark .cat-tab[data-cat="horoscopo"].active{ background: #6d28d9; }
 body.dark .cat-tab[data-cat="ver"].active      { background: #1d4ed8; }
+.cat-tab[data-cat="encuesta"].active    { background: #f43f5e; color: #fff; box-shadow: 0 4px 14px rgba(244,63,94,0.30); }
+.cat-tab[data-cat="trivia"].active      { background: #d97706; color: #fff; box-shadow: 0 4px 14px rgba(217,119,6,0.30); }
+.cat-tab[data-cat="confesiones"].active { background: #0d9488; color: #fff; box-shadow: 0 4px 14px rgba(13,148,136,0.30); }
+body.dark .cat-tab[data-cat="encuesta"].active    { background: #be123c; }
+body.dark .cat-tab[data-cat="trivia"].active      { background: #b45309; }
+body.dark .cat-tab[data-cat="confesiones"].active { background: #0f766e; }
 
 /* comer — orange */
 body.theme-comer { --primary:#ea580c; --primary-hover:#c2410c; --primary-soft:#ffedd5; --result-bg:linear-gradient(135deg,#fff7ed,#ffedd5); }
@@ -90,6 +96,24 @@ body.theme-ver { --primary:#2563eb; --primary-hover:#1d4ed8; --primary-soft:#dbe
 body.theme-ver .main-btn { background:linear-gradient(135deg,#60a5fa,#2563eb,#1d4ed8); box-shadow:0 4px 20px rgba(37,99,235,.35),0 1px 3px rgba(29,78,216,.15); }
 body.theme-ver .main-btn:hover:not(:disabled) { box-shadow:0 6px 26px rgba(37,99,235,.5),0 2px 6px rgba(29,78,216,.2); }
 body.dark.theme-ver { --primary:#60a5fa; --primary-hover:#93c5fd; --primary-soft:#1e3a8a; --result-bg:linear-gradient(135deg,#0c1a2e,#111e3a); }
+
+/* encuesta — rose */
+body.theme-encuesta { --primary:#f43f5e; --primary-hover:#e11d48; --primary-soft:#ffe4e6; --result-bg:linear-gradient(135deg,#fff1f2,#ffe4e6); }
+body.theme-encuesta .main-btn { background:linear-gradient(135deg,#fb7185,#f43f5e,#e11d48); box-shadow:0 4px 20px rgba(244,63,94,.35),0 1px 3px rgba(225,29,72,.15); }
+body.theme-encuesta .main-btn:hover:not(:disabled) { box-shadow:0 6px 26px rgba(244,63,94,.5),0 2px 6px rgba(225,29,72,.2); }
+body.dark.theme-encuesta { --primary:#fb7185; --primary-hover:#f43f5e; --primary-soft:#4c0519; --result-bg:linear-gradient(135deg,#1c080c,#270a12); }
+
+/* trivia — amber */
+body.theme-trivia { --primary:#d97706; --primary-hover:#b45309; --primary-soft:#fef3c7; --result-bg:linear-gradient(135deg,#fffbeb,#fef3c7); }
+body.theme-trivia .main-btn { background:linear-gradient(135deg,#fbbf24,#d97706,#b45309); box-shadow:0 4px 20px rgba(217,119,6,.35),0 1px 3px rgba(180,83,9,.15); }
+body.theme-trivia .main-btn:hover:not(:disabled) { box-shadow:0 6px 26px rgba(217,119,6,.5),0 2px 6px rgba(180,83,9,.2); }
+body.dark.theme-trivia { --primary:#fbbf24; --primary-hover:#f59e0b; --primary-soft:#451a03; --result-bg:linear-gradient(135deg,#1c1505,#271e08); }
+
+/* confesiones — teal */
+body.theme-confesiones { --primary:#0d9488; --primary-hover:#0f766e; --primary-soft:#ccfbf1; --result-bg:linear-gradient(135deg,#f0fdfa,#ccfbf1); }
+body.theme-confesiones .main-btn { background:linear-gradient(135deg,#2dd4bf,#0d9488,#0f766e); box-shadow:0 4px 20px rgba(13,148,136,.35),0 1px 3px rgba(15,118,110,.15); }
+body.theme-confesiones .main-btn:hover:not(:disabled) { box-shadow:0 6px 26px rgba(13,148,136,.5),0 2px 6px rgba(15,118,110,.2); }
+body.dark.theme-confesiones { --primary:#2dd4bf; --primary-hover:#14b8a6; --primary-soft:#042f2e; --result-bg:linear-gradient(135deg,#021616,#041e1e); }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -150,14 +174,15 @@ header {
 
 /* Category tabs (¿Qué comer? / ¿Qué hacer? / etc.) */
 .category-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 16px;
 }
 
 .cat-tab {
-    flex: 1;
+    flex: 1 1 calc(50% - 5px);
+    min-width: 0;
     padding: 14px;
     border: none;
     border-radius: 14px;
@@ -1337,3 +1362,198 @@ footer {
 .admin-banner button:hover { background: rgba(255, 255, 255, 0.22); }
 #admin-delete-all-btn { background: rgba(239, 68, 68, 0.35); }
 #admin-delete-all-btn:hover { background: rgba(239, 68, 68, 0.55); }
+
+/* ── Poll (Encuesta del día) ─────────────────────────────── */
+.poll-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    border: 1px solid var(--border);
+}
+.poll-date-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-soft);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.poll-question {
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+.poll-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+}
+.poll-vote-btn {
+    padding: 1rem 0.5rem;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: var(--card-bg);
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.2s;
+    font-family: inherit;
+    line-height: 1.3;
+    text-align: center;
+}
+.poll-vote-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+.poll-vote-btn:active:not(:disabled) { transform: scale(0.97); }
+.poll-vote-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.poll-results { margin-bottom: 0.75rem; display: flex; flex-direction: column; gap: 14px; }
+.poll-result-row { display: flex; flex-direction: column; gap: 6px; }
+.poll-result-info { display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; }
+.poll-result-text { font-weight: 600; }
+.poll-pct { font-weight: 800; color: var(--primary); }
+.poll-bar-track { height: 10px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.poll-bar-fill { height: 100%; background: var(--border); border-radius: 99px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1), background 0.4s; width: 0%; }
+.poll-result-row.winner .poll-bar-fill { background: var(--primary); }
+.poll-result-row.my-vote .poll-result-text::before { content: '✓ '; color: var(--primary); font-weight: 800; }
+.poll-result-row.winner .poll-result-text { color: var(--primary); }
+.poll-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+/* ── Trivia Chilena ──────────────────────────────────────── */
+.trivia-welcome,
+.trivia-final { text-align: center; padding: 2rem 0; }
+.trivia-welcome-icon,
+.trivia-final-icon { font-size: 4rem; display: block; margin-bottom: 0.75rem; }
+.trivia-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.trivia-desc { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.5; font-size: 0.95rem; }
+.trivia-progress-wrap { display: flex; flex-direction: column; gap: 6px; margin-bottom: 0.75rem; }
+.trivia-progress-top { display: flex; justify-content: space-between; align-items: center; }
+.trivia-progress-text { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+.trivia-score-live { font-size: 0.9rem; font-weight: 800; color: var(--primary); }
+.trivia-progress-bar { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.trivia-progress-fill { height: 100%; background: var(--primary); border-radius: 99px; transition: width 0.5s ease; }
+.trivia-question-card { padding: 1.5rem !important; margin-bottom: 1rem; text-align: center; }
+.trivia-question-text { font-size: 1.05rem; font-weight: 700; line-height: 1.6; }
+.trivia-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.trivia-opt-btn {
+    padding: 0.85rem 0.5rem;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: var(--card-bg);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.2s;
+    font-family: inherit;
+    text-align: center;
+    line-height: 1.3;
+}
+.trivia-opt-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-soft); color: var(--primary); }
+.trivia-opt-btn.correct { border-color: #16a34a !important; background: #dcfce7 !important; color: #15803d !important; }
+.trivia-opt-btn.wrong   { border-color: #dc2626 !important; background: #fee2e2 !important; color: #b91c1c !important; }
+body.dark .trivia-opt-btn.correct { border-color: #4ade80 !important; background: #052e16 !important; color: #4ade80 !important; }
+body.dark .trivia-opt-btn.wrong   { border-color: #f87171 !important; background: #450a0a !important; color: #fca5a5 !important; }
+.trivia-final-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.25rem; }
+.trivia-final-score { font-size: 3rem; font-weight: 900; color: var(--primary); margin: 0.25rem 0; }
+.trivia-stars { font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
+.trivia-final-msg { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+.trivia-final-btns { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Confesiones Fomes ───────────────────────────────────── */
+.confession-form {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 16px var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+.confession-form textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.85rem;
+    font-size: 0.95rem;
+    background: var(--input-bg);
+    color: var(--text);
+    resize: none;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.confession-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13,148,136,0.12);
+}
+.confession-form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+}
+.confession-char-count { font-size: 0.8rem; color: var(--text-muted); }
+.confession-submit-btn { padding: 10px 22px !important; font-size: 0.9rem !important; width: auto !important; }
+.confession-list { display: flex; flex-direction: column; gap: 12px; }
+.confession-item {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px var(--shadow);
+    border: 1px solid var(--border);
+    animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.confession-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.85rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.confession-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.confession-reactions { display: flex; gap: 6px; flex-wrap: wrap; }
+.react-btn {
+    background: var(--tab-inactive-bg);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 5px 11px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: inherit;
+    font-weight: 600;
+}
+.react-btn:hover:not(:disabled) { background: var(--primary-soft); border-color: var(--primary); color: var(--primary); transform: scale(1.05); }
+.react-btn.reacted { background: var(--primary-soft); border-color: var(--primary); color: var(--primary); }
+.react-btn:disabled { cursor: not-allowed; }
+.confession-time { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }

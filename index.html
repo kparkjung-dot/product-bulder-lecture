@@ -36,6 +36,9 @@
                 <button class="cat-tab" data-cat="hacer">🎯 ¿Te tinca hacer?</button>
                 <button class="cat-tab" data-cat="horoscopo">🔮 Horóscopo</button>
                 <button class="cat-tab" data-cat="ver">🎬 ¿Te tinca ver?</button>
+                <button class="cat-tab" data-cat="encuesta">🗳️ Votemos</button>
+                <button class="cat-tab" data-cat="trivia">🧠 Trivia Chilena</button>
+                <button class="cat-tab" data-cat="confesiones">🤫 Confesiones Fomes</button>
             </div>
 
             <!-- Ad Zone 1: Below Tabs -->
@@ -300,6 +303,103 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.098.544 4.068 1.496 5.781L0 24l6.395-1.477A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.79 0-3.464-.467-4.921-1.283l-.353-.208-3.799.877.896-3.703-.23-.372A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
                         Compartir en WhatsApp
                     </button>
+                </div>
+            </div>
+
+            <!-- Encuesta del día panel -->
+            <div id="panel-encuesta" class="cat-panel">
+                <div class="how-it-works">
+                    <div class="how-step"><span class="how-num">1</span><span class="how-text">Lee la pregunta del día</span></div>
+                    <span class="how-sep">›</span>
+                    <div class="how-step"><span class="how-num">2</span><span class="how-text">Vota y ve qué piensa la comunidad</span></div>
+                </div>
+                <div class="poll-card">
+                    <div class="poll-date-badge">Votación de hoy · <span id="poll-date-label"></span></div>
+                    <div class="poll-question" id="poll-question">Cargando...</div>
+                    <div class="poll-options" id="poll-voting">
+                        <button class="poll-vote-btn" id="poll-opt0"><span id="poll-opt0-text"></span></button>
+                        <button class="poll-vote-btn" id="poll-opt1"><span id="poll-opt1-text"></span></button>
+                    </div>
+                    <div class="poll-results hidden" id="poll-results">
+                        <div class="poll-result-row" id="poll-res0">
+                            <div class="poll-result-info">
+                                <span class="poll-result-text" id="poll-res0-text"></span>
+                                <span class="poll-pct" id="poll-pct0"></span>
+                            </div>
+                            <div class="poll-bar-track"><div class="poll-bar-fill" id="poll-bar0"></div></div>
+                        </div>
+                        <div class="poll-result-row" id="poll-res1">
+                            <div class="poll-result-info">
+                                <span class="poll-result-text" id="poll-res1-text"></span>
+                                <span class="poll-pct" id="poll-pct1"></span>
+                            </div>
+                            <div class="poll-bar-track"><div class="poll-bar-fill" id="poll-bar1"></div></div>
+                        </div>
+                    </div>
+                    <div class="poll-footer">
+                        <span id="poll-total">Sé el primero en votar</span>
+                        <span>🔄 Se renueva mañana</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trivia Chilena panel -->
+            <div id="panel-trivia" class="cat-panel">
+                <div id="trivia-welcome">
+                    <span class="trivia-welcome-icon">🧠</span>
+                    <h2 class="trivia-title">Trivia Chilena</h2>
+                    <p class="trivia-desc">5 preguntas sobre Chile — cultura, gastronomía y cosas de todos los días. ¿Cuánto cachai?</p>
+                    <button class="main-btn" id="trivia-start-btn">¡Jugar!</button>
+                </div>
+                <div id="trivia-game" class="hidden">
+                    <div class="trivia-progress-wrap">
+                        <div class="trivia-progress-top">
+                            <span class="trivia-progress-text" id="trivia-progress-text">Pregunta 1 de 5</span>
+                            <span class="trivia-score-live">⭐ <span id="trivia-score-live">0</span>/5</span>
+                        </div>
+                        <div class="trivia-progress-bar">
+                            <div class="trivia-progress-fill" id="trivia-progress-fill" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div class="result-card trivia-question-card">
+                        <div class="trivia-question-text" id="trivia-question-text"></div>
+                    </div>
+                    <div class="trivia-options" id="trivia-options"></div>
+                    <button class="main-btn hidden" id="trivia-next-btn">Siguiente →</button>
+                </div>
+                <div id="trivia-final" class="hidden">
+                    <span class="trivia-final-icon" id="trivia-final-icon">🧠</span>
+                    <div class="trivia-final-title">¡Terminaste!</div>
+                    <div class="trivia-final-score" id="trivia-final-score">0 de 5</div>
+                    <div class="trivia-stars" id="trivia-stars"></div>
+                    <div class="trivia-final-msg" id="trivia-final-msg"></div>
+                    <div class="trivia-final-btns">
+                        <button class="main-btn" id="trivia-restart-btn">🔄 Jugar de nuevo</button>
+                        <button class="share-btn share-btn--whatsapp" id="trivia-share-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.098.544 4.068 1.496 5.781L0 24l6.395-1.477A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.79 0-3.464-.467-4.921-1.283l-.353-.208-3.799.877.896-3.703-.23-.372A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                            Compartir resultado
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confesiones Fomes panel -->
+            <div id="panel-confesiones" class="cat-panel">
+                <div class="how-it-works">
+                    <div class="how-step"><span class="how-num">1</span><span class="how-text">Confiesa algo fome (anónimo)</span></div>
+                    <span class="how-sep">›</span>
+                    <div class="how-step"><span class="how-num">2</span><span class="how-text">La comunidad reacciona con emojis</span></div>
+                </div>
+                <div class="confession-form">
+                    <textarea id="confession-text" placeholder="Confiesa algo fome... 🤫 (máx. 140 caracteres)" maxlength="140" rows="3"></textarea>
+                    <div class="confession-form-footer">
+                        <span class="confession-char-count"><span id="confession-chars">0</span>/140</span>
+                        <button class="main-btn confession-submit-btn" id="confession-submit">Confesar 🤫</button>
+                    </div>
+                    <div class="comment-feedback hidden" id="confession-feedback"></div>
+                </div>
+                <div class="confession-list" id="confession-list">
+                    <div class="comment-empty">Cargando confesiones...</div>
                 </div>
             </div>
 

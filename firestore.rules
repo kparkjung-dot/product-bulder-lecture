@@ -12,5 +12,17 @@ service cloud.firestore {
                     && request.resource.data.reports == resource.data.reports + 1;
       allow delete: if true;
     }
+    match /polls/{dateKey} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['opt0', 'opt1']);
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['opt0', 'opt1']);
+    }
+    match /confessions/{docId} {
+      allow read: if true;
+      allow create: if request.resource.data.text is string
+                    && request.resource.data.text.size() >= 5
+                    && request.resource.data.text.size() <= 200;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['joy', 'cry', 'wow', 'hands']);
+    }
   }
 }

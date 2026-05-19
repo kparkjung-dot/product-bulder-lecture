@@ -15,7 +15,7 @@ if (localStorage.getItem('theme') === 'dark') {
     themeBtn.textContent = '☀️';
 }
 
-const CAT_THEMES = ['theme-comer','theme-hacer','theme-horoscopo','theme-ver'];
+const CAT_THEMES = ['theme-comer','theme-hacer','theme-horoscopo','theme-ver','theme-encuesta','theme-trivia','theme-confesiones'];
 function applyCatTheme(cat) {
     document.body.classList.remove(...CAT_THEMES);
     document.body.classList.add(`theme-${cat}`);
@@ -40,10 +40,13 @@ firebase.initializeApp({
 const db = firebase.firestore();
 
 const COMMENTS_META = {
-    comer:     { badge: '🍽️ ¿Te tinca comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
-    horoscopo: { badge: '🔮 Horóscopo',      desc: '¿Tu horóscopo de hoy te hizo sentido? ¡Comparte tu experiencia!' },
-    hacer:     { badge: '🎯 ¿Te tinca hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
-    ver:       { badge: '🎬 ¿Te tinca ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
+    comer:       { badge: '🍽️ ¿Te tinca comer?',  desc: '¿Probaste alguno de estos platos hoy? ¡Cuéntanos qué tal!' },
+    horoscopo:   { badge: '🔮 Horóscopo',           desc: '¿Tu horóscopo de hoy te hizo sentido? ¡Comparte tu experiencia!' },
+    hacer:       { badge: '🎯 ¿Te tinca hacer?',    desc: '¿Qué planes tienes para hoy? ¡Cuéntanos!' },
+    ver:         { badge: '🎬 ¿Te tinca ver?',      desc: '¿Viste alguna de estas pelis o series? ¡Cuéntanos qué tal!' },
+    encuesta:    { badge: '🗳️ Votemos',             desc: '¿Qué te pareció la pregunta de hoy? ¡Cuéntanos!' },
+    trivia:      { badge: '🧠 Trivia Chilena',      desc: '¿Cómo te fue en la trivia? ¿Fue fácil o difícil?' },
+    confesiones: { badge: '🤫 Confesiones',         desc: '¿Te identificaste con alguna? ¡Comenta!' },
 };
 
 const BAD_WORDS = ['puta','huevon','weon','culiao','mierda','concha','pico','maricon','forro',
@@ -220,6 +223,8 @@ document.querySelectorAll('.cat-tab:not([disabled])').forEach(tab => {
         switchComments(cat);
         applyCatTheme(cat);
         if (cat === 'horoscopo' && !horoscopeData) loadHoroscope();
+        if (cat === 'encuesta' && !pollInitialized) { pollInitialized = true; initPoll(); }
+        if (cat === 'confesiones' && !confessionsInitialized) { confessionsInitialized = true; loadConfessions(); }
     });
 });
 
@@ -1086,6 +1091,347 @@ commentSubmit.addEventListener('click', async () => {
 });
 
 switchComments('comer');
+
+let pollInitialized = false;
+let confessionsInitialized = false;
+
+// ── Encuesta del día ─────────────────────────────────────
+const DAILY_POLLS = [
+    { q: '¿Pizza o sushi para la cena?',                opts: ['🍕 Pizza', '🍣 Sushi'] },
+    { q: '¿Pedido a domicilio o cocinar en casa?',       opts: ['🛵 Delivery', '🍳 Cocinar'] },
+    { q: '¿Completo o chorrillana?',                    opts: ['🌭 Completo', '🍟 Chorrillana'] },
+    { q: '¿Playa o montaña para el finde?',             opts: ['🏖️ Playa', '⛰️ Montaña'] },
+    { q: '¿Carretear o quedarse en casa?',              opts: ['🍻 Carretear', '🛋️ Quedarse'] },
+    { q: '¿Café o té para empezar el día?',             opts: ['☕ Café', '🫖 Té'] },
+    { q: '¿Dulce o salado para el antojo?',             opts: ['🍫 Dulce', '🧀 Salado'] },
+    { q: '¿Marraqueta o hallulla?',                     opts: ['🍞 Marraqueta', '🥖 Hallulla'] },
+    { q: '¿Almuerzo en casa o fuera?',                  opts: ['🏠 En casa', '🍽️ Afuera'] },
+    { q: '¿Película nueva o clásico favorito?',         opts: ['✨ Nueva', '📼 Clásico'] },
+    { q: '¿Música o silencio para trabajar?',           opts: ['🎵 Música', '🤫 Silencio'] },
+    { q: '¿Asado o picada para el finde?',              opts: ['🔥 Asado', '🍽️ Picada'] },
+    { q: '¿Verano o invierno en Chile?',                opts: ['☀️ Verano', '❄️ Invierno'] },
+    { q: '¿Empanada frita o al horno?',                 opts: ['🔥 Frita', '♨️ Al horno'] },
+    { q: '¿Con amigos o momento solo?',                 opts: ['👥 Amigos', '🧘 Solo'] },
+    { q: '¿Humor o drama para esta noche?',             opts: ['😂 Comedia', '🎭 Drama'] },
+    { q: '¿Dormir hasta tarde o madrugar?',             opts: ['😴 Dormir', '🌅 Madrugar'] },
+    { q: '¿Comer sano o darse un gusto hoy?',           opts: ['🥗 Sano', '🍔 A lo bestia'] },
+    { q: '¿Ejercicio o descanso absoluto?',             opts: ['🏃 Ejercicio', '🛋️ Descanso'] },
+    { q: '¿Santiago o escaparse el finde?',             opts: ['🏙️ Santiago', '🚗 Escaparse'] },
+    { q: '¿Sopaipilla pasada o con pebre?',             opts: ['🍯 Pasada', '🌶️ Con pebre'] },
+    { q: '¿Leer o ver algo en pantalla?',               opts: ['📚 Leer', '📱 Pantalla'] },
+    { q: '¿Una cerveza fría o un pisco sour?',          opts: ['🍺 Cerveza', '🍹 Pisco sour'] },
+    { q: '¿Pedir chifa o japonés?',                     opts: ['🥡 Chifa', '🍱 Japonés'] },
+    { q: '¿Netflix o salir a dar una vuelta?',          opts: ['📺 Netflix', '🚶 Salir'] },
+    { q: '¿Desayuno en cama o en la mesa?',             opts: ['🛏️ En cama', '🪑 En la mesa'] },
+    { q: '¿Paseo en bici o ir a pie?',                  opts: ['🚴 Bicicleta', '🚶 Caminando'] },
+    { q: '¿Llamar o mandar un mensaje?',                opts: ['📞 Llamar', '💬 Mensaje'] },
+];
+
+function getPollDayKey() {
+    return new Date().toLocaleDateString('sv-SE', { timeZone: 'America/Santiago' });
+}
+
+function getTodayPoll() {
+    const dayNum = Math.floor(Date.now() / 86400000);
+    return DAILY_POLLS[dayNum % DAILY_POLLS.length];
+}
+
+let pollUnsubscribe = null;
+
+function renderPollResults(v0, v1, voted) {
+    const total = v0 + v1 || 1;
+    const pct0 = Math.round(v0 / total * 100);
+    const pct1 = 100 - pct0;
+    document.getElementById('poll-bar0').style.width = pct0 + '%';
+    document.getElementById('poll-bar1').style.width = pct1 + '%';
+    document.getElementById('poll-pct0').textContent = pct0 + '%';
+    document.getElementById('poll-pct1').textContent = pct1 + '%';
+    const total2 = v0 + v1;
+    document.getElementById('poll-total').textContent = total2 ? `${total2} voto${total2 !== 1 ? 's' : ''}` : 'Sé el primero en votar';
+    const res0 = document.getElementById('poll-res0');
+    const res1 = document.getElementById('poll-res1');
+    res0.classList.toggle('my-vote', voted === 0);
+    res1.classList.toggle('my-vote', voted === 1);
+    res0.classList.toggle('winner', pct0 >= pct1);
+    res1.classList.toggle('winner', pct1 > pct0);
+    document.getElementById('poll-voting').classList.add('hidden');
+    document.getElementById('poll-results').classList.remove('hidden');
+}
+
+function initPoll() {
+    const poll = getTodayPoll();
+    const dateKey = getPollDayKey();
+    const dateStr = new Date().toLocaleDateString('es-CL', { timeZone: 'America/Santiago', day: 'numeric', month: 'long' });
+    document.getElementById('poll-date-label').textContent = dateStr;
+    document.getElementById('poll-question').textContent = poll.q;
+    document.getElementById('poll-opt0-text').textContent = poll.opts[0];
+    document.getElementById('poll-opt1-text').textContent = poll.opts[1];
+    document.getElementById('poll-res0-text').textContent = poll.opts[0];
+    document.getElementById('poll-res1-text').textContent = poll.opts[1];
+    const voted = localStorage.getItem('tetinca_poll_' + dateKey);
+    if (pollUnsubscribe) pollUnsubscribe();
+    pollUnsubscribe = db.collection('polls').doc(dateKey).onSnapshot(snap => {
+        const data = snap.exists ? snap.data() : { opt0: 0, opt1: 0 };
+        const v0 = data.opt0 || 0;
+        const v1 = data.opt1 || 0;
+        const total = v0 + v1;
+        if (voted !== null) {
+            renderPollResults(v0, v1, parseInt(voted));
+        } else {
+            document.getElementById('poll-total').textContent = total ? `${total} voto${total !== 1 ? 's' : ''}` : 'Sé el primero en votar';
+        }
+    });
+}
+
+async function vote(optIndex) {
+    const dateKey = getPollDayKey();
+    if (localStorage.getItem('tetinca_poll_' + dateKey) !== null) return;
+    document.getElementById('poll-opt0').disabled = true;
+    document.getElementById('poll-opt1').disabled = true;
+    try {
+        await db.collection('polls').doc(dateKey).set(
+            { ['opt' + optIndex]: firebase.firestore.FieldValue.increment(1) },
+            { merge: true }
+        );
+        localStorage.setItem('tetinca_poll_' + dateKey, optIndex.toString());
+        const snap = await db.collection('polls').doc(dateKey).get();
+        const data = snap.data() || {};
+        renderPollResults(data.opt0 || 0, data.opt1 || 0, optIndex);
+    } catch {
+        document.getElementById('poll-opt0').disabled = false;
+        document.getElementById('poll-opt1').disabled = false;
+    }
+}
+
+document.getElementById('poll-opt0').addEventListener('click', () => vote(0));
+document.getElementById('poll-opt1').addEventListener('click', () => vote(1));
+
+// ── Trivia Chilena ────────────────────────────────────────
+const TRIVIA_POOL = [
+    { q: '¿Cuál es el baile nacional de Chile?',                             opts: ['Marinera', 'Salsa', 'Cueca', 'Cumbia'],                           ans: 2 },
+    { q: '¿Qué significa "fome" en Chile?',                                  opts: ['Sabroso', 'Cansado', 'Enojado', 'Aburrido'],                      ans: 3 },
+    { q: '¿Qué es el "completo italiano"?',                                  opts: ['Una pasta italiana', 'Hot dog con tomate, palta y mayo', 'Pizza especial', 'Desayuno completo'], ans: 1 },
+    { q: '¿A qué animal llaman "guagua" en Chile?',                          opts: ['Perro pequeño', 'Un tipo de ave', 'Bebé / niño pequeño', 'Un roedor'], ans: 2 },
+    { q: '¿Qué es la "marraqueta"?',                                         opts: ['Una fruta', 'Un instrumento', 'Una danza', 'Un pan crujiente'],    ans: 3 },
+    { q: '¿Qué es la "chorrillana"?',                                        opts: ['Sopa de mariscos', 'Papas fritas con carne y huevo', 'Un postre', 'Empanada especial'], ans: 1 },
+    { q: '¿Qué significa "cachai" en Chile?',                                opts: ['¿Tienes hambre?', '¿Cómo estás?', '¿Entiendes?', '¿Vienes?'],    ans: 2 },
+    { q: '¿De qué es el caldillo de congrio?',                               opts: ['De un tipo de pollo', 'De un pez marino', 'De mariscos', 'De legumbres'], ans: 1 },
+    { q: '¿Cuál es el animal en el escudo de Chile?',                        opts: ['Cóndor y Puma', 'Llama y Cóndor', 'Huemul y Guanaco', 'Cóndor y Huemul'], ans: 3 },
+    { q: '¿Qué significa "bacán"?',                                          opts: ['Feo o malo', 'Aburrido', 'Genial / muy bueno', 'Enojado'],        ans: 2 },
+    { q: '¿En qué ciudad está el Congreso Nacional de Chile?',               opts: ['Santiago', 'Concepción', 'Valparaíso', 'La Serena'],              ans: 2 },
+    { q: '¿Qué es la "pebre"?',                                              opts: ['Un postre de leche', 'Una cerveza típica', 'Un plato de mariscos', 'Salsa con cebolla y cilantro'], ans: 3 },
+    { q: '¿Qué significa "al tiro" en Chile?',                               opts: ['De madrugada', 'En este momento', 'A lo lejos', 'A la fuerza'],  ans: 1 },
+    { q: '¿Cuál es el desierto más seco del mundo, en Chile?',               opts: ['Sahara', 'Gobi', 'Atacama', 'Namib'],                             ans: 2 },
+    { q: '¿Qué es el "pisco sour"?',                                         opts: ['Un vino chileno', 'Una cerveza artesanal', 'Un cóctel con pisco y limón', 'Un jugo de fruta'], ans: 2 },
+    { q: '¿Cuántas estrellas tiene la bandera de Chile?',                    opts: ['Ninguna', 'Dos', 'Tres', 'Una'],                                  ans: 3 },
+    { q: '¿Qué significa "estar curado" en Chile?',                          opts: ['Estar sano', 'Estar asustado', 'Estar borracho', 'Estar enojado'], ans: 2 },
+    { q: '¿Cómo se llama el estadio más grande de Chile?',                   opts: ['Estadio Monumental', 'Estadio Nacional', 'Estadio El Teniente', 'Estadio San Carlos'], ans: 1 },
+    { q: '¿A qué le llaman "sopaipilla pasada"?',                            opts: ['Con chancaca', 'Con pebre', 'Con queso', 'Sin nada'],              ans: 0 },
+    { q: '¿Cuál es el deporte nacional de Chile?',                           opts: ['Fútbol', 'Tenis', 'Polo', 'Rodeo chileno'],                       ans: 3 },
+    { q: '¿Qué es un "kuchen" en el sur de Chile?',                          opts: ['Un guiso alemán', 'Un embutido', 'Una torta de origen alemán', 'Una bebida caliente'], ans: 2 },
+    { q: '¿Qué es la "chica cuica" en Chile?',                               opts: ['Una cerveza', 'Una fruta pequeña', 'Chicha de manzana dulce', 'Un baile'],  ans: 2 },
+    { q: '¿Qué significa "pololo/a" en Chile?',                              opts: ['Amigo cercano', 'Pareja / novio/a', 'Un tipo de insecto', 'Vecino'],  ans: 1 },
+    { q: '¿En qué océano tiene costa Chile?',                                opts: ['Atlántico', 'Índico', 'Ártico', 'Pacífico'],                       ans: 3 },
+    { q: '¿Qué es el "merkén"?',                                             opts: ['Una danza mapuche', 'Un tipo de pan', 'Un condimento ahumado mapuche', 'Una fruta del sur'], ans: 2 },
+];
+
+let triviaQuestions = [];
+let triviaIndex = 0;
+let triviaScore = 0;
+let triviaAnswered = false;
+
+function startTrivia() {
+    const shuffled = [...TRIVIA_POOL].sort(() => Math.random() - 0.5);
+    triviaQuestions = shuffled.slice(0, 5);
+    triviaIndex = 0;
+    triviaScore = 0;
+    document.getElementById('trivia-welcome').classList.add('hidden');
+    document.getElementById('trivia-final').classList.add('hidden');
+    document.getElementById('trivia-game').classList.remove('hidden');
+    showTriviaQuestion();
+}
+
+function showTriviaQuestion() {
+    triviaAnswered = false;
+    const q = triviaQuestions[triviaIndex];
+    document.getElementById('trivia-progress-text').textContent = `Pregunta ${triviaIndex + 1} de 5`;
+    document.getElementById('trivia-progress-fill').style.width = (triviaIndex / 5 * 100) + '%';
+    document.getElementById('trivia-score-live').textContent = triviaScore;
+    document.getElementById('trivia-question-text').textContent = q.q;
+    document.getElementById('trivia-next-btn').classList.add('hidden');
+    const optionsEl = document.getElementById('trivia-options');
+    optionsEl.innerHTML = '';
+    q.opts.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'trivia-opt-btn';
+        btn.textContent = opt;
+        btn.addEventListener('click', () => answerTrivia(i, q.ans));
+        optionsEl.appendChild(btn);
+    });
+}
+
+function answerTrivia(selected, correct) {
+    if (triviaAnswered) return;
+    triviaAnswered = true;
+    const optBtns = document.querySelectorAll('.trivia-opt-btn');
+    optBtns.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === correct) btn.classList.add('correct');
+        else if (i === selected) btn.classList.add('wrong');
+    });
+    if (selected === correct) triviaScore++;
+    document.getElementById('trivia-score-live').textContent = triviaScore;
+    if (triviaIndex < 4) {
+        document.getElementById('trivia-next-btn').classList.remove('hidden');
+    } else {
+        setTimeout(showTriviaFinal, 900);
+    }
+}
+
+function showTriviaFinal() {
+    document.getElementById('trivia-game').classList.add('hidden');
+    document.getElementById('trivia-final').classList.remove('hidden');
+    const icons   = ['😅', '🙈', '🤔', '😎', '🏆', '🧠'];
+    const msgs    = ['¡Sigue practicando!', '¡No está mal, pero puedes mejorar!', '¡Vas bien!', '¡Buen puntaje!', '¡Casi perfecto!', '¡Eres un crack de Chile! 🇨🇱'];
+    document.getElementById('trivia-final-icon').textContent  = icons[triviaScore];
+    document.getElementById('trivia-final-score').textContent = `${triviaScore} de 5`;
+    document.getElementById('trivia-final-msg').textContent   = msgs[triviaScore];
+    document.getElementById('trivia-stars').textContent       = '⭐'.repeat(triviaScore) + '☆'.repeat(5 - triviaScore);
+    const shareText = `¡Saqué ${triviaScore}/5 en la Trivia Chilena de Estoy Fome! ${'⭐'.repeat(triviaScore)}${'☆'.repeat(5 - triviaScore)} ¿Tú lo puedes superar? → https://tetinca.cl`;
+    document.getElementById('trivia-share-btn').onclick = () =>
+        window.open('https://wa.me/?text=' + encodeURIComponent(shareText), '_blank', 'noopener');
+}
+
+document.getElementById('trivia-start-btn').addEventListener('click', startTrivia);
+document.getElementById('trivia-next-btn').addEventListener('click', () => {
+    triviaIndex++;
+    showTriviaQuestion();
+});
+document.getElementById('trivia-restart-btn').addEventListener('click', () => {
+    document.getElementById('trivia-final').classList.add('hidden');
+    document.getElementById('trivia-welcome').classList.remove('hidden');
+});
+
+// ── Confesiones Fomes ─────────────────────────────────────
+const CONFESSION_REACTIONS = [
+    { key: 'joy',   emoji: '😂' },
+    { key: 'cry',   emoji: '🥹' },
+    { key: 'wow',   emoji: '😮' },
+    { key: 'hands', emoji: '🤝' },
+];
+
+function getReacted() {
+    return JSON.parse(localStorage.getItem('tetinca_reacted') || '{}');
+}
+
+function setReacted(confId, key) {
+    const reacted = getReacted();
+    if (!reacted[confId]) reacted[confId] = [];
+    reacted[confId].push(key);
+    localStorage.setItem('tetinca_reacted', JSON.stringify(reacted));
+}
+
+function formatTimeAgo(ts) {
+    if (!ts) return '';
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    const diff = Date.now() - d.getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'justo ahora';
+    if (mins < 60) return `hace ${mins} min`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `hace ${hrs}h`;
+    return `hace ${Math.floor(hrs / 24)}d`;
+}
+
+let unsubConfessions = null;
+
+function loadConfessions() {
+    const listEl = document.getElementById('confession-list');
+    listEl.innerHTML = '<div class="comment-empty">Cargando confesiones...</div>';
+    if (unsubConfessions) { unsubConfessions(); unsubConfessions = null; }
+    unsubConfessions = db.collection('confessions')
+        .orderBy('createdAt', 'desc')
+        .limit(20)
+        .onSnapshot(snap => {
+            if (snap.empty) {
+                listEl.innerHTML = '<div class="comment-empty">¡Sé el primero en confesar algo! 🤫</div>';
+                return;
+            }
+            const reacted = getReacted();
+            listEl.innerHTML = '';
+            snap.forEach(doc => {
+                const d = doc.data();
+                const confId = doc.id;
+                const item = document.createElement('div');
+                item.className = 'confession-item';
+                const reactBtns = CONFESSION_REACTIONS.map(r => {
+                    const count = d[r.key] || 0;
+                    const hasReacted = reacted[confId]?.includes(r.key);
+                    return `<button class="react-btn${hasReacted ? ' reacted' : ''}" data-id="${confId}" data-key="${r.key}"${hasReacted ? ' disabled' : ''}>${r.emoji} <span>${count}</span></button>`;
+                }).join('');
+                item.innerHTML =
+                    `<div class="confession-text">${escapeHtml(d.text)}</div>` +
+                    `<div class="confession-footer"><div class="confession-reactions">${reactBtns}</div><span class="confession-time">${formatTimeAgo(d.createdAt)}</span></div>`;
+                item.querySelectorAll('.react-btn:not([disabled])').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        btn.disabled = true;
+                        const id = btn.dataset.id;
+                        const key = btn.dataset.key;
+                        try {
+                            await db.collection('confessions').doc(id).update({
+                                [key]: firebase.firestore.FieldValue.increment(1)
+                            });
+                            setReacted(id, key);
+                            btn.classList.add('reacted');
+                            const countEl = btn.querySelector('span');
+                            countEl.textContent = parseInt(countEl.textContent) + 1;
+                        } catch { btn.disabled = false; }
+                    });
+                });
+                listEl.appendChild(item);
+            });
+        }, () => {
+            listEl.innerHTML = '<div class="comment-empty">No se pudieron cargar las confesiones.</div>';
+        });
+}
+
+const confessionTextEl = document.getElementById('confession-text');
+const confessionCharsEl = document.getElementById('confession-chars');
+confessionTextEl.addEventListener('input', () => {
+    confessionCharsEl.textContent = confessionTextEl.value.length;
+});
+
+document.getElementById('confession-submit').addEventListener('click', async () => {
+    const text = confessionTextEl.value.trim();
+    const feedbackEl = document.getElementById('confession-feedback');
+    function showConfFeedback(msg, type) {
+        feedbackEl.textContent = msg;
+        feedbackEl.className = 'comment-feedback ' + type;
+        setTimeout(() => { feedbackEl.className = 'comment-feedback hidden'; }, 3500);
+    }
+    if (!text) { showConfFeedback('Escribe algo para confesar 🤫', 'error'); return; }
+    if (text.length < 5) { showConfFeedback('¡Confiesa un poco más! Mínimo 5 caracteres.', 'error'); return; }
+    if (hasBadWord(text)) { showConfFeedback('Sin palabrotas por favor 🙏', 'error'); return; }
+    const lastConf = parseInt(localStorage.getItem('tetinca_last_confession') || '0');
+    if (Date.now() - lastConf < 60000) { showConfFeedback('Espera 1 minuto antes de confesar de nuevo.', 'error'); return; }
+    const submitBtn = document.getElementById('confession-submit');
+    submitBtn.disabled = true;
+    try {
+        await db.collection('confessions').add({
+            text,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            joy: 0, cry: 0, wow: 0, hands: 0,
+        });
+        confessionTextEl.value = '';
+        confessionCharsEl.textContent = '0';
+        localStorage.setItem('tetinca_last_confession', Date.now().toString());
+        showConfFeedback('¡Confesión publicada! 🤫', 'success');
+    } catch {
+        showConfFeedback('Error al publicar. Inténtalo de nuevo.', 'error');
+    } finally {
+        submitBtn.disabled = false;
+    }
+});
 
 // ── Contact form ───────────────────────────────────────
 const contactForm = document.querySelector('.contact-form');
