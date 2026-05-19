@@ -1,3 +1,12 @@
+// ── Beta Popup ─────────────────────────────────────────
+if (!localStorage.getItem('beta-seen')) {
+    document.getElementById('beta-overlay').classList.remove('hidden');
+}
+document.getElementById('beta-close').addEventListener('click', () => {
+    document.getElementById('beta-overlay').classList.add('hidden');
+    localStorage.setItem('beta-seen', '1');
+});
+
 // ── Theme ──────────────────────────────────────────────
 const themeBtn = document.getElementById('theme-btn');
 if (localStorage.getItem('theme') === 'dark') {

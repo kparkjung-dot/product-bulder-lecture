@@ -1023,6 +1023,61 @@ footer {
     color: var(--text-muted);
     padding-top: 24px;
 }
+/* ── Beta Popup ──────────────────────────────────────── */
+.beta-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+.beta-overlay.hidden { display: none; }
+.beta-modal {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.beta-badge {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+}
+.beta-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+.beta-desc {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.beta-btn {
+    background: var(--tab-active-bg);
+    color: var(--tab-active-text);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.beta-btn:hover { opacity: 0.85; }
+
 .footer-links {
     margin-top: 6px;
     font-size: 12px;
