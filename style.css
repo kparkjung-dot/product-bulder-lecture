@@ -1023,6 +1023,18 @@ footer {
     color: var(--text-muted);
     padding-top: 24px;
 }
+.footer-links {
+    margin-top: 6px;
+    font-size: 12px;
+}
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+.footer-links a:hover {
+    color: var(--text);
+    text-decoration: underline;
+}
 
 /* ── Mobile (≤ 480px) ──────────────────────────────────── */
 @media (max-width: 480px) {
