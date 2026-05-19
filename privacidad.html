@@ -3,90 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <title>Política de Privacidad — Estoy Fome</title>
-    <link rel="stylesheet" href="style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4570476089862829"
-     crossorigin="anonymous"></script>
+    <title>Política de Privacidad · Estoy Fome</title>
     <style>
-        .legal-container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 4rem;
-        }
-        .legal-container h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-        .legal-container .updated {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-        .legal-container h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 2rem 0 0.5rem;
-            color: var(--text);
-        }
-        .legal-container p, .legal-container li {
-            font-size: 0.95rem;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f0fdfa;
+            color: #18181b;
+            padding: 24px 16px 64px;
             line-height: 1.7;
-            color: var(--text-muted);
         }
-        .legal-container ul {
-            padding-left: 1.5rem;
-            margin: 0.5rem 0;
+        .container { max-width: 680px; margin: 0 auto; }
+        header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0 32px;
         }
-        .legal-container a {
-            color: var(--primary);
+        .back-btn {
+            background: #fff;
+            border: 1.5px solid #99f6e4;
+            border-radius: 999px;
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f766e;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .back-btn:hover { background: #ccfbf1; }
+        .logo-link {
+            font-size: 22px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #0d9488, #059669, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
         }
-        .back-link:hover { color: var(--text); }
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem 1.75rem;
+            box-shadow: 0 2px 20px rgba(13,148,136,0.10);
+            margin-bottom: 1.25rem;
+        }
+        h1 { font-size: 1.6rem; font-weight: 900; color: #0d9488; margin-bottom: .4rem; }
+        .updated { font-size: .85rem; color: #71717a; margin-bottom: 1.5rem; }
+        h2 { font-size: 1.05rem; font-weight: 800; color: #0f766e; margin: 1.5rem 0 .5rem; }
+        p { margin-bottom: .75rem; color: #3f3f46; font-size: .95rem; }
+        ul { margin: .5rem 0 .75rem 1.25rem; color: #3f3f46; font-size: .95rem; }
+        ul li { margin-bottom: .35rem; }
+        a { color: #0d9488; }
+        .badge {
+            display: inline-block;
+            background: #ccfbf1;
+            color: #0f766e;
+            font-size: .75rem;
+            font-weight: 700;
+            padding: .2rem .65rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+        }
+        footer { text-align: center; font-size: .82rem; color: #a1a1aa; margin-top: 2rem; }
     </style>
 </head>
 <body>
-    <div class="legal-container">
-        <a href="/" class="back-link">← Volver al inicio</a>
+<div class="container">
+    <header>
+        <a href="/" class="back-btn">← Volver</a>
+        <a href="/" class="logo-link">Estoy Fome</a>
+    </header>
+
+    <div class="card">
+        <span class="badge">Legal</span>
         <h1>Política de Privacidad</h1>
         <p class="updated">Última actualización: 19 de mayo de 2026</p>
 
-        <p>Esta Política de Privacidad describe cómo <strong>Estoy Fome</strong> — <em>¿Te tinca algo?</em> (en adelante "el Sitio"), disponible en <strong>estoyfome.cl</strong>, recopila, usa y protege la información de sus usuarios.</p>
+        <p>En <strong>Estoy Fome</strong> (<a href="https://www.estoyfome.cl">www.estoyfome.cl</a>) nos importa tu privacidad. Esta política explica qué información recopilamos, cómo la usamos y qué derechos tienes.</p>
 
         <h2>1. Información que recopilamos</h2>
-        <p>El Sitio puede recopilar los siguientes datos:</p>
+        <p>No solicitamos ni almacenamos datos personales como nombre, correo o teléfono. La única información que puede generarse es:</p>
         <ul>
-            <li><strong>Comentarios:</strong> nombre de usuario y texto ingresado voluntariamente.</li>
-            <li><strong>Datos de uso:</strong> páginas visitadas, tiempo en el sitio y tipo de dispositivo, recopilados de forma anónima a través de cookies.</li>
-            <li><strong>Formulario de contacto:</strong> nombre, correo electrónico y mensaje enviados voluntariamente.</li>
+            <li><strong>Comentarios y confesiones:</strong> El texto que escribes voluntariamente se guarda en nuestra base de datos (Google Firestore) de forma anónima, sin asociarse a ninguna identidad.</li>
+            <li><strong>Datos técnicos:</strong> Dirección IP, tipo de dispositivo y navegador, que los servicios de terceros pueden recopilar automáticamente.</li>
         </ul>
 
-        <h2>2. Uso de cookies y publicidad</h2>
-        <p>El Sitio utiliza <strong>Google AdSense</strong> para mostrar anuncios. Google y sus socios pueden usar cookies para mostrar anuncios basados en visitas anteriores a este u otros sitios web.</p>
-        <p>Puedes desactivar la publicidad personalizada visitando <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.</p>
+        <h2>2. Cookies y publicidad (Google AdSense)</h2>
+        <p>Este sitio utiliza <strong>Google AdSense</strong> para mostrar publicidad. Google y sus socios pueden usar cookies para personalizar los anuncios según tus intereses.</p>
+        <ul>
+            <li>Google utiliza la cookie <strong>DoubleClick</strong> para ofrecer anuncios relevantes.</li>
+            <li>Puedes desactivar la publicidad personalizada en <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">google.com/settings/ads</a>.</li>
+            <li>También puedes optar por no recibirla en <a href="https://www.aboutads.info" target="_blank" rel="noopener">aboutads.info</a>.</li>
+        </ul>
+        <p>Para más información, visita la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad de Google</a>.</p>
 
-        <h2>3. Firebase y almacenamiento de datos</h2>
-        <p>Los comentarios publicados se almacenan en <strong>Google Firebase Firestore</strong>. No se asocian a cuentas personales ni se comparten con terceros.</p>
+        <h2>3. Servicios de terceros</h2>
+        <ul>
+            <li><strong>Google Firebase / Firestore:</strong> Almacenamiento de comentarios y votos anónimos.</li>
+            <li><strong>Google AdSense:</strong> Plataforma de publicidad.</li>
+            <li><strong>Cloudflare:</strong> CDN para velocidad y seguridad del sitio.</li>
+        </ul>
+        <p>Cada servicio tiene su propia política de privacidad. No controlamos las cookies que estos terceros recopilan.</p>
 
-        <h2>4. Servicios de terceros</h2>
-        <p>El Sitio puede incluir contenido o enlaces a servicios de terceros (Cinemark, Cinépolis, plataformas de streaming). No somos responsables de las prácticas de privacidad de dichos servicios.</p>
+        <h2>4. Uso de la información</h2>
+        <ul>
+            <li>Mostrar comentarios y respuestas en el sitio.</li>
+            <li>Registrar votos en encuestas de forma anónima.</li>
+            <li>Servir publicidad a través de Google AdSense.</li>
+            <li>Mantener la seguridad y el funcionamiento del sitio.</li>
+        </ul>
+        <p>No vendemos ni compartimos tu información con terceros con fines comerciales propios.</p>
 
-        <h2>5. Derechos del usuario</h2>
-        <p>Puedes solicitar la eliminación de tus comentarios o datos en cualquier momento escribiéndonos a través del formulario de contacto del Sitio.</p>
+        <h2>5. Menores de edad</h2>
+        <p>Este sitio está destinado a personas mayores de 13 años. No recopilamos intencionalmente información de menores. Si eres padre o madre y crees que tu hijo/a ha enviado información personal, contáctanos.</p>
 
-        <h2>6. Cambios a esta política</h2>
-        <p>Podemos actualizar esta política ocasionalmente. La fecha de "última actualización" al inicio de esta página indica cuándo fue modificada por última vez.</p>
+        <h2>6. Tus derechos</h2>
+        <p>De acuerdo con la <strong>Ley N° 19.628</strong> sobre Protección de la Vida Privada de Chile, tienes derecho a saber qué información tenemos, solicitar la eliminación de tus comentarios y oponerte al tratamiento de tus datos.</p>
+        <p>Ejerce estos derechos a través del formulario en la página principal.</p>
 
-        <h2>7. Contacto</h2>
-        <p>Si tienes preguntas sobre esta política, puedes contactarnos desde la sección de contacto en el Sitio.</p>
+        <h2>7. Cambios a esta política</h2>
+        <p>Podemos actualizar esta política en cualquier momento. La fecha de "última actualización" al inicio de la página indicará los cambios más recientes.</p>
+
+        <h2>8. Contacto</h2>
+        <p>¿Preguntas? Contáctanos a través del formulario en <a href="/">www.estoyfome.cl</a>.</p>
     </div>
+
+    <footer>© 2026 Estoy Fome · Hecho con ❤️ en Chile</footer>
+</div>
 </body>
 </html>
