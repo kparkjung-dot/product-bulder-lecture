@@ -39,6 +39,7 @@
                 <button class="cat-tab" data-cat="encuesta">🗳️ Votemos</button>
                 <button class="cat-tab" data-cat="trivia">🧠 Trivia Chilena</button>
                 <button class="cat-tab" data-cat="confesiones">🤫 Confesiones Fomes</button>
+                <button class="cat-tab" data-cat="sudoku">🔢 Sudoku</button>
             </div>
 
             <!-- Ad Zone 1: Below Tabs -->
@@ -410,6 +411,51 @@
                 </div>
             </div>
 
+            <!-- Sudoku panel -->
+            <div id="panel-sudoku" class="cat-panel">
+                <div id="sudoku-welcome" class="sudoku-welcome">
+                    <span class="sudoku-welcome-icon">🔢</span>
+                    <h2 class="sudoku-title">Sudoku</h2>
+                    <p class="sudoku-desc">Completa el grid 9×9. Cada fila, columna y cuadrante 3×3 debe tener los números del 1 al 9 sin repetir.</p>
+                    <div class="sudoku-diff-picker">
+                        <button class="sudoku-diff-btn active" data-diff="easy">Fácil</button>
+                        <button class="sudoku-diff-btn" data-diff="medium">Medio</button>
+                        <button class="sudoku-diff-btn" data-diff="hard">Difícil</button>
+                    </div>
+                    <button class="main-btn" id="sudoku-start-btn">¡Jugar!</button>
+                </div>
+                <div id="sudoku-game" class="hidden">
+                    <div class="sudoku-topbar">
+                        <div class="sudoku-info">
+                            <span class="sudoku-diff-badge" id="sudoku-diff-badge">Fácil</span>
+                            <span class="sudoku-mistakes-badge" id="sudoku-mistakes">❌ 0</span>
+                        </div>
+                        <div class="sudoku-timer-wrap">
+                            <span>⏱</span>
+                            <span class="sudoku-timer" id="sudoku-timer">00:00</span>
+                        </div>
+                    </div>
+                    <div class="sudoku-grid-wrap">
+                        <div class="sudoku-grid" id="sudoku-grid"></div>
+                    </div>
+                    <div class="sudoku-numpad" id="sudoku-numpad"></div>
+                    <div class="sudoku-actions">
+                        <button class="sudoku-action-btn" id="sudoku-erase-btn">🗑️ Borrar</button>
+                        <button class="sudoku-action-btn" id="sudoku-hint-btn">💡 Pista <span id="sudoku-hints-left">(3)</span></button>
+                        <button class="sudoku-action-btn" id="sudoku-new-btn">🔄 Nuevo</button>
+                    </div>
+                </div>
+                <div id="sudoku-complete" class="hidden sudoku-complete">
+                    <span class="sudoku-complete-icon">🎉</span>
+                    <h2 class="sudoku-complete-title">¡Sudoku completado!</h2>
+                    <div class="sudoku-complete-stats">
+                        <div id="sudoku-complete-time">⏱ Tiempo: 00:00</div>
+                        <div id="sudoku-complete-mistakes">❌ Errores: 0</div>
+                    </div>
+                    <button class="main-btn" id="sudoku-play-again-btn">🔄 Jugar de nuevo</button>
+                </div>
+            </div>
+
             <!-- Ad Zone 2: Above Comments -->
             <div class="ad-zone ad-zone--comments" id="ad-zone-comments">
                 <ins class="adsbygoogle"
@@ -488,6 +534,6 @@
 
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="main.js?v=10"></script>
+    <script src="main.js?v=11"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ if (localStorage.getItem('theme') === 'dark') {
     themeBtn.textContent = '☀️';
 }
 
-const CAT_THEMES = ['theme-comer','theme-hacer','theme-horoscopo','theme-ver','theme-encuesta','theme-trivia','theme-confesiones'];
+const CAT_THEMES = ['theme-comer','theme-hacer','theme-horoscopo','theme-ver','theme-encuesta','theme-trivia','theme-confesiones','theme-sudoku'];
 function applyCatTheme(cat) {
     document.body.classList.remove(...CAT_THEMES);
     document.body.classList.add(`theme-${cat}`);
@@ -47,6 +47,7 @@ const COMMENTS_META = {
     encuesta:    { badge: '🗳️ Votemos',             desc: '¿Qué te pareció la pregunta de hoy? ¡Cuéntanos!' },
     trivia:      { badge: '🧠 Trivia Chilena',      desc: '¿Cómo te fue en la trivia? ¿Fue fácil o difícil?' },
     confesiones: { badge: '🤫 Confesiones',         desc: '¿Te identificaste con alguna? ¡Comenta!' },
+    sudoku:      { badge: '🔢 Sudoku',              desc: '¿Cuánto tardaste? ¡Comparte tu tiempo!' },
 };
 
 const BAD_WORDS = [
@@ -244,6 +245,7 @@ document.querySelectorAll('.cat-tab:not([disabled])').forEach(tab => {
         if (cat === 'horoscopo' && !horoscopeData) loadHoroscope();
         if (cat === 'encuesta' && !pollInitialized) { pollInitialized = true; initPoll(); }
         if (cat === 'confesiones' && !confessionsInitialized) { confessionsInitialized = true; loadConfessions(); }
+        if (cat === 'sudoku' && !sudokuTabInitialized) { sudokuTabInitialized = true; initSudokuTab(); }
     });
 });
 
@@ -3064,6 +3066,246 @@ document.getElementById('confession-submit').addEventListener('click', async () 
         submitBtn.disabled = false;
     }
 });
+
+// ── Sudoku ────────────────────────────────────────────────
+let sudokuTabInitialized = false;
+let sudokuSolution = null, sudokuCurrent = null, sudokuFixed = null;
+let sudokuSelected = null, sudokuTimer = null, sudokuSeconds = 0;
+let sudokuMistakes = 0, sudokuHintsLeft = 3, sudokuDifficulty = 'easy';
+let sudokuComplete = false, sudokuHinted = new Set();
+
+function sdkEmpty() { return Array.from({length:9}, () => Array(9).fill(0)); }
+
+function sdkValid(g, r, c, n) {
+    if (g[r].includes(n)) return false;
+    for (let i = 0; i < 9; i++) if (g[i][c] === n) return false;
+    const br = Math.floor(r/3)*3, bc = Math.floor(c/3)*3;
+    for (let i = br; i < br+3; i++) for (let j = bc; j < bc+3; j++) if (g[i][j] === n) return false;
+    return true;
+}
+
+function sdkShuffle(a) {
+    for (let i = a.length-1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; }
+    return a;
+}
+
+function sdkFill(g) {
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) if (g[r][c] === 0) {
+        for (const n of sdkShuffle([1,2,3,4,5,6,7,8,9])) {
+            if (sdkValid(g, r, c, n)) {
+                g[r][c] = n;
+                if (sdkFill(g)) return true;
+                g[r][c] = 0;
+            }
+        }
+        return false;
+    }
+    return true;
+}
+
+function sdkGenerate(diff) {
+    const remove = {easy:30, medium:43, hard:53}[diff] || 35;
+    const sol = sdkEmpty(); sdkFill(sol);
+    const puz = sol.map(r => [...r]);
+    sdkShuffle([...Array(81).keys()]).slice(0, remove).forEach(p => { puz[Math.floor(p/9)][p%9] = 0; });
+    return { solution: sol, puzzle: puz };
+}
+
+function sdkFmt(s) { return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }
+
+function initSudokuTab() {
+    document.querySelectorAll('.sudoku-diff-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.sudoku-diff-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            sudokuDifficulty = btn.dataset.diff;
+        });
+    });
+    document.getElementById('sudoku-start-btn').addEventListener('click', sdkStart);
+    document.getElementById('sudoku-new-btn').addEventListener('click', sdkStart);
+    document.getElementById('sudoku-erase-btn').addEventListener('click', sdkErase);
+    document.getElementById('sudoku-hint-btn').addEventListener('click', sdkHint);
+    document.getElementById('sudoku-play-again-btn').addEventListener('click', () => {
+        document.getElementById('sudoku-complete').classList.add('hidden');
+        document.getElementById('sudoku-welcome').classList.remove('hidden');
+    });
+    document.addEventListener('keydown', sdkKeyHandler);
+}
+
+function sdkStart() {
+    const {solution, puzzle} = sdkGenerate(sudokuDifficulty);
+    sudokuSolution = solution;
+    sudokuCurrent  = puzzle.map(r => [...r]);
+    sudokuFixed    = puzzle.map(r => r.map(v => v !== 0));
+    sudokuSelected = null;
+    sudokuMistakes = 0;
+    sudokuHintsLeft = 3;
+    sudokuComplete  = false;
+    sudokuHinted    = new Set();
+    sudokuSeconds   = 0;
+    clearInterval(sudokuTimer);
+    sudokuTimer = setInterval(() => {
+        sudokuSeconds++;
+        const el = document.getElementById('sudoku-timer');
+        if (el) el.textContent = sdkFmt(sudokuSeconds);
+    }, 1000);
+    document.getElementById('sudoku-welcome').classList.add('hidden');
+    document.getElementById('sudoku-complete').classList.add('hidden');
+    document.getElementById('sudoku-game').classList.remove('hidden');
+    document.getElementById('sudoku-diff-badge').textContent = {easy:'Fácil',medium:'Medio',hard:'Difícil'}[sudokuDifficulty];
+    document.getElementById('sudoku-timer').textContent = '00:00';
+    document.getElementById('sudoku-mistakes').textContent = '❌ 0';
+    document.getElementById('sudoku-hints-left').textContent = '(3)';
+    document.getElementById('sudoku-hint-btn').disabled = false;
+    sdkRenderGrid();
+    sdkBuildNumpad();
+}
+
+function sdkRenderGrid() {
+    const grid = document.getElementById('sudoku-grid');
+    grid.innerHTML = '';
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'sudoku-cell';
+        cell.dataset.r = r; cell.dataset.c = c;
+        const val = sudokuCurrent[r][c];
+        if (sudokuFixed[r][c]) {
+            cell.classList.add('given');
+            if (sudokuHinted.has(`${r},${c}`)) cell.classList.add('hinted');
+            cell.textContent = val;
+        } else if (val !== 0) {
+            cell.textContent = val;
+            if (val !== sudokuSolution[r][c]) cell.classList.add('error');
+        }
+        if (c === 2 || c === 5) cell.classList.add('box-right');
+        if (r === 2 || r === 5) cell.classList.add('box-bottom');
+        cell.addEventListener('click', () => sdkSelectCell(r, c));
+        grid.appendChild(cell);
+    }
+    sdkHighlight();
+}
+
+function sdkSelectCell(r, c) {
+    if (sudokuComplete) return;
+    sudokuSelected = {r, c};
+    sdkHighlight();
+}
+
+function sdkHighlight() {
+    document.querySelectorAll('.sudoku-cell').forEach(cell => {
+        cell.classList.remove('selected', 'highlighted', 'same-num');
+        if (!sudokuSelected) return;
+        const cr = +cell.dataset.r, cc = +cell.dataset.c;
+        const {r, c} = sudokuSelected;
+        if (cr === r && cc === c) { cell.classList.add('selected'); return; }
+        const sameBox = Math.floor(cr/3) === Math.floor(r/3) && Math.floor(cc/3) === Math.floor(c/3);
+        if (cr === r || cc === c || sameBox) cell.classList.add('highlighted');
+        const selVal = sudokuCurrent[r][c];
+        if (selVal !== 0 && sudokuCurrent[cr][cc] === selVal) cell.classList.add('same-num');
+    });
+}
+
+function sdkInput(num) {
+    if (!sudokuSelected || sudokuComplete) return;
+    const {r, c} = sudokuSelected;
+    if (sudokuFixed[r][c]) return;
+    sudokuCurrent[r][c] = num;
+    if (num !== 0 && num !== sudokuSolution[r][c]) {
+        sudokuMistakes++;
+        document.getElementById('sudoku-mistakes').textContent = `❌ ${sudokuMistakes}`;
+    }
+    sdkRenderGrid();
+    sdkUpdateNumpad();
+    if (sdkIsSolved()) sdkFinish();
+}
+
+function sdkErase() {
+    if (!sudokuSelected || sudokuComplete) return;
+    const {r, c} = sudokuSelected;
+    if (sudokuFixed[r][c]) return;
+    sudokuCurrent[r][c] = 0;
+    sdkRenderGrid();
+    sdkUpdateNumpad();
+}
+
+function sdkHint() {
+    if (sudokuHintsLeft <= 0 || sudokuComplete) return;
+    const empties = [];
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++)
+        if (!sudokuFixed[r][c] && sudokuCurrent[r][c] !== sudokuSolution[r][c]) empties.push({r,c});
+    if (!empties.length) return;
+    const {r, c} = empties[Math.floor(Math.random() * empties.length)];
+    sudokuCurrent[r][c] = sudokuSolution[r][c];
+    sudokuFixed[r][c] = true;
+    sudokuHinted.add(`${r},${c}`);
+    sudokuHintsLeft--;
+    document.getElementById('sudoku-hints-left').textContent = `(${sudokuHintsLeft})`;
+    if (sudokuHintsLeft === 0) document.getElementById('sudoku-hint-btn').disabled = true;
+    sudokuSelected = {r, c};
+    sdkRenderGrid();
+    const cell = document.querySelector(`.sudoku-cell[data-r="${r}"][data-c="${c}"]`);
+    if (cell) { cell.classList.add('hint-pop'); setTimeout(() => cell.classList.remove('hint-pop'), 350); }
+    sdkUpdateNumpad();
+    if (sdkIsSolved()) sdkFinish();
+}
+
+function sdkIsSolved() {
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++)
+        if (sudokuCurrent[r][c] !== sudokuSolution[r][c]) return false;
+    return true;
+}
+
+function sdkFinish() {
+    sudokuComplete = true;
+    clearInterval(sudokuTimer);
+    setTimeout(() => {
+        document.getElementById('sudoku-game').classList.add('hidden');
+        document.getElementById('sudoku-complete').classList.remove('hidden');
+        document.getElementById('sudoku-complete-time').textContent = `⏱ Tiempo: ${sdkFmt(sudokuSeconds)}`;
+        document.getElementById('sudoku-complete-mistakes').textContent = `❌ Errores: ${sudokuMistakes}`;
+    }, 600);
+}
+
+function sdkBuildNumpad() {
+    const pad = document.getElementById('sudoku-numpad');
+    pad.innerHTML = '';
+    for (let n = 1; n <= 9; n++) {
+        const btn = document.createElement('button');
+        btn.className = 'sudoku-num-btn';
+        btn.textContent = n;
+        btn.dataset.num = n;
+        btn.addEventListener('click', () => sdkInput(n));
+        pad.appendChild(btn);
+    }
+    sdkUpdateNumpad();
+}
+
+function sdkUpdateNumpad() {
+    const counts = Array(10).fill(0);
+    for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
+        const v = sudokuCurrent[r][c];
+        if (v && v === sudokuSolution[r][c]) counts[v]++;
+    }
+    document.querySelectorAll('.sudoku-num-btn').forEach(btn => {
+        btn.classList.toggle('num-done', counts[+btn.dataset.num] >= 9);
+    });
+}
+
+function sdkKeyHandler(e) {
+    if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+    const gameEl = document.getElementById('sudoku-game');
+    if (!gameEl || gameEl.classList.contains('hidden')) return;
+    if (e.key >= '1' && e.key <= '9') { sdkInput(+e.key); return; }
+    if (e.key === 'Backspace' || e.key === 'Delete' || e.key === '0') { sdkErase(); return; }
+    if (!sudokuSelected) return;
+    const dirs = { ArrowUp:[-1,0], ArrowDown:[1,0], ArrowLeft:[0,-1], ArrowRight:[0,1] };
+    if (dirs[e.key]) {
+        e.preventDefault();
+        const [dr, dc] = dirs[e.key];
+        sudokuSelected = { r: Math.max(0, Math.min(8, sudokuSelected.r+dr)), c: Math.max(0, Math.min(8, sudokuSelected.c+dc)) };
+        sdkHighlight();
+    }
+}
 
 // ── Contact form ───────────────────────────────────────
 const contactForm = document.querySelector('.contact-form');
