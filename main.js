@@ -3161,17 +3161,45 @@ function sdkStart() {
     document.getElementById('sudoku-mistakes').textContent = '❌ 0';
     document.getElementById('sudoku-hints-left').textContent = '(3)';
     document.getElementById('sudoku-hint-btn').disabled = false;
-    sdkRenderGrid();
-    sdkBuildNumpad();
+    requestAnimationFrame(() => {
+        sdkRenderGrid();
+        sdkBuildNumpad();
+    });
 }
 
 function sdkRenderGrid() {
     const grid = document.getElementById('sudoku-grid');
     grid.innerHTML = '';
+    const wrap = document.querySelector('.sudoku-grid-wrap');
+    const avail = wrap ? Math.min(wrap.clientWidth || 300, 360) : 300;
+    const cellPx = Math.floor((avail - 6) / 9);
+    const gridPx = cellPx * 9;
+    const fs = Math.max(11, Math.round(cellPx * 0.46));
+    Object.assign(grid.style, {
+        display: 'grid',
+        gridTemplateColumns: `repeat(9, ${cellPx}px)`,
+        gridTemplateRows: `repeat(9, ${cellPx}px)`,
+        width: gridPx + 'px',
+        height: gridPx + 'px',
+    });
     for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
         const cell = document.createElement('div');
         cell.className = 'sudoku-cell';
         cell.dataset.r = r; cell.dataset.c = c;
+        Object.assign(cell.style, {
+            width: cellPx + 'px',
+            height: cellPx + 'px',
+            fontSize: fs + 'px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxSizing: 'border-box',
+            cursor: 'pointer',
+            userSelect: 'none',
+            fontWeight: '700',
+            borderRight: (c === 2 || c === 5) ? '2px solid #7c3aed' : (c === 8 ? 'none' : '1px solid var(--border, #e2e8f0)'),
+            borderBottom: (r === 2 || r === 5) ? '2px solid #7c3aed' : (r === 8 ? 'none' : '1px solid var(--border, #e2e8f0)'),
+        });
         const val = sudokuCurrent[r][c];
         if (sudokuFixed[r][c]) {
             cell.classList.add('given');
