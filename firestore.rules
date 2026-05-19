@@ -8,8 +8,12 @@ service cloud.firestore {
                     && request.resource.data.text.size() >= 3
                     && request.resource.data.text.size() <= 500;
       allow update: if collection.matches('comments_.*')
-                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reports'])
-                    && request.resource.data.reports == resource.data.reports + 1;
+                    && (
+                      (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reports'])
+                       && request.resource.data.reports == resource.data.reports + 1)
+                      || (collection == 'comments_confesiones'
+                          && request.resource.data.diff(resource.data).affectedKeys().hasSubsetOf(['joy', 'cry', 'wow', 'hands']))
+                    );
       allow delete: if true;
     }
     match /polls/{dateKey} {

@@ -1170,10 +1170,9 @@ function initPoll() {
     document.getElementById('poll-res1-text').textContent = poll.opts[1];
     const voted = localStorage.getItem('tetinca_poll_' + dateKey);
     if (pollUnsubscribe) pollUnsubscribe();
-    pollUnsubscribe = db.collection('polls').doc(dateKey).onSnapshot(snap => {
-        const data = snap.exists ? snap.data() : { opt0: 0, opt1: 0 };
-        const v0 = data.opt0 || 0;
-        const v1 = data.opt1 || 0;
+    pollUnsubscribe = db.collection('comments_poll_' + dateKey).onSnapshot(snap => {
+        const v0 = snap.docs.filter(d => d.data().text === 'vote_opt0').length;
+        const v1 = snap.docs.filter(d => d.data().text === 'vote_opt1').length;
         const total = v0 + v1;
         if (voted !== null) {
             renderPollResults(v0, v1, parseInt(voted));
@@ -1189,14 +1188,16 @@ async function vote(optIndex) {
     document.getElementById('poll-opt0').disabled = true;
     document.getElementById('poll-opt1').disabled = true;
     try {
-        await db.collection('polls').doc(dateKey).set(
-            { ['opt' + optIndex]: firebase.firestore.FieldValue.increment(1) },
-            { merge: true }
-        );
+        await db.collection('comments_poll_' + dateKey).add({
+            name: 'Anónimo',
+            text: 'vote_opt' + optIndex,
+            ts: firebase.firestore.FieldValue.serverTimestamp(),
+        });
         localStorage.setItem('tetinca_poll_' + dateKey, optIndex.toString());
-        const snap = await db.collection('polls').doc(dateKey).get();
-        const data = snap.data() || {};
-        renderPollResults(data.opt0 || 0, data.opt1 || 0, optIndex);
+        const snap = await db.collection('comments_poll_' + dateKey).get();
+        const v0 = snap.docs.filter(d => d.data().text === 'vote_opt0').length;
+        const v1 = snap.docs.filter(d => d.data().text === 'vote_opt1').length;
+        renderPollResults(v0, v1, optIndex);
     } catch {
         document.getElementById('poll-opt0').disabled = false;
         document.getElementById('poll-opt1').disabled = false;
@@ -1349,8 +1350,8 @@ function loadConfessions() {
     const listEl = document.getElementById('confession-list');
     listEl.innerHTML = '<div class="comment-empty">Cargando confesiones...</div>';
     if (unsubConfessions) { unsubConfessions(); unsubConfessions = null; }
-    unsubConfessions = db.collection('confessions')
-        .orderBy('createdAt', 'desc')
+    unsubConfessions = db.collection('comments_confesiones')
+        .orderBy('ts', 'desc')
         .limit(20)
         .onSnapshot(snap => {
             if (snap.empty) {
@@ -1371,21 +1372,17 @@ function loadConfessions() {
                 }).join('');
                 item.innerHTML =
                     `<div class="confession-text">${escapeHtml(d.text)}</div>` +
-                    `<div class="confession-footer"><div class="confession-reactions">${reactBtns}</div><span class="confession-time">${formatTimeAgo(d.createdAt)}</span></div>`;
+                    `<div class="confession-footer"><div class="confession-reactions">${reactBtns}</div><span class="confession-time">${formatTimeAgo(d.ts)}</span></div>`;
                 item.querySelectorAll('.react-btn:not([disabled])').forEach(btn => {
-                    btn.addEventListener('click', async () => {
+                    btn.addEventListener('click', () => {
                         btn.disabled = true;
-                        const id = btn.dataset.id;
-                        const key = btn.dataset.key;
-                        try {
-                            await db.collection('confessions').doc(id).update({
-                                [key]: firebase.firestore.FieldValue.increment(1)
-                            });
-                            setReacted(id, key);
-                            btn.classList.add('reacted');
-                            const countEl = btn.querySelector('span');
-                            countEl.textContent = parseInt(countEl.textContent) + 1;
-                        } catch { btn.disabled = false; }
+                        btn.classList.add('reacted');
+                        const countEl = btn.querySelector('span');
+                        countEl.textContent = parseInt(countEl.textContent) + 1;
+                        setReacted(btn.dataset.id, btn.dataset.key);
+                        db.collection('comments_confesiones').doc(btn.dataset.id).update({
+                            [btn.dataset.key]: firebase.firestore.FieldValue.increment(1)
+                        }).catch(() => {});
                     });
                 });
                 listEl.appendChild(item);
@@ -1417,9 +1414,9 @@ document.getElementById('confession-submit').addEventListener('click', async () 
     const submitBtn = document.getElementById('confession-submit');
     submitBtn.disabled = true;
     try {
-        await db.collection('confessions').add({
+        await db.collection('comments_confesiones').add({
             text,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            ts: firebase.firestore.FieldValue.serverTimestamp(),
             joy: 0, cry: 0, wow: 0, hands: 0,
         });
         confessionTextEl.value = '';
