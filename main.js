@@ -1132,7 +1132,7 @@ function getPollDayKey() {
 }
 
 function getTodayPoll() {
-    const dayNum = Math.floor(Date.now() / 86400000);
+    const dayNum = Math.floor(new Date(getPollDayKey()).getTime() / 86400000);
     return DAILY_POLLS[dayNum % DAILY_POLLS.length];
 }
 
