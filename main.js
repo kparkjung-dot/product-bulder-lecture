@@ -3137,7 +3137,50 @@ function initSudokuTab() {
     document.addEventListener('keydown', sdkKeyHandler);
 }
 
+function sdkShow(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('hidden');
+    el.style.display = 'block';
+}
+function sdkHide(id) {
+    const el = document.getElementById(id);
+    el.classList.add('hidden');
+    el.style.display = 'none';
+}
+
+function sdkInjectStyles() {
+    const old = document.getElementById('sdk-styles');
+    if (old) old.remove();
+    const avail = Math.min(window.innerWidth - 72, 354); // 32 body + 40 game padding
+    const cp = Math.floor(avail / 9);
+    const go = cp * 9 + 6; // outer = inner + 3px border each side
+    const fs = Math.max(11, Math.round(cp * 0.46));
+    const s = document.createElement('style');
+    s.id = 'sdk-styles';
+    s.textContent = `
+        .sudoku-grid-wrap{display:flex!important;justify-content:center!important;margin-bottom:1rem!important;}
+        #sudoku-grid{display:grid!important;grid-template-columns:repeat(9,${cp}px)!important;
+          grid-template-rows:repeat(9,${cp}px)!important;width:${go}px!important;height:${go}px!important;
+          border:3px solid #7c3aed!important;border-radius:8px!important;overflow:hidden!important;
+          box-sizing:border-box!important;box-shadow:0 4px 20px rgba(124,58,237,.2)!important;}
+        .sudoku-cell{width:${cp}px!important;height:${cp}px!important;font-size:${fs}px!important;
+          display:flex!important;align-items:center!important;justify-content:center!important;
+          font-weight:700!important;cursor:pointer!important;user-select:none!important;
+          box-sizing:border-box!important;transition:background .1s!important;}
+        .sudoku-numpad{display:grid!important;grid-template-columns:repeat(9,1fr)!important;
+          gap:4px!important;width:${go}px!important;margin:0 auto .9rem!important;}
+        .sudoku-num-btn{aspect-ratio:1!important;display:flex!important;align-items:center!important;
+          justify-content:center!important;font-weight:900!important;font-size:${fs}px!important;
+          cursor:pointer!important;border:2px solid #d4d4d8!important;border-radius:10px!important;
+          background:#f4f4f5!important;color:#7c3aed!important;}
+        .sudoku-num-btn:hover{background:#7c3aed!important;color:#fff!important;border-color:#7c3aed!important;}
+        .sudoku-num-btn.num-done{opacity:.2!important;pointer-events:none!important;}
+    `;
+    document.head.appendChild(s);
+}
+
 function sdkStart() {
+    sdkInjectStyles();
     const {solution, puzzle} = sdkGenerate(sudokuDifficulty);
     sudokuSolution = solution;
     sudokuCurrent  = puzzle.map(r => [...r]);
@@ -3154,82 +3197,38 @@ function sdkStart() {
         const el = document.getElementById('sudoku-timer');
         if (el) el.textContent = sdkFmt(sudokuSeconds);
     }, 1000);
-    document.getElementById('sudoku-welcome').classList.add('hidden');
-    document.getElementById('sudoku-complete').classList.add('hidden');
-    document.getElementById('sudoku-game').classList.remove('hidden');
+    sdkHide('sudoku-welcome');
+    sdkHide('sudoku-complete');
+    sdkShow('sudoku-game');
     document.getElementById('sudoku-diff-badge').textContent = {easy:'Fácil',medium:'Medio',hard:'Difícil'}[sudokuDifficulty];
     document.getElementById('sudoku-timer').textContent = '00:00';
     document.getElementById('sudoku-mistakes').textContent = '❌ 0';
     document.getElementById('sudoku-hints-left').textContent = '(3)';
     document.getElementById('sudoku-hint-btn').disabled = false;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-        sdkRenderGrid();
-        sdkBuildNumpad();
-    }));
+    sdkRenderGrid();
+    sdkBuildNumpad();
 }
 
-function sdkCalcSize() {
-    // Derive available width purely from window — no DOM measurement needed
-    const bodyPad = 32;  // 16px each side
-    const gamePad = 40;  // 1.25rem (~20px) each side
-    const avail = Math.min(window.innerWidth - bodyPad - gamePad, 354);
-    const cellPx = Math.floor(avail / 9);
-    return cellPx;
+function sdkCellColor(r, c) {
+    const val = sudokuCurrent[r][c];
+    if (sudokuFixed[r][c]) return sudokuHinted.has(`${r},${c}`) ? '#059669' : '#18181b';
+    if (val !== 0) return (val !== sudokuSolution[r][c]) ? '#ef4444' : '#7c3aed';
+    return '#7c3aed';
 }
 
 function sdkRenderGrid() {
     const grid = document.getElementById('sudoku-grid');
     grid.innerHTML = '';
-    const cellPx = sdkCalcSize();
-    const gridInner = cellPx * 9;   // inner content size
-    const gridOuter = gridInner + 6; // +3px border each side
-    const fs = Math.max(11, Math.round(cellPx * 0.46));
-
-    Object.assign(grid.style, {
-        display: 'grid',
-        gridTemplateColumns: `repeat(9, ${cellPx}px)`,
-        gridTemplateRows: `repeat(9, ${cellPx}px)`,
-        width: gridOuter + 'px',
-        height: gridOuter + 'px',
-        border: '3px solid #7c3aed',
-        borderRadius: '8px',
-        overflow: 'hidden',
-        boxSizing: 'border-box',
-        boxShadow: '0 4px 20px rgba(124,58,237,.2)',
-    });
-
     for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
         const cell = document.createElement('div');
         cell.className = 'sudoku-cell';
         cell.dataset.r = r; cell.dataset.c = c;
-        Object.assign(cell.style, {
-            width: cellPx + 'px',
-            height: cellPx + 'px',
-            fontSize: fs + 'px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxSizing: 'border-box',
-            cursor: 'pointer',
-            userSelect: 'none',
-            fontWeight: '700',
-            transition: 'background .1s',
-            borderRight: (c === 8) ? 'none' : (c === 2 || c === 5) ? '2px solid #7c3aed' : '1px solid #d4d4d8',
-            borderBottom: (r === 8) ? 'none' : (r === 2 || r === 5) ? '2px solid #7c3aed' : '1px solid #d4d4d8',
-        });
+        cell.style.borderRight  = c === 8 ? 'none' : (c===2||c===5) ? '2px solid #7c3aed' : '1px solid #d4d4d8';
+        cell.style.borderBottom = r === 8 ? 'none' : (r===2||r===5) ? '2px solid #7c3aed' : '1px solid #d4d4d8';
+        cell.style.color = sdkCellColor(r, c);
         const val = sudokuCurrent[r][c];
-        if (sudokuFixed[r][c]) {
-            cell.style.color = '#18181b';
-            cell.style.fontWeight = '900';
-            if (sudokuHinted.has(`${r},${c}`)) cell.style.color = '#059669';
-            cell.textContent = val;
-        } else if (val !== 0) {
-            cell.style.color = '#7c3aed';
-            if (val !== sudokuSolution[r][c]) cell.style.color = '#ef4444';
-            cell.textContent = val;
-        } else {
-            cell.style.color = '#7c3aed';
-        }
+        if (sudokuFixed[r][c]) { cell.style.fontWeight = '900'; cell.textContent = val; }
+        else if (val !== 0) cell.textContent = val;
         cell.addEventListener('click', () => sdkSelectCell(r, c));
         grid.appendChild(cell);
     }
@@ -3245,39 +3244,19 @@ function sdkSelectCell(r, c) {
 function sdkHighlight() {
     document.querySelectorAll('.sudoku-cell').forEach(cell => {
         const cr = +cell.dataset.r, cc = +cell.dataset.c;
-        const isFixed = sudokuFixed[cr][cc];
-        const isHinted = sudokuHinted.has(`${cr},${cc}`);
-        const val = sudokuCurrent[cr][cc];
-
-        // Reset background
         cell.style.background = '';
-
+        cell.style.color = sdkCellColor(cr, cc);
         if (!sudokuSelected) return;
         const {r, c} = sudokuSelected;
-
         if (cr === r && cc === c) {
             cell.style.background = '#7c3aed';
             cell.style.color = '#fff';
             return;
         }
-
-        // Restore correct text color after deselect
-        if (isFixed) {
-            cell.style.color = isHinted ? '#059669' : '#18181b';
-        } else if (val !== 0) {
-            cell.style.color = (val !== sudokuSolution[cr][cc]) ? '#ef4444' : '#7c3aed';
-        } else {
-            cell.style.color = '#7c3aed';
-        }
-
-        const sameBox = Math.floor(cr/3) === Math.floor(r/3) && Math.floor(cc/3) === Math.floor(c/3);
+        const sameBox = Math.floor(cr/3)===Math.floor(r/3) && Math.floor(cc/3)===Math.floor(c/3);
         const selVal = sudokuCurrent[r][c];
-
-        if (selVal !== 0 && sudokuCurrent[cr][cc] === selVal) {
-            cell.style.background = '#fde68a';
-        } else if (cr === r || cc === c || sameBox) {
-            cell.style.background = '#ede9fe';
-        }
+        if (selVal && sudokuCurrent[cr][cc] === selVal) cell.style.background = '#fde68a';
+        else if (cr===r || cc===c || sameBox) cell.style.background = '#ede9fe';
     });
 }
 
@@ -3335,8 +3314,8 @@ function sdkFinish() {
     sudokuComplete = true;
     clearInterval(sudokuTimer);
     setTimeout(() => {
-        document.getElementById('sudoku-game').classList.add('hidden');
-        document.getElementById('sudoku-complete').classList.remove('hidden');
+        sdkHide('sudoku-game');
+        sdkShow('sudoku-complete');
         document.getElementById('sudoku-complete-time').textContent = `⏱ Tiempo: ${sdkFmt(sudokuSeconds)}`;
         document.getElementById('sudoku-complete-mistakes').textContent = `❌ Errores: ${sudokuMistakes}`;
     }, 600);
@@ -3345,50 +3324,12 @@ function sdkFinish() {
 function sdkBuildNumpad() {
     const pad = document.getElementById('sudoku-numpad');
     pad.innerHTML = '';
-    const cellPx = sdkCalcSize();
-    const btnPx = Math.max(cellPx - 2, 30);
-    const fs = Math.max(13, Math.round(btnPx * 0.46));
-
-    Object.assign(pad.style, {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(9, 1fr)',
-        gap: '4px',
-        marginBottom: '.9rem',
-        width: '100%',
-    });
-
     for (let n = 1; n <= 9; n++) {
         const btn = document.createElement('button');
         btn.className = 'sudoku-num-btn';
         btn.textContent = n;
         btn.dataset.num = n;
-        Object.assign(btn.style, {
-            aspectRatio: '1',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: '900',
-            fontSize: fs + 'px',
-            cursor: 'pointer',
-            border: '2px solid #d4d4d8',
-            borderRadius: '10px',
-            background: '#f4f4f5',
-            color: '#7c3aed',
-            transition: 'all .15s',
-        });
         btn.addEventListener('click', () => sdkInput(n));
-        btn.addEventListener('mouseenter', () => {
-            btn.style.background = '#7c3aed';
-            btn.style.color = '#fff';
-            btn.style.borderColor = '#7c3aed';
-        });
-        btn.addEventListener('mouseleave', () => {
-            if (!btn.disabled) {
-                btn.style.background = '#f4f4f5';
-                btn.style.color = '#7c3aed';
-                btn.style.borderColor = '#d4d4d8';
-            }
-        });
         pad.appendChild(btn);
     }
     sdkUpdateNumpad();
