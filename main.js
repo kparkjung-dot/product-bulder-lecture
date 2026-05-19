@@ -3180,8 +3180,8 @@ function sdkRenderGrid() {
         display: 'grid',
         gridTemplateColumns: `repeat(9, ${cellPx}px)`,
         gridTemplateRows: `repeat(9, ${cellPx}px)`,
-        width: gridPx + 'px',
-        height: gridPx + 'px',
+        width: (gridPx + 6) + 'px',
+        height: (gridPx + 6) + 'px',
     });
     for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) {
         const cell = document.createElement('div');
