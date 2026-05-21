@@ -1,9 +1,19 @@
 {
-  "updated_at": "2026-05-14",
+  "updated_at": "2026-05-21",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
+    {
+      "name": "Star Wars the Mandalorian and Grogu",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "2026 Txt Moa Con in Japan Live Viewing",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
     {
       "name": "El Diablo Viste a la Moda 2",
       "emoji": "🎟️",
@@ -11,61 +21,6 @@
     },
     {
       "name": "Michael",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Umamusume Pretty Derby",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Mortal Kombat 2",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Ponyo 2008 Ghibli Fest 2026",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Top Gun 1986 40 Aniversario",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Top Gun Maverick 2022",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Tu Yo y la Toscana",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Obsesion",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "En la Zona Gris",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Volcan Fuego Bajo Tierra",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Cuando Cae el Otono",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Star Wars the Mandalorian and Grogu",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -81,36 +36,6 @@
     },
     {
       "name": "Despues de la Niebla",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Billie Eilish Hit Me Hard and Soft the Tour",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Las Ovejas Detectives",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Iron Maiden Burning Ambition",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Hokum la Maldicion de la Bruja",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "2026 Txt Moa Con in Japan Live Viewing",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Claro",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -140,6 +65,36 @@
       "platform": "Cinemark"
     },
     {
+      "name": "El Claro",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Obsesion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Ponyo 2008 Ghibli Fest 2026",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Umamusume Pretty Derby",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Top Gun 1986 40 Aniversario",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Top Gun Maverick 2022",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Amos del Universo",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -165,6 +120,16 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Mortal Kombat 2",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Las Ovejas Detectives",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Operacion Sombra",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -185,11 +150,6 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Posesion de la Momia",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -205,7 +165,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Super Mario Galaxy la Pelicula",
+      "name": "La Posesion de la Momia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -220,7 +180,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Proyecto Fin del Mundo",
+      "name": "Super Mario Galaxy la Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
