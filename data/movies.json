@@ -1,137 +1,566 @@
 {
-  "updated_at": "2026-05-19",
+  "updated_at": "2026-06-01",
   "categories": {
     "comedia": [
-      { "name": "Abbott Elementary",            "emoji": "😂", "platform": "Disney+"     },
-      { "name": "Only Murders in the Building", "emoji": "😂", "platform": "Disney+"     },
-      { "name": "The Bear",                     "emoji": "😂", "platform": "Disney+"     },
-      { "name": "Atlanta",                      "emoji": "😂", "platform": "Disney+"     },
-      { "name": "The Simpsons",                 "emoji": "😂", "platform": "Disney+"     },
-      { "name": "Friends",                      "emoji": "😂", "platform": "Max"         },
-      { "name": "The Big Bang Theory",          "emoji": "😂", "platform": "Max"         },
-      { "name": "Rick and Morty",               "emoji": "😂", "platform": "Max"         },
-      { "name": "Fleabag",                      "emoji": "😂", "platform": "Prime Video" },
-      { "name": "The Marvelous Mrs. Maisel",    "emoji": "😂", "platform": "Prime Video" },
-      { "name": "Sex Education",                "emoji": "😂", "platform": "Netflix"     },
-      { "name": "Emily in Paris",               "emoji": "😂", "platform": "Netflix"     },
-      { "name": "Cobra Kai",                    "emoji": "😂", "platform": "Netflix"     },
-      { "name": "Never Have I Ever",            "emoji": "😂", "platform": "Netflix"     },
-      { "name": "South Park",                   "emoji": "😂", "platform": "Paramount+"  }
+      {
+        "name": "Abbott Elementary",
+        "emoji": "😂",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Only Murders in the Building",
+        "emoji": "😂",
+        "platform": "Disney+"
+      },
+      {
+        "name": "The Bear",
+        "emoji": "😂",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Atlanta",
+        "emoji": "😂",
+        "platform": "Disney+"
+      },
+      {
+        "name": "The Simpsons",
+        "emoji": "😂",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Friends",
+        "emoji": "😂",
+        "platform": "Max"
+      },
+      {
+        "name": "The Big Bang Theory",
+        "emoji": "😂",
+        "platform": "Max"
+      },
+      {
+        "name": "Rick and Morty",
+        "emoji": "😂",
+        "platform": "Max"
+      },
+      {
+        "name": "Fleabag",
+        "emoji": "😂",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "The Marvelous Mrs. Maisel",
+        "emoji": "😂",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Sex Education",
+        "emoji": "😂",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Emily in Paris",
+        "emoji": "😂",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Cobra Kai",
+        "emoji": "😂",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Never Have I Ever",
+        "emoji": "😂",
+        "platform": "Netflix"
+      },
+      {
+        "name": "South Park",
+        "emoji": "😂",
+        "platform": "Paramount+"
+      }
     ],
     "drama": [
-      { "name": "Succession",                   "emoji": "🎭", "platform": "Max"         },
-      { "name": "The Last of Us",               "emoji": "🎭", "platform": "Max"         },
-      { "name": "House of the Dragon",          "emoji": "🎭", "platform": "Max"         },
-      { "name": "The White Lotus",              "emoji": "🎭", "platform": "Max"         },
-      { "name": "Euphoria",                     "emoji": "🎭", "platform": "Max"         },
-      { "name": "The Crown",                    "emoji": "🎭", "platform": "Netflix"     },
-      { "name": "Ozark",                        "emoji": "🎭", "platform": "Netflix"     },
-      { "name": "Peaky Blinders",               "emoji": "🎭", "platform": "Netflix"     },
-      { "name": "Dark",                         "emoji": "🎭", "platform": "Netflix"     },
-      { "name": "Beef",                         "emoji": "🎭", "platform": "Netflix"     },
-      { "name": "Élite",                        "emoji": "🎭", "platform": "Netflix"     },
-      { "name": "Grey's Anatomy",               "emoji": "🎭", "platform": "Disney+"     },
-      { "name": "Yellowstone",                  "emoji": "🎭", "platform": "Paramount+"  },
-      { "name": "Tulsa King",                   "emoji": "🎭", "platform": "Paramount+"  },
-      { "name": "Jack Ryan",                    "emoji": "🎭", "platform": "Prime Video" }
+      {
+        "name": "Succession",
+        "emoji": "🎭",
+        "platform": "Max"
+      },
+      {
+        "name": "The Last of Us",
+        "emoji": "🎭",
+        "platform": "Max"
+      },
+      {
+        "name": "House of the Dragon",
+        "emoji": "🎭",
+        "platform": "Max"
+      },
+      {
+        "name": "The White Lotus",
+        "emoji": "🎭",
+        "platform": "Max"
+      },
+      {
+        "name": "Euphoria",
+        "emoji": "🎭",
+        "platform": "Max"
+      },
+      {
+        "name": "The Crown",
+        "emoji": "🎭",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Ozark",
+        "emoji": "🎭",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Peaky Blinders",
+        "emoji": "🎭",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Dark",
+        "emoji": "🎭",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Beef",
+        "emoji": "🎭",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Élite",
+        "emoji": "🎭",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Grey's Anatomy",
+        "emoji": "🎭",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Yellowstone",
+        "emoji": "🎭",
+        "platform": "Paramount+"
+      },
+      {
+        "name": "Tulsa King",
+        "emoji": "🎭",
+        "platform": "Paramount+"
+      },
+      {
+        "name": "Jack Ryan",
+        "emoji": "🎭",
+        "platform": "Prime Video"
+      }
     ],
     "accion": [
-      { "name": "The Boys",                     "emoji": "💥", "platform": "Prime Video" },
-      { "name": "Reacher",                      "emoji": "💥", "platform": "Prime Video" },
-      { "name": "Fallout",                      "emoji": "💥", "platform": "Prime Video" },
-      { "name": "Citadel",                      "emoji": "💥", "platform": "Prime Video" },
-      { "name": "Rings of Power",               "emoji": "💥", "platform": "Prime Video" },
-      { "name": "Squid Game",                   "emoji": "💥", "platform": "Netflix"     },
-      { "name": "Money Heist",                  "emoji": "💥", "platform": "Netflix"     },
-      { "name": "Stranger Things",              "emoji": "💥", "platform": "Netflix"     },
-      { "name": "The Witcher",                  "emoji": "💥", "platform": "Netflix"     },
-      { "name": "Narcos",                       "emoji": "💥", "platform": "Netflix"     },
-      { "name": "One Piece",                    "emoji": "💥", "platform": "Netflix"     },
-      { "name": "The Mandalorian",              "emoji": "💥", "platform": "Disney+"     },
-      { "name": "Andor",                        "emoji": "💥", "platform": "Disney+"     },
-      { "name": "Halo",                         "emoji": "💥", "platform": "Paramount+"  },
-      { "name": "Wednesday",                    "emoji": "💥", "platform": "Netflix"     }
+      {
+        "name": "The Boys",
+        "emoji": "💥",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Reacher",
+        "emoji": "💥",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Fallout",
+        "emoji": "💥",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Citadel",
+        "emoji": "💥",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Rings of Power",
+        "emoji": "💥",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Squid Game",
+        "emoji": "💥",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Money Heist",
+        "emoji": "💥",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Stranger Things",
+        "emoji": "💥",
+        "platform": "Netflix"
+      },
+      {
+        "name": "The Witcher",
+        "emoji": "💥",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Narcos",
+        "emoji": "💥",
+        "platform": "Netflix"
+      },
+      {
+        "name": "One Piece",
+        "emoji": "💥",
+        "platform": "Netflix"
+      },
+      {
+        "name": "The Mandalorian",
+        "emoji": "💥",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Andor",
+        "emoji": "💥",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Halo",
+        "emoji": "💥",
+        "platform": "Paramount+"
+      },
+      {
+        "name": "Wednesday",
+        "emoji": "💥",
+        "platform": "Netflix"
+      }
     ],
     "terror": [
-      { "name": "The Haunting of Hill House",      "emoji": "👻", "platform": "Netflix"     },
-      { "name": "Midnight Mass",                   "emoji": "👻", "platform": "Netflix"     },
-      { "name": "The Haunting of Bly Manor",       "emoji": "👻", "platform": "Netflix"     },
-      { "name": "Wednesday",                       "emoji": "👻", "platform": "Netflix"     },
-      { "name": "Fear Street",                     "emoji": "👻", "platform": "Netflix"     },
-      { "name": "The Fall of the House of Usher",  "emoji": "👻", "platform": "Netflix"     },
-      { "name": "Marianne",                        "emoji": "👻", "platform": "Netflix"     },
-      { "name": "American Horror Story",           "emoji": "👻", "platform": "Disney+"     },
-      { "name": "The Walking Dead",                "emoji": "👻", "platform": "Disney+"     },
-      { "name": "True Detective",                  "emoji": "👻", "platform": "Max"         },
-      { "name": "The Last of Us",                  "emoji": "👻", "platform": "Max"         },
-      { "name": "Yellowjackets",                   "emoji": "👻", "platform": "Paramount+"  }
+      {
+        "name": "The Haunting of Hill House",
+        "emoji": "👻",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Midnight Mass",
+        "emoji": "👻",
+        "platform": "Netflix"
+      },
+      {
+        "name": "The Haunting of Bly Manor",
+        "emoji": "👻",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Wednesday",
+        "emoji": "👻",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Fear Street",
+        "emoji": "👻",
+        "platform": "Netflix"
+      },
+      {
+        "name": "The Fall of the House of Usher",
+        "emoji": "👻",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Marianne",
+        "emoji": "👻",
+        "platform": "Netflix"
+      },
+      {
+        "name": "American Horror Story",
+        "emoji": "👻",
+        "platform": "Disney+"
+      },
+      {
+        "name": "The Walking Dead",
+        "emoji": "👻",
+        "platform": "Disney+"
+      },
+      {
+        "name": "True Detective",
+        "emoji": "👻",
+        "platform": "Max"
+      },
+      {
+        "name": "The Last of Us",
+        "emoji": "👻",
+        "platform": "Max"
+      },
+      {
+        "name": "Yellowjackets",
+        "emoji": "👻",
+        "platform": "Paramount+"
+      }
     ],
     "romance": [
-      { "name": "Bridgerton",                   "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Virgin River",                 "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Never Have I Ever",            "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Emily in Paris",               "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Outer Banks",                  "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Queen Charlotte",              "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "One Day",                      "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "XO Kitty",                     "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Ginny & Georgia",              "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Sex Education",                "emoji": "❤️", "platform": "Netflix"     },
-      { "name": "Normal People",                "emoji": "❤️", "platform": "Disney+"     },
-      { "name": "How I Met Your Father",        "emoji": "❤️", "platform": "Disney+"     },
-      { "name": "Mr. & Mrs. Smith",             "emoji": "❤️", "platform": "Prime Video" }
+      {
+        "name": "Bridgerton",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Virgin River",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Never Have I Ever",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Emily in Paris",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Outer Banks",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Queen Charlotte",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "One Day",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "XO Kitty",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Ginny & Georgia",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Sex Education",
+        "emoji": "❤️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Normal People",
+        "emoji": "❤️",
+        "platform": "Disney+"
+      },
+      {
+        "name": "How I Met Your Father",
+        "emoji": "❤️",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Mr. & Mrs. Smith",
+        "emoji": "❤️",
+        "platform": "Prime Video"
+      }
     ],
     "documental": [
-      { "name": "Formula 1: Drive to Survive",  "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "The Last Dance",               "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Our Planet",                   "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Making a Murderer",            "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Wild Wild Country",            "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "My Octopus Teacher",           "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "The Tinder Swindler",          "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Chef's Table",                 "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Tiger King",                   "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Don't F**k with Cats",         "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Abstract: The Art of Design",  "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Fyre: The Greatest Party",     "emoji": "🔬", "platform": "Netflix"     },
-      { "name": "Welcome to Earth",             "emoji": "🔬", "platform": "Disney+"     },
-      { "name": "Clarkson's Farm",              "emoji": "🔬", "platform": "Prime Video" },
-      { "name": "This Is Pop",                  "emoji": "🔬", "platform": "Netflix"     }
+      {
+        "name": "Formula 1: Drive to Survive",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "The Last Dance",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Our Planet",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Making a Murderer",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Wild Wild Country",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "My Octopus Teacher",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "The Tinder Swindler",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Chef's Table",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Tiger King",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Don't F**k with Cats",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Abstract: The Art of Design",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Fyre: The Greatest Party",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Welcome to Earth",
+        "emoji": "🔬",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Clarkson's Farm",
+        "emoji": "🔬",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "This Is Pop",
+        "emoji": "🔬",
+        "platform": "Netflix"
+      }
     ],
     "clasico": [
-      { "name": "The Sopranos",                 "emoji": "🎞️", "platform": "Max"         },
-      { "name": "Game of Thrones",              "emoji": "🎞️", "platform": "Max"         },
-      { "name": "Friends",                      "emoji": "🎞️", "platform": "Max"         },
-      { "name": "Sex and the City",             "emoji": "🎞️", "platform": "Max"         },
-      { "name": "The Wire",                     "emoji": "🎞️", "platform": "Max"         },
-      { "name": "Six Feet Under",               "emoji": "🎞️", "platform": "Max"         },
-      { "name": "Band of Brothers",             "emoji": "🎞️", "platform": "Max"         },
-      { "name": "True Blood",                   "emoji": "🎞️", "platform": "Max"         },
-      { "name": "Seinfeld",                     "emoji": "🎞️", "platform": "Netflix"     },
-      { "name": "The Office",                   "emoji": "🎞️", "platform": "Netflix"     },
-      { "name": "Prison Break",                 "emoji": "🎞️", "platform": "Disney+"     },
-      { "name": "Lost",                         "emoji": "🎞️", "platform": "Disney+"     },
-      { "name": "24",                           "emoji": "🎞️", "platform": "Disney+"     },
-      { "name": "Dexter",                       "emoji": "🎞️", "platform": "Paramount+"  },
-      { "name": "Twin Peaks",                   "emoji": "🎞️", "platform": "Paramount+"  }
+      {
+        "name": "Ciudadano Kane",
+        "emoji": "🎬️",
+        "platform": "Max"
+      },
+      {
+        "name": "La dolce vita",
+        "emoji": "🎬️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Rashomon",
+        "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "El acorazado Potemkin",
+        "emoji": "🎬️",
+        "platform": "Max"
+      },
+      {
+        "name": "Singin' in the Rain",
+        "emoji": "🎬️",
+        "platform": "Disney+"
+      },
+      {
+        "name": "El tercer hombre",
+        "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Tokyo Story",
+        "emoji": "🎬️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Un tranvía llamado Deseo",
+        "emoji": "🎬️",
+        "platform": "Max"
+      },
+      {
+        "name": "Nosferatu",
+        "emoji": "🎬️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Vertigo",
+        "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "El espíritu de la colmena",
+        "emoji": "🎬️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Metropolis",
+        "emoji": "🎬️",
+        "platform": "Disney+"
+      }
     ],
     "estreno": [
-      { "name": "Squid Game T2",                "emoji": "✨", "platform": "Netflix"     },
-      { "name": "Baby Reindeer",                "emoji": "✨", "platform": "Netflix"     },
-      { "name": "The Gentlemen",                "emoji": "✨", "platform": "Netflix"     },
-      { "name": "Eric",                         "emoji": "✨", "platform": "Netflix"     },
-      { "name": "Avatar: La leyenda de Aang",   "emoji": "✨", "platform": "Netflix"     },
-      { "name": "Shogun",                       "emoji": "✨", "platform": "Disney+"     },
-      { "name": "The Bear T3",                  "emoji": "✨", "platform": "Disney+"     },
-      { "name": "Agatha All Along",             "emoji": "✨", "platform": "Disney+"     },
-      { "name": "Alien: Romulus",               "emoji": "✨", "platform": "Disney+"     },
-      { "name": "Deadpool & Wolverine",         "emoji": "✨", "platform": "Disney+"     },
-      { "name": "House of the Dragon T2",       "emoji": "✨", "platform": "Max"         },
-      { "name": "The Penguin",                  "emoji": "✨", "platform": "Max"         },
-      { "name": "True Detective: Night Country","emoji": "✨", "platform": "Max"         },
-      { "name": "Fallout",                      "emoji": "✨", "platform": "Prime Video" },
-      { "name": "The Boys T4",                  "emoji": "✨", "platform": "Prime Video" },
-      { "name": "Mr. & Mrs. Smith",             "emoji": "✨", "platform": "Prime Video" }
+      {
+        "name": "Deadpool & Wolverine",
+        "emoji": "✨",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Didi",
+        "emoji": "✨",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Nosferatu",
+        "emoji": "✨",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Wicked",
+        "emoji": "✨",
+        "platform": "Netflix"
+      },
+      {
+        "name": "El Conde",
+        "emoji": "✨",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Rebel Moon - Parte 2",
+        "emoji": "✨",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Civil War",
+        "emoji": "✨",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "La habitación del pánico",
+        "emoji": "✨",
+        "platform": "Max"
+      },
+      {
+        "name": "Inside Out 2",
+        "emoji": "✨",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Argylle",
+        "emoji": "✨",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Avatar: The Last Airbender",
+        "emoji": "✨",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Joker: Folie à Deux",
+        "emoji": "✨",
+        "platform": "Max"
+      }
     ]
   }
 }
