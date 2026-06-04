@@ -1,9 +1,14 @@
 {
-  "updated_at": "2026-05-28",
+  "updated_at": "2026-06-04",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
+    {
+      "name": "The Amazing Digital Circus el Ultimo Acto",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
     {
       "name": "Bts World Tour Arirang in Busan Live Viewing",
       "emoji": "🎟️",
@@ -20,42 +25,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Diablo Viste a la Moda 2",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Michael",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Star Wars the Mandalorian and Grogu",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Dolly",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Zona de Riesgo",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Se Levanta el Viento 2013 Ghibli Fest 2026",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Amarga Navidad",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Claro",
+      "name": "Scary Movie",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -65,27 +35,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Scary Movie",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "The Amazing Digital Circus el Ultimo Acto",
+      "name": "Letras Robadas",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Mil Pedazos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Pasajero del Diablo",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Pequenos Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -105,27 +60,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Letras Robadas",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Los Renacidos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Mortal Kombat 2",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Las Ovejas Detectives",
+      "name": "Star Wars the Mandalorian and Grogu",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -140,7 +80,17 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Obsesion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Minions Monstruos",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Mortal Kombat 2",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -150,7 +100,32 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Evil Dead en Llamas",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Diablo Viste a la Moda 2",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "La Odisea",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Michael",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Spider Man un Nuevo Dia",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Impacto Mortal",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -160,7 +135,67 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Spider Man un Nuevo Dia",
+      "name": "El Final de la Calle Oak",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Engendro",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Tu Corazon Sera Destrozado",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Insaciable",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Coyote Vs Acme",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Hechizo de Amor la Magia Continua",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Codigo Venganza",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Heladero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Resident Evil Noche Cero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Digger",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Clayface",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Juegos del Hambre Amanecer en la Cosecha",
       "emoji": "🎟️",
       "platform": "Cinemark"
     }
