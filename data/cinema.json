@@ -1,56 +1,21 @@
 {
-  "updated_at": "2026-06-11",
+  "updated_at": "2026-06-18",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
-      "name": "Bts World Tour Arirang in Busan Live Viewing",
+      "name": "Bleach Thousand Year Blood War the Calamity",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "The Amazing Digital Circus el Ultimo Acto",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Dia de la Revelacion",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Scary Movie",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Operacion Sombra",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Las 100 Noches del Deseo",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Los Renacidos",
+      "name": "Spider Man un Nuevo Dia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Toy Story 5",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Amos del Universo",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Mil Pedazos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -70,7 +35,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Backrooms",
+      "name": "El Dia de la Revelacion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -80,7 +45,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Star Wars the Mandalorian and Grogu",
+      "name": "Amos del Universo",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Scary Movie",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Mil Pedazos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -95,7 +70,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
+      "name": "Backrooms",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -105,17 +80,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Diablo Viste a la Moda 2",
+      "name": "Sia Nostalgic for the Present",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Spider Man un Nuevo Dia",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Michael",
+      "name": "Obsesion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -130,6 +100,11 @@
       "platform": "Cinemark"
     },
     {
+      "name": "El Diablo Viste a la Moda 2",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "El Final de la Calle Oak",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -140,17 +115,17 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Michael",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "La Noche del Demonio Estan Entre Nosotros",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Tu Corazon Sera Destrozado",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Super Mario Galaxy la Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
