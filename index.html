@@ -30,6 +30,12 @@
         </header>
 
         <main>
+            <!-- Site intro -->
+            <section class="site-intro">
+                <h1 class="site-intro-title">¿Estoy fome y no sé qué hacer?</h1>
+                <p class="site-intro-text">Estoy Fome es la herramienta chilena para combatir el aburrimiento. ¿No sabes qué comer, qué hacer o qué ver hoy? Nosotros decidimos por ti. Ruleta de comida chilena, horóscopo diario con IA, recomendaciones de series, trivia, encuestas comunitarias, Sudoku y mucho más — todo en un solo lugar.</p>
+            </section>
+
             <!-- Category tabs -->
             <div class="category-tabs">
                 <button class="cat-tab active" data-cat="comer">🍽️ ¿Te tinca comer?</button>
@@ -54,6 +60,7 @@
 
             <!-- ¿Qué comer? panel -->
             <div id="panel-comer" class="cat-panel active">
+                <p class="panel-intro">¿Sin ideas para el menú de hoy? La ruleta de comida chilena sugiere opciones reales para desayuno, almuerzo, once y cena. También puedes ingresar tus propias alternativas y dejar que el azar elija por ti.</p>
 
                 <!-- Mode tabs -->
                 <div class="mode-tabs">
@@ -123,6 +130,7 @@
 
             <!-- ¿Qué hacer? panel -->
             <div id="panel-hacer" class="cat-panel">
+                <p class="panel-intro">¿Fin de semana sin planes? Estoy Fome te propone actividades para hacer solo, en pareja o con amigos — desde salidas al aire libre hasta planes para quedarse en casa. O ingresa tus propias opciones y deja que la suerte decida.</p>
                 <div class="mode-tabs">
                     <button class="mode-tab active" data-mode="hacer-random">🎪 A la aventura</button>
                     <button class="mode-tab" data-mode="hacer-custom">✏️ Mis opciones</button>
@@ -174,6 +182,7 @@
 
             <!-- Horóscopo panel -->
             <div id="panel-horoscopo" class="cat-panel">
+                <p class="panel-intro">Descubre qué te depara el día en amor, trabajo y salud. El horóscopo de Estoy Fome se actualiza cada mañana a las 6 AM hora de Chile y cubre los 12 signos del zodiaco con predicciones generadas por Inteligencia Artificial, solo con fines de entretenimiento.</p>
                 <div class="how-it-works how-it-works--horo">
                     <div class="how-step"><span class="how-num how-num--horo">1</span><span class="how-text">Toca tu signo del zodiaco</span></div>
                     <span class="how-sep how-sep--horo">›</span>
@@ -269,6 +278,7 @@
 
             <!-- ¿Qué ver? panel -->
             <div id="panel-ver" class="cat-panel">
+                <p class="panel-intro">¿Maratón de series o noche de películas? Elige tu estado de ánimo — comedia, drama, acción, terror, romance, documental, clásicos o estrenos recientes — y te recomendamos qué ver en las plataformas de streaming más populares disponibles en Chile.</p>
                 <div class="how-it-works">
                     <div class="how-step"><span class="how-num">1</span><span class="how-text">Elige cómo te sientes hoy</span></div>
                     <span class="how-sep">›</span>
@@ -309,6 +319,7 @@
 
             <!-- Encuesta del día panel -->
             <div id="panel-encuesta" class="cat-panel">
+                <p class="panel-intro">Participa en la votación del día y descubre qué piensa la comunidad chilena. Cada pregunta se renueva diariamente con temas de cultura pop, entretenimiento, gastronomía y vida cotidiana. Tu voto es anónimo y los resultados se actualizan en tiempo real.</p>
                 <div class="how-it-works">
                     <div class="how-step"><span class="how-num">1</span><span class="how-text">Lee la pregunta del día</span></div>
                     <span class="how-sep">›</span>
@@ -352,6 +363,7 @@
 
             <!-- Trivia Chilena panel -->
             <div id="panel-trivia" class="cat-panel">
+                <p class="panel-intro">Pon a prueba tu cultura general con 5 preguntas de ciencia, historia, geografía, entretenimiento y más. La trivia es de selección múltiple, se renueva constantemente y al final te muestra tu puntaje. ¿Eres capaz de sacar 5 de 5?</p>
                 <div id="trivia-welcome">
                     <span class="trivia-welcome-icon">🧠</span>
                     <h2 class="trivia-title">Trivia</h2>
@@ -392,6 +404,7 @@
 
             <!-- Confesiones Fomes panel -->
             <div id="panel-confesiones" class="cat-panel">
+                <p class="panel-intro">Confiesa ese momento fome, vergonzoso o simplemente raro de forma completamente anónima. La comunidad reacciona con emojis y puede responder tus confesiones. Desde tropiezos cotidianos hasta situaciones insólitas — aquí todos tenemos algo que contar.</p>
                 <div class="how-it-works">
                     <div class="how-step"><span class="how-num">1</span><span class="how-text">Confiesa algo fome (anónimo)</span></div>
                     <span class="how-sep">›</span>
@@ -413,6 +426,7 @@
 
             <!-- Sudoku panel -->
             <div id="panel-sudoku" class="cat-panel">
+                <p class="panel-intro">Ejercita tu mente con Sudoku clásico. Completa el grid de 9×9 celdas asegurándote de que cada fila, columna y cuadrante 3×3 contenga los números del 1 al 9 sin repetir. Elige entre tres niveles de dificultad: fácil, medio o difícil.</p>
                 <div id="sudoku-welcome" class="sudoku-welcome">
                     <span class="sudoku-welcome-icon">🔢</span>
                     <h2 class="sudoku-title">Sudoku</h2>
@@ -490,6 +504,13 @@
                 <div class="comment-list" id="comment-list">
                     <div class="comment-empty">Cargando comentarios...</div>
                 </div>
+            </section>
+
+            <!-- About -->
+            <section class="about-section">
+                <h2 class="section-title">¿Qué es Estoy Fome?</h2>
+                <p class="section-desc">Estoy Fome nació en Chile para ayudar a las personas a decidir qué hacer cuando el aburrimiento aparece. Somos una plataforma de entretenimiento y decisión que combina tecnología, inteligencia artificial y comunidad para ofrecerte ideas frescas cada día.</p>
+                <p class="section-desc">Desde la ruleta de comidas chilenas hasta el horóscopo diario con IA, pasando por recomendaciones de series y películas, trivia cultural, encuestas de la comunidad, confesiones anónimas y Sudoku, Estoy Fome es el lugar donde siempre hay algo que hacer, ver o pensar — sin importar la hora ni el día.</p>
             </section>
 
             <!-- Contact -->
