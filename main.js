@@ -1,12 +1,3 @@
-// ── Beta Popup ─────────────────────────────────────────
-const betaOverlay = document.getElementById('beta-overlay');
-if (!localStorage.getItem('beta-seen')) {
-    betaOverlay.style.display = 'flex';
-}
-document.getElementById('beta-close').addEventListener('click', () => {
-    betaOverlay.style.display = 'none';
-    localStorage.setItem('beta-seen', '1');
-});
 
 // ── Theme ──────────────────────────────────────────────
 const themeBtn = document.getElementById('theme-btn');
