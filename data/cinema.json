@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-06-18",
+  "updated_at": "2026-06-25",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
-      "name": "Bleach Thousand Year Blood War the Calamity",
+      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -15,12 +15,17 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Supergirl",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Supergirl",
+      "name": "Bleach Thousand Year Blood War the Calamity",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -35,17 +40,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Moana",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Evil Dead en Llamas",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "El Dia de la Revelacion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Minions Monstruos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Amos del Universo",
+      "name": "La Odisea",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -60,32 +70,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Evil Dead en Llamas",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Backrooms",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Odisea",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Sia Nostalgic for the Present",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
+      "name": "Backrooms",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -100,7 +90,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Diablo Viste a la Moda 2",
+      "name": "Obsesion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -111,11 +101,6 @@
     },
     {
       "name": "Engendro",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Michael",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -140,6 +125,16 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Michael",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Zona Cero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Hechizo de Amor la Magia Continua",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -150,12 +145,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Heladero",
+      "name": "Resident Evil Noche Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Resident Evil Noche Cero",
+      "name": "El Heladero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
