@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-01",
+  "updated_at": "2026-07-01",
   "categories": {
     "comedia": [
       {
@@ -440,47 +440,52 @@
     ],
     "clasico": [
       {
-        "name": "Ciudadano Kane",
+        "name": "Rashomon",
         "emoji": "🎬️",
         "platform": "Max"
       },
       {
-        "name": "La dolce vita",
+        "name": "Ciudadano Kane",
         "emoji": "🎬️",
         "platform": "Netflix"
       },
       {
-        "name": "Rashomon",
+        "name": "La Dolce Vita",
         "emoji": "🎬️",
         "platform": "Prime Video"
       },
       {
-        "name": "El acorazado Potemkin",
+        "name": "El Acorazado Potemkin",
         "emoji": "🎬️",
         "platform": "Max"
-      },
-      {
-        "name": "Singin' in the Rain",
-        "emoji": "🎬️",
-        "platform": "Disney+"
-      },
-      {
-        "name": "El tercer hombre",
-        "emoji": "🎬️",
-        "platform": "Prime Video"
       },
       {
         "name": "Tokyo Story",
         "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Métropolis",
+        "emoji": "🎬️",
         "platform": "Netflix"
       },
       {
-        "name": "Un tranvía llamado Deseo",
+        "name": "El Tercera del Cine: Los Cazadores de Brujas",
         "emoji": "🎬️",
         "platform": "Max"
       },
       {
-        "name": "Nosferatu",
+        "name": "Amarcord",
+        "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Come and See",
+        "emoji": "🎬️",
+        "platform": "Max"
+      },
+      {
+        "name": "Bicycle Thieves",
         "emoji": "🎬️",
         "platform": "Netflix"
       },
@@ -490,54 +495,29 @@
         "platform": "Prime Video"
       },
       {
-        "name": "El espíritu de la colmena",
+        "name": "Stalker",
         "emoji": "🎬️",
-        "platform": "Netflix"
-      },
-      {
-        "name": "Metropolis",
-        "emoji": "🎬️",
-        "platform": "Disney+"
+        "platform": "Max"
       }
     ],
     "estreno": [
-      {
-        "name": "Deadpool & Wolverine",
-        "emoji": "✨",
-        "platform": "Disney+"
-      },
       {
         "name": "Didi",
         "emoji": "✨",
         "platform": "Netflix"
       },
       {
-        "name": "Nosferatu",
+        "name": "La Habitación Cerca",
         "emoji": "✨",
         "platform": "Prime Video"
       },
       {
-        "name": "Wicked",
-        "emoji": "✨",
-        "platform": "Netflix"
-      },
-      {
-        "name": "El Conde",
-        "emoji": "✨",
-        "platform": "Prime Video"
-      },
-      {
-        "name": "Rebel Moon - Parte 2",
+        "name": "The Brutalist",
         "emoji": "✨",
         "platform": "Netflix"
       },
       {
         "name": "Civil War",
-        "emoji": "✨",
-        "platform": "Prime Video"
-      },
-      {
-        "name": "La habitación del pánico",
         "emoji": "✨",
         "platform": "Max"
       },
@@ -547,19 +527,39 @@
         "platform": "Disney+"
       },
       {
-        "name": "Argylle",
+        "name": "Nosferatu",
         "emoji": "✨",
         "platform": "Prime Video"
       },
       {
-        "name": "Avatar: The Last Airbender",
+        "name": "Furiosa: A Mad Max Saga",
+        "emoji": "✨",
+        "platform": "Max"
+      },
+      {
+        "name": "Godzilla x Kong: The New Empire",
+        "emoji": "✨",
+        "platform": "Max"
+      },
+      {
+        "name": "Love Lies Bleeding",
         "emoji": "✨",
         "platform": "Netflix"
       },
       {
-        "name": "Joker: Folie à Deux",
+        "name": "I Saw the TV Glow",
         "emoji": "✨",
-        "platform": "Max"
+        "platform": "Prime Video"
+      },
+      {
+        "name": "The Iron Claw",
+        "emoji": "✨",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Wicked",
+        "emoji": "✨",
+        "platform": "Disney+"
       }
     ]
   }
