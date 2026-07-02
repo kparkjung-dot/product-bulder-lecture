@@ -1,41 +1,21 @@
 {
-  "updated_at": "2026-06-25",
+  "updated_at": "2026-07-02",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
-    {
-      "name": "Minions Monstruos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
     {
       "name": "Spider Man un Nuevo Dia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Supergirl",
+      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Toy Story 5",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Bleach Thousand Year Blood War the Calamity",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Afinador",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Leviticus Ritual de Sangre",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -50,7 +30,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Dia de la Revelacion",
+      "name": "Supergirl",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Afinador",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -60,22 +45,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Scary Movie",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Mil Pedazos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Sia Nostalgic for the Present",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Backrooms",
+      "name": "El Dia de la Revelacion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Scary Movie",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -90,7 +70,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
+      "name": "Ateez Light the Way in Cinemas",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Backrooms",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -115,7 +100,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Insaciable",
+      "name": "El Arbol Magico",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Obsesion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -125,7 +115,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Michael",
+      "name": "Insaciable",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -141,6 +131,11 @@
     },
     {
       "name": "Codigo Venganza",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Michael",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -161,6 +156,11 @@
     },
     {
       "name": "Digger",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Relajadas y Muy Peligrosas",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
