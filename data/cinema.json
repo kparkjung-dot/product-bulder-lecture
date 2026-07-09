@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-02",
+  "updated_at": "2026-07-09",
   "sources": [
     "Cinemark"
   ],
@@ -10,7 +10,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Minions Monstruos",
+      "name": "Moana",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -20,7 +20,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
+      "name": "La Odisea",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Minions Monstruos",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Ateez Light the Way in Cinemas",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -30,32 +40,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Supergirl",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Afinador",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Odisea",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Sia Nostalgic for the Present",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Dia de la Revelacion",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Scary Movie",
+      "name": "Supergirl",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -70,12 +60,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Ateez Light the Way in Cinemas",
+      "name": "La Naturaleza de las Cosas Invisibles",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Backrooms",
+      "name": "El Dia de la Revelacion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Paw Patrol la Dino Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -90,6 +85,11 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Scary Movie",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "La Noche del Demonio Estan Entre Nosotros",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -100,17 +100,22 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Arbol Magico",
+      "name": "Mi Vecino Totoro 1988 Ghibli Fest 2026",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
+      "name": "Backrooms",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Coyote Vs Acme",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Guerra de los Ultimos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -125,7 +130,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Hechizo de Amor la Magia Continua",
+      "name": "Obsesion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -135,7 +140,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Michael",
+      "name": "Relajadas y Muy Peligrosas",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -150,7 +155,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Verity la Sombra de un Engano",
+      "name": "Michael",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -160,7 +165,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Relajadas y Muy Peligrosas",
+      "name": "El Arbol Magico",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
