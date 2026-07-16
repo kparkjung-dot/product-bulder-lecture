@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-09",
+  "updated_at": "2026-07-16",
   "sources": [
     "Cinemark"
   ],
@@ -10,7 +10,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
+      "name": "La Odisea",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -20,17 +20,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Odisea",
+      "name": "Sia Nostalgic for the Present",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Minions Monstruos",
+      "name": "Backrooms Everything Must Go Edition",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Ateez Light the Way in Cinemas",
+      "name": "Moana",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -40,12 +40,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Sia Nostalgic for the Present",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Supergirl",
+      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -60,12 +55,27 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Diamanti",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Ateez Light the Way in Cinemas",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "La Naturaleza de las Cosas Invisibles",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Dia de la Revelacion",
+      "name": "Nimrods a Green Day Comedy",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Katseye Wild Hearts",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -85,11 +95,6 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Scary Movie",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "La Noche del Demonio Estan Entre Nosotros",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -100,12 +105,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Solo Por una Noche",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Locamente",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Mi Vecino Totoro 1988 Ghibli Fest 2026",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Backrooms",
+      "name": "El Dia de la Revelacion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -125,12 +140,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Terminator 2 el Juicio Final",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Scary Movie",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Zona Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
+      "name": "Backrooms",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -150,7 +175,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Obsesion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "El Heladero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Isla Olvidada",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Digger",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -160,7 +200,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Digger",
+      "name": "La Caida de la Ballena",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Kalkutun Juicio a los Brujos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -181,6 +226,16 @@
     },
     {
       "name": "Los Juegos del Hambre Amanecer en la Cosecha",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Hechizo Bienvenidos a Hexe",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Duna Parte 3",
       "emoji": "🎟️",
       "platform": "Cinemark"
     }
