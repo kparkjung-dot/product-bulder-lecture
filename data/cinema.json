@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-16",
+  "updated_at": "2026-07-23",
   "sources": [
     "Cinemark"
   ],
@@ -15,32 +15,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Toy Story 5",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Sia Nostalgic for the Present",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Backrooms Everything Must Go Edition",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Moana",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Evil Dead en Llamas",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -70,6 +50,16 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Moana",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Evil Dead en Llamas",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Nimrods a Green Day Comedy",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -91,6 +81,16 @@
     },
     {
       "name": "Engendro",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Rapidos y Furiosos 25 Aniversario",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -120,7 +120,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Dia de la Revelacion",
+      "name": "Ghost 2 Big to Rig",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -145,7 +145,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Scary Movie",
+      "name": "Juan Gabriel Mi Primer Bellas Artes",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -155,7 +160,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Backrooms",
+      "name": "El Dia de la Revelacion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -170,12 +175,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Resident Evil Noche Cero",
+      "name": "Scary Movie",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
+      "name": "Resident Evil Noche Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -195,7 +200,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Michael",
+      "name": "Obsesion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -220,6 +225,11 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Michael",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "El Gato Con Sombrero",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -236,6 +246,11 @@
     },
     {
       "name": "Duna Parte 3",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Avengers Doomsday",
       "emoji": "🎟️",
       "platform": "Cinemark"
     }
