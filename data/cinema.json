@@ -1,26 +1,11 @@
 {
-  "updated_at": "2026-07-23",
+  "updated_at": "2026-07-30",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
       "name": "Spider Man un Nuevo Dia",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Odisea",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Sia Nostalgic for the Present",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Backrooms Everything Must Go Edition",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -50,16 +35,6 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Evil Dead en Llamas",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Nimrods a Green Day Comedy",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -85,12 +60,22 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Rapidos y Furiosos 25 Aniversario",
+      "name": "Rapidos y Furiosos 2001",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Minions Monstruos",
+      "name": "Calle Malaga",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Cortis Tour Put Your Phone Down Live Viewing",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Odisea",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -120,6 +105,11 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Moana",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Ghost 2 Big to Rig",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -140,7 +130,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Terminator 2 el Juicio Final",
+      "name": "Harry Potter y la Piedra Filosofal 2001",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -150,7 +140,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Toy Story 5",
+      "name": "Minions Monstruos",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Katy Perry the Lifetimes Tour Live from Paris",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -160,7 +155,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Dia de la Revelacion",
+      "name": "Terminator 2 el Juicio Final 1991",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -175,12 +170,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Scary Movie",
+      "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Resident Evil Noche Cero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Dia de la Revelacion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -195,17 +195,32 @@
       "platform": "Cinemark"
     },
     {
+      "name": "El Ultimo Gran Golpe",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Vertigo 2 Punto Muerto",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Digger",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Obsesion",
+      "name": "La Caida de la Ballena",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "La Caida de la Ballena",
+      "name": "Estacion Zombie 2016",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Obsesion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -225,7 +240,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Michael",
+      "name": "Godzilla Minus Zero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
