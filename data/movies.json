@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-01",
+  "updated_at": "2026-08-01",
   "categories": {
     "comedia": [
       {
@@ -440,17 +440,42 @@
     ],
     "clasico": [
       {
-        "name": "Rashomon",
-        "emoji": "🎬️",
-        "platform": "Max"
-      },
-      {
         "name": "Ciudadano Kane",
         "emoji": "🎬️",
         "platform": "Netflix"
       },
       {
+        "name": "Rashomon",
+        "emoji": "🎬️",
+        "platform": "Max"
+      },
+      {
+        "name": "Singin' in the Rain",
+        "emoji": "🎬️",
+        "platform": "Disney+"
+      },
+      {
+        "name": "Adiós Bella Vista",
+        "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
         "name": "La Dolce Vita",
+        "emoji": "🎬️",
+        "platform": "Max"
+      },
+      {
+        "name": "Vertigo",
+        "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "El Tercero Excluido",
+        "emoji": "🎬️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Drunken Master",
         "emoji": "🎬️",
         "platform": "Prime Video"
       },
@@ -460,44 +485,19 @@
         "platform": "Max"
       },
       {
-        "name": "Tokyo Story",
+        "name": "Casablanca",
         "emoji": "🎬️",
-        "platform": "Prime Video"
+        "platform": "Disney+"
       },
       {
-        "name": "Métropolis",
+        "name": "Yojimbo",
         "emoji": "🎬️",
         "platform": "Netflix"
       },
       {
-        "name": "El Tercera del Cine: Los Cazadores de Brujas",
-        "emoji": "🎬️",
-        "platform": "Max"
-      },
-      {
-        "name": "Amarcord",
+        "name": "Los Olvidados",
         "emoji": "🎬️",
         "platform": "Prime Video"
-      },
-      {
-        "name": "Come and See",
-        "emoji": "🎬️",
-        "platform": "Max"
-      },
-      {
-        "name": "Bicycle Thieves",
-        "emoji": "🎬️",
-        "platform": "Netflix"
-      },
-      {
-        "name": "Vertigo",
-        "emoji": "🎬️",
-        "platform": "Prime Video"
-      },
-      {
-        "name": "Stalker",
-        "emoji": "🎬️",
-        "platform": "Max"
       }
     ],
     "estreno": [
@@ -507,22 +507,12 @@
         "platform": "Netflix"
       },
       {
-        "name": "La Habitación Cerca",
-        "emoji": "✨",
-        "platform": "Prime Video"
-      },
-      {
-        "name": "The Brutalist",
-        "emoji": "✨",
-        "platform": "Netflix"
-      },
-      {
-        "name": "Civil War",
+        "name": "La Sustancia",
         "emoji": "✨",
         "platform": "Max"
       },
       {
-        "name": "Inside Out 2",
+        "name": "Deadpool & Wolverine",
         "emoji": "✨",
         "platform": "Disney+"
       },
@@ -532,34 +522,44 @@
         "platform": "Prime Video"
       },
       {
-        "name": "Furiosa: A Mad Max Saga",
-        "emoji": "✨",
-        "platform": "Max"
-      },
-      {
-        "name": "Godzilla x Kong: The New Empire",
-        "emoji": "✨",
-        "platform": "Max"
-      },
-      {
-        "name": "Love Lies Bleeding",
+        "name": "Wicked",
         "emoji": "✨",
         "platform": "Netflix"
       },
       {
-        "name": "I Saw the TV Glow",
+        "name": "Paddington in Peru",
         "emoji": "✨",
         "platform": "Prime Video"
       },
       {
-        "name": "The Iron Claw",
+        "name": "Queer",
         "emoji": "✨",
         "platform": "Netflix"
       },
       {
-        "name": "Wicked",
+        "name": "Conclave",
         "emoji": "✨",
-        "platform": "Disney+"
+        "platform": "Max"
+      },
+      {
+        "name": "Dentro de la Casa de Papel",
+        "emoji": "✨",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Joker: Folie à Deux",
+        "emoji": "✨",
+        "platform": "Max"
+      },
+      {
+        "name": "Sing: Ven y Canta de Nuevo",
+        "emoji": "✨",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Civil War",
+        "emoji": "✨",
+        "platform": "Prime Video"
       }
     ]
   }
