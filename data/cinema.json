@@ -1,51 +1,26 @@
 {
-  "updated_at": "2026-07-30",
+  "updated_at": "2026-08-13",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
+      "name": "Cortis Tour Put Your Phone Down Live Viewing",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Harry Potter y la Piedra Filosofal 2001",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Juan Gabriel Mi Primer Bellas Artes",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Spider Man un Nuevo Dia",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Bajo Presion",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Impacto Mortal",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Diamanti",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Ateez Light the Way in Cinemas",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Naturaleza de las Cosas Invisibles",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Nimrods a Green Day Comedy",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Katseye Wild Hearts",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Paw Patrol la Dino Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -55,12 +30,27 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Engendro",
+      "name": "La Odisea",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Rapidos y Furiosos 2001",
+      "name": "Paw Patrol la Dino Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Rapido y Furioso 2001",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Katseye Wild Hearts",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Engendro",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -70,17 +60,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Cortis Tour Put Your Phone Down Live Viewing",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Odisea",
+      "name": "Nimrods a Green Day Comedy",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "La Noche del Demonio Estan Entre Nosotros",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Muerte de Robin Hood",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -100,12 +90,17 @@
       "platform": "Cinemark"
     },
     {
+      "name": "La Negociacion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Mi Vecino Totoro 1988 Ghibli Fest 2026",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
+      "name": "Bajo Presion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -130,17 +125,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Harry Potter y la Piedra Filosofal 2001",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Juan Gabriel Mi Primer Bellas Artes",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Minions Monstruos",
+      "name": "Papi Ricky la Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -160,6 +145,21 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Puella Magi Madoka Magica Beginnings",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Tadeo el Explorador y la Lampara Magica",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Hechizo de Amor la Magia Continua",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Codigo Venganza",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -170,7 +170,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Toy Story 5",
+      "name": "One Piece la Pelicula 2000",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Puella Magi Madoka Magica Eternal",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -180,7 +185,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Dia de la Revelacion",
+      "name": "Los Juegos del Hambre 2012",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Puella Magi Madoka Magica Rebellion",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Moana",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -200,6 +215,16 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Minions Monstruos",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "A Cualquier Precio",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Vertigo 2 Punto Muerto",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -210,17 +235,37 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Los Juegos del Hambre en Llamas 2013",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Linkin Park Unshatter",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Juegos del Hambre Sinsajo Pt1 2014",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Blue Lock",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Toy Story 5",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Juegos del Hambre Sinsajo Pt2 2015",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "La Caida de la Ballena",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Estacion Zombie 2016",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Obsesion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -240,7 +285,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Estacion Zombie 2016",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Entrega Al Limite",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Godzilla Minus Zero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Psicopata",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
