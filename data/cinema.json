@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-08-13",
+  "updated_at": "2026-08-20",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
-      "name": "Cortis Tour Put Your Phone Down Live Viewing",
+      "name": "Spider Man un Nuevo Dia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -20,12 +20,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Spider Man un Nuevo Dia",
+      "name": "Linkin Park Unshatter",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Final de la Calle Oak",
+      "name": "La Noche del Demonio Estan Entre Nosotros",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -35,37 +35,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Paw Patrol la Dino Pelicula",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Rapido y Furioso 2001",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Katseye Wild Hearts",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Engendro",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Calle Malaga",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Nimrods a Green Day Comedy",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "name": "Solo Por una Noche",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -76,11 +46,6 @@
     },
     {
       "name": "Tu Corazon Sera Destrozado",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Solo Por una Noche",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -96,11 +61,6 @@
     },
     {
       "name": "Mi Vecino Totoro 1988 Ghibli Fest 2026",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Bajo Presion",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -126,6 +86,21 @@
     },
     {
       "name": "Papi Ricky la Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Paw Patrol la Dino Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Final de la Calle Oak",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Katseye Wild Hearts",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -195,11 +170,6 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "El Heladero",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -211,11 +181,6 @@
     },
     {
       "name": "El Ultimo Gran Golpe",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -240,7 +205,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Linkin Park Unshatter",
+      "name": "Moana",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -255,7 +220,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Toy Story 5",
+      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -281,6 +246,11 @@
     },
     {
       "name": "Clayface",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
