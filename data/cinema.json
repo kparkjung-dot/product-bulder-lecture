@@ -1,16 +1,11 @@
 {
-  "updated_at": "2026-08-20",
+  "updated_at": "2026-08-27",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
-      "name": "Spider Man un Nuevo Dia",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Harry Potter y la Piedra Filosofal 2001",
+      "name": "Avengers Endgame Bonus",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -20,92 +15,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Linkin Park Unshatter",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Noche del Demonio Estan Entre Nosotros",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Odisea",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Solo Por una Noche",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Muerte de Robin Hood",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Tu Corazon Sera Destrozado",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Locamente",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Negociacion",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Mi Vecino Totoro 1988 Ghibli Fest 2026",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Ghost 2 Big to Rig",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Coyote Vs Acme",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Guerra de los Ultimos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Insaciable",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Papi Ricky la Pelicula",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Paw Patrol la Dino Pelicula",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Final de la Calle Oak",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Katseye Wild Hearts",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Katy Perry the Lifetimes Tour Live from Paris",
+      "name": "Harry Potter y la Piedra Filosofal 2001",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -115,12 +25,82 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Nct 127 5th Tour Neo City Seoul the Redline",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Queen Budapest",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Papi Ricky la Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Coyote Vs Acme",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Spider Man un Nuevo Dia",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Guerra de los Ultimos",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Odisea",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Ghost 2 Big to Rig",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Katy Perry the Lifetimes Tour Live from Paris",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Insaciable",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Terminator 2 el Juicio Final 1991",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
+      "name": "El Gran Falsificador",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Puella Magi Madoka Magica Beginnings",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Solo Por una Noche",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Mi Vecino Totoro 1988 Ghibli Fest 2026",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -155,6 +135,21 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Paw Patrol la Dino Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Final de la Calle Oak",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "A Cualquier Precio",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Resident Evil Noche Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -185,11 +180,6 @@
       "platform": "Cinemark"
     },
     {
-      "name": "A Cualquier Precio",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Vertigo 2 Punto Muerto",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -200,12 +190,17 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Verity la Sombra de un Engano",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Los Juegos del Hambre en Llamas 2013",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
+      "name": "Linkin Park Unshatter",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -220,17 +215,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Minions Monstruos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Los Juegos del Hambre Sinsajo Pt2 2015",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "La Caida de la Ballena",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Moana",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -250,7 +245,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Toy Story 5",
+      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -276,6 +271,11 @@
     },
     {
       "name": "El Gato Con Sombrero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
