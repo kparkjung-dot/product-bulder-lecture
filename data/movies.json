@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-01",
+  "updated_at": "2026-09-01",
   "categories": {
     "comedia": [
       {
@@ -442,62 +442,62 @@
       {
         "name": "Ciudadano Kane",
         "emoji": "🎬️",
-        "platform": "Netflix"
+        "platform": "Max"
       },
       {
         "name": "Rashomon",
         "emoji": "🎬️",
-        "platform": "Max"
-      },
-      {
-        "name": "Singin' in the Rain",
-        "emoji": "🎬️",
-        "platform": "Disney+"
-      },
-      {
-        "name": "Adiós Bella Vista",
-        "emoji": "🎬️",
         "platform": "Prime Video"
       },
       {
-        "name": "La Dolce Vita",
+        "name": "El Padrino",
         "emoji": "🎬️",
-        "platform": "Max"
+        "platform": "Paramount"
       },
       {
-        "name": "Vertigo",
-        "emoji": "🎬️",
-        "platform": "Prime Video"
-      },
-      {
-        "name": "El Tercero Excluido",
+        "name": "Cien Metros",
         "emoji": "🎬️",
         "platform": "Netflix"
       },
       {
-        "name": "Drunken Master",
+        "name": "Nostalghia",
         "emoji": "🎬️",
         "platform": "Prime Video"
       },
       {
-        "name": "El Acorazado Potemkin",
+        "name": "La Jetée",
         "emoji": "🎬️",
         "platform": "Max"
       },
       {
-        "name": "Casablanca",
-        "emoji": "🎬️",
-        "platform": "Disney+"
-      },
-      {
-        "name": "Yojimbo",
+        "name": "Ikiru",
         "emoji": "🎬️",
         "platform": "Netflix"
       },
       {
-        "name": "Los Olvidados",
+        "name": "El Tercero de Ismael",
         "emoji": "🎬️",
         "platform": "Prime Video"
+      },
+      {
+        "name": "Violeta se fue a los cielos",
+        "emoji": "🎬️",
+        "platform": "Netflix"
+      },
+      {
+        "name": "Hiroshima Mon Amour",
+        "emoji": "🎬️",
+        "platform": "Max"
+      },
+      {
+        "name": "A Sangre Fría",
+        "emoji": "🎬️",
+        "platform": "Prime Video"
+      },
+      {
+        "name": "Stalker",
+        "emoji": "🎬️",
+        "platform": "Netflix"
       }
     ],
     "estreno": [
@@ -507,9 +507,9 @@
         "platform": "Netflix"
       },
       {
-        "name": "La Sustancia",
+        "name": "Griselda",
         "emoji": "✨",
-        "platform": "Max"
+        "platform": "Netflix"
       },
       {
         "name": "Deadpool & Wolverine",
@@ -517,47 +517,47 @@
         "platform": "Disney+"
       },
       {
-        "name": "Nosferatu",
+        "name": "Thelma",
+        "emoji": "✨",
+        "platform": "Max"
+      },
+      {
+        "name": "La Zona de Interés",
         "emoji": "✨",
         "platform": "Prime Video"
+      },
+      {
+        "name": "Nosferatu",
+        "emoji": "✨",
+        "platform": "Max"
       },
       {
         "name": "Wicked",
         "emoji": "✨",
-        "platform": "Netflix"
-      },
-      {
-        "name": "Paddington in Peru",
-        "emoji": "✨",
         "platform": "Prime Video"
       },
       {
-        "name": "Queer",
+        "name": "Inside Out 2",
+        "emoji": "✨",
+        "platform": "Disney+"
+      },
+      {
+        "name": "La Habitación de al Lado",
         "emoji": "✨",
         "platform": "Netflix"
       },
       {
-        "name": "Conclave",
+        "name": "Babygirl",
         "emoji": "✨",
         "platform": "Max"
       },
       {
-        "name": "Dentro de la Casa de Papel",
+        "name": "El Conde",
         "emoji": "✨",
         "platform": "Netflix"
       },
       {
-        "name": "Joker: Folie à Deux",
-        "emoji": "✨",
-        "platform": "Max"
-      },
-      {
-        "name": "Sing: Ven y Canta de Nuevo",
-        "emoji": "✨",
-        "platform": "Netflix"
-      },
-      {
-        "name": "Civil War",
+        "name": "Heretic",
         "emoji": "✨",
         "platform": "Prime Video"
       }
