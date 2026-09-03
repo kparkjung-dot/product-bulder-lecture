@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-27",
+  "updated_at": "2026-09-03",
   "sources": [
     "Cinemark"
   ],
@@ -10,12 +10,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Juan Gabriel Mi Primer Bellas Artes",
+      "name": "Katy Perry the Lifetimes Tour Live from Paris",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Harry Potter y la Piedra Filosofal 2001",
+      "name": "Oasis Don T Look Back in Anger",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Juan Gabriel Mi Primer Bellas Artes",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -25,67 +30,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Nct 127 5th Tour Neo City Seoul the Redline",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Queen Budapest",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Papi Ricky la Pelicula",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Coyote Vs Acme",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Spider Man un Nuevo Dia",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Guerra de los Ultimos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Odisea",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Noche del Demonio Estan Entre Nosotros",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Ghost 2 Big to Rig",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Katy Perry the Lifetimes Tour Live from Paris",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Insaciable",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Terminator 2 el Juicio Final 1991",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Gran Falsificador",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -95,12 +40,22 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Solo Por una Noche",
+      "name": "Coyote Vs Acme",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Mi Vecino Totoro 1988 Ghibli Fest 2026",
+      "name": "El Deshielo",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Insaciable",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Gran Falsificador",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -135,12 +90,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Paw Patrol la Dino Pelicula",
+      "name": "La Guerra de los Ultimos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Final de la Calle Oak",
+      "name": "Papi Ricky la Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -165,6 +120,16 @@
       "platform": "Cinemark"
     },
     {
+      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Nct 127 5th Tour Neo City Seoul the Redline",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "El Heladero",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -175,7 +140,27 @@
       "platform": "Cinemark"
     },
     {
+      "name": "El Corazon de la Bestia",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "El Ultimo Gran Golpe",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Paw Patrol la Dino Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Final de la Calle Oak",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Hangar Rojo",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -205,6 +190,11 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Queen Budapest",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Los Juegos del Hambre Sinsajo Pt1 2014",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -215,17 +205,27 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Spider Man un Nuevo Dia",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Always Lalisa",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Los Juegos del Hambre Sinsajo Pt2 2015",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "La Caida de la Ballena",
+      "name": "Street Fighter",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Moana",
+      "name": "La Caida de la Ballena",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -245,7 +245,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Minions Monstruos",
+      "name": "La Odisea",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -275,12 +275,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Toy Story 5",
+      "name": "Minions Monstruos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Los Juegos del Hambre Amanecer en la Cosecha",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
