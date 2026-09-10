@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-03",
+  "updated_at": "2026-09-10",
   "sources": [
     "Cinemark"
   ],
@@ -10,32 +10,22 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Katy Perry the Lifetimes Tour Live from Paris",
+      "name": "Resident Evil Noche Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Oasis Don T Look Back in Anger",
+      "name": "Sagrado Corazon",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Juan Gabriel Mi Primer Bellas Artes",
+      "name": "Duna Parte 3",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Zona Cero",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Terminator 2 el Juicio Final 1991",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Puella Magi Madoka Magica Beginnings",
+      "name": "One Piece la Pelicula 2000",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -45,27 +35,22 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Deshielo",
+      "name": "Oasis Don T Look Back in Anger",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Insaciable",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Gran Falsificador",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Tadeo el Explorador y la Lampara Magica",
+      "name": "Tadeo el Explorador y la Lampara Maravillosa",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Hechizo de Amor la Magia Continua",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Spider Man un Nuevo Dia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -80,32 +65,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "One Piece la Pelicula 2000",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Puella Magi Madoka Magica Eternal",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "La Guerra de los Ultimos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Papi Ricky la Pelicula",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "A Cualquier Precio",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Resident Evil Noche Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -120,7 +85,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "name": "El Deshielo",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Zona Cero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Terminator 2 el Juicio Final 1991",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -150,17 +125,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Paw Patrol la Dino Pelicula",
+      "name": "La Guerra de los Ultimos",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Final de la Calle Oak",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Hangar Rojo",
+      "name": "Papi Ricky la Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -190,12 +160,27 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Puella Magi Madoka Magica Walpurgisnacht Rising",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Hangar Rojo",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Queen Budapest",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Los Juegos del Hambre Sinsajo Pt1 2014",
+      "name": "Cars 2006",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -205,17 +190,27 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Spider Man un Nuevo Dia",
+      "name": "Hope el Primer Imacto",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Juegos del Hambre Sinsajo Pt1 2014",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Paw Patrol la Dino Pelicula",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Final de la Calle Oak",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Always Lalisa",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Los Juegos del Hambre Sinsajo Pt2 2015",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -226,6 +221,11 @@
     },
     {
       "name": "La Caida de la Ballena",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Juegos del Hambre Sinsajo Pt2 2015",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -245,7 +245,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Odisea",
+      "name": "Terror en el Amazonas",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -260,6 +260,16 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Wildwood el Bosque Salvaje",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Gato Con Sombrero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Godzilla Minus Zero",
       "emoji": "🎟️",
       "platform": "Cinemark"
@@ -270,12 +280,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Gato Con Sombrero",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Minions Monstruos",
+      "name": "La Odisea",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -285,17 +290,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Toy Story 5",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Hechizo Bienvenidos a Hexe",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Duna Parte 3",
+      "name": "Toy Story 5",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
