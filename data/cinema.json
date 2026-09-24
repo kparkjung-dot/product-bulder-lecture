@@ -1,21 +1,21 @@
 {
-  "updated_at": "2026-09-17",
+  "updated_at": "2026-09-24",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
-      "name": "Avengers Endgame Bonus",
+      "name": "Verity la Sombra de un Engano",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Nct 127 5th Tour Neo City Seoul the Redline",
+      "name": "Los Juegos del Hambre en Llamas 2013",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Corazon de la Bestia",
+      "name": "Digger",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -30,7 +30,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Duna Parte 3",
+      "name": "Avengers Endgame Bonus",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Corazon de la Bestia",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Isla Olvidada",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -40,42 +50,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Los Juegos del Hambre 2012",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Coyote Vs Acme",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "A Cualquier Precio",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Sagrado Corazon",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "One Piece la Pelicula 2000",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Puella Magi Madoka Magica Rebellion",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "El Heladero",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Isla Olvidada",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -90,42 +70,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Tadeo el Explorador y la Lampara Maravillosa",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Hechizo de Amor la Magia Continua",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Codigo Venganza",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Oasis Don T Look Back in Anger",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Vertigo 2 Punto Muerto",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Digger",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Verity la Sombra de un Engano",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Los Juegos del Hambre en Llamas 2013",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -150,7 +95,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Zona Cero",
+      "name": "Los Juegos del Hambre 2012",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Sagrado Corazon",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -190,12 +140,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Guerra de los Ultimos",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Papi Ricky la Pelicula",
+      "name": "Hechizo de Amor la Magia Continua",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -220,7 +165,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "name": "Zona Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -255,17 +200,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Paw Patrol la Dino Pelicula",
+      "name": "Papi Ricky la Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "El Final de la Calle Oak",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Rammstein Live in Mexico City",
+      "name": "Ozzy Black Sabbath Back to the Beginning",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -290,7 +230,12 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Ozzy Black Sabbath Back to the Beginning",
+      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Rammstein Live in Mexico City",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -315,7 +260,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Spider Man un Nuevo Dia",
+      "name": "Paw Patrol la Dino Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -335,7 +280,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Odisea",
+      "name": "Spider Man un Nuevo Dia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -355,12 +300,22 @@
       "platform": "Cinemark"
     },
     {
+      "name": "La Odisea",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "La Psicopata",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Avengers Doomsday",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Duna Parte 3",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
