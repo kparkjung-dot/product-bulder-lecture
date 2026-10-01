@@ -1,31 +1,16 @@
 {
-  "updated_at": "2026-09-24",
+  "updated_at": "2026-10-01",
   "sources": [
     "Cinemark"
   ],
   "cartelera": [
     {
-      "name": "Verity la Sombra de un Engano",
+      "name": "Avengers Doomsday",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Los Juegos del Hambre en Llamas 2013",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Digger",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Bts World Tour Arirang in B Aires Live Viewing",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Bts World Tour Arirang in Sao Paulo Live Viewing",
+      "name": "Duna Parte 3",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -35,47 +20,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "El Corazon de la Bestia",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Isla Olvidada",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Resident Evil Noche Cero",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Coyote Vs Acme",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Heladero",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "El Ultimo Gran Golpe",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Sombra del Exorcista",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Vertigo 2 Punto Muerto",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Linkin Park Unshatter",
+      "name": "Verity la Sombra de un Engano",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -85,22 +30,62 @@
       "platform": "Cinemark"
     },
     {
+      "name": "Digger",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Juegos del Hambre Sinsajo Pt1 2014",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Vertigo 2 Punto Muerto",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Street Fighter",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Los Juegos del Hambre en Llamas 2013",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Resident Evil Noche Cero",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "El Corazon de la Bestia",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Linkin Park Unshatter",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
       "name": "Hangar Rojo",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Cuentos del Jardin Magico",
+      "name": "Coraline 2009",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Los Juegos del Hambre 2012",
+      "name": "Los Boxtrolls 2014",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Sagrado Corazon",
+      "name": "Paranorman 2012",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -135,22 +120,17 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Los Juegos del Hambre Sinsajo Pt1 2014",
+      "name": "El Heladero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Hechizo de Amor la Magia Continua",
+      "name": "La Isla Olvidada",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Always Lalisa",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Street Fighter",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -161,11 +141,6 @@
     },
     {
       "name": "Los Juegos del Hambre Sinsajo Pt2 2015",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Zona Cero",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -190,17 +165,37 @@
       "platform": "Cinemark"
     },
     {
-      "name": "One Piece Aventura en la Isla Espiral 2001",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
       "name": "Los Otros 2001",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
-      "name": "Papi Ricky la Pelicula",
+      "name": "Hechizo de Amor la Magia Continua",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Bts World Tour Arirang in B Aires Live Viewing",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Seventeen World Tour New",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Tomorrow X Together World Tour Act Tomorrow",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Enhypen World Tour Blood Saga",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Hybe Cheering Party",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -230,7 +225,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "La Noche del Demonio Estan Entre Nosotros",
+      "name": "Bts World Tour Arirang in Sao Paulo Live Viewing",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -260,12 +255,22 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Paw Patrol la Dino Pelicula",
+      "name": "Coyote Vs Acme",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
     {
       "name": "Sacrificio los Elegidos",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "Akira 4k 1988",
+      "emoji": "🎟️",
+      "platform": "Cinemark"
+    },
+    {
+      "name": "La Noche del Demonio Estan Entre Nosotros",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -280,7 +285,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Spider Man un Nuevo Dia",
+      "name": "Paw Patrol la Dino Pelicula",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -295,12 +300,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "One Piece el Reino de Chopper 2002",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "La Odisea",
+      "name": "Spider Man un Nuevo Dia",
       "emoji": "🎟️",
       "platform": "Cinemark"
     },
@@ -310,17 +310,7 @@
       "platform": "Cinemark"
     },
     {
-      "name": "Avengers Doomsday",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Duna Parte 3",
-      "emoji": "🎟️",
-      "platform": "Cinemark"
-    },
-    {
-      "name": "Toy Story 5",
+      "name": "La Odisea",
       "emoji": "🎟️",
       "platform": "Cinemark"
     }
